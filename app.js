@@ -4,17 +4,18 @@ const app = express()
 const dbConnection = require('./db/connection')
 require('dotenv').config()
 const loginRegister = require('./routes/loginRegister')
-const port = process.env.PORT || 3000
+const port = process.env.MONGODB_URI || 5000
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
 app.use("/", loginRegister)
 
+app.use(express.static("public"))
 
-app.get("/register", (req,res) => {
-    res.sendFile(__dirname + '/public/index.html')
-})
+// app.get("/register", (req,res) => {
+//     res.sendFile(__dirname + '/public/index.html')
+// })
 
 const startConnection = async() => {
     try {
