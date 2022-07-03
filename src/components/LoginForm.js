@@ -25,7 +25,10 @@ function LoginForm({Login, error}) {
                 type="button"
                 onClick={toggleText}
                 >
-                    <img src={details.PasswordTextIsShown?unVisibility:visibility}></img>
+                    <img src={details.PasswordTextIsShown?unVisibility:visibility}
+                    className = "eye-image"
+                    alt={details.PasswordTextIsShown?"eye-slashed":"eye"}
+                    ></img>
                 </button>
             );
         }
