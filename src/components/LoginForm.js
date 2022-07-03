@@ -1,9 +1,11 @@
 import React, {useState} from "react";
-import '../components-css/LoginForm.css'
+import '../components-css/LoginForm.css';
+import visibility from "../Icons/visibility.png";
+import unVisibility from "../Icons/visibility_slash.png"
+
 
 function LoginForm({Login, error}) {
     const [details, setDetails] = useState({name: "", email: "", password: "", PasswordTextIsShown: false});
-    var PasswordTextIsShown = false;
 
     const submitHandler = e => {
         e.preventDefault();
@@ -14,6 +16,32 @@ function LoginForm({Login, error}) {
     function toggleText(){
         setDetails({...details, PasswordTextIsShown: !details.PasswordTextIsShown})
     }
+
+    function renderToggleButton(){
+        if(details.password){
+            return(
+                <button
+                id="toggleText"
+                type="button"
+                onClick={toggleText}
+                >
+                    <img src={details.PasswordTextIsShown?unVisibility:visibility}></img>
+                </button>
+            );
+        }
+    }
+
+    function textPassword(){
+        if(!details.password && details.PasswordTextIsShown){
+            setDetails({...details, PasswordTextIsShown: false})
+        }
+        if(details.PasswordTextIsShown){
+            return("text")
+        }else{
+            return("password")
+        };
+    }
+
 
     return (
         <form onSubmit={submitHandler}>
@@ -33,25 +61,16 @@ function LoginForm({Login, error}) {
                     <div className="password-placeholder">
                         <input 
                         className="password-input"
-                        type={details.PasswordTextIsShown?"text":"password"} 
+                        type={textPassword()} 
                         name='password' 
                         id='password' 
                         onChange={e => setDetails({
                             ...details, 
-                            password: e.target.value})} 
+                            password: e.target.value})
+                        } 
                         value={details.password}>
-
                         </input>
-                        <i>
-                            
-                        </i>
-                        <button
-                        id="toggleText"
-                        type="button"
-                        onClick={toggleText}
-                        >
-                            show
-                        </button>   
+                        {renderToggleButton()}
 
                     </div>
                 </div>
