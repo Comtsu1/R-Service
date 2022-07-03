@@ -10,6 +10,7 @@ input, button {
     background: none;
 }
 
+
 form {
     display: block;
     position: relative;
@@ -64,9 +65,9 @@ form .form-inner .form-group {
 
 form .form-inner .form-group input {
     display: block;
-    width: 100%;
+    width: 270px;
     padding: 10px 15px;
-    background-color: #f8f8f8;
+    background-color: #ebebeb;
     border-radius: 8px;
     transition: 0.4;
 }
@@ -91,4 +92,34 @@ form .form-inner input[type='submit'] {
 
 form .form-inner input[type='submit']:hover {
     background-position: 100% 0%;
+}
+
+#password{
+    width: 250px;
+    background-color: none;
+}
+#password:focus {
+    box-shadow: none;
+}
+
+#toggleText {
+    width: 43px;
+    box-shadow: none;
+}
+
+.password-placeholder{
+    display: flex;
+    background-color: #ebebeb;
+    border-radius: 8px;
+}
+.password-placeholder:focus-within{
+    box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.2);;
+}
+
+
+.password-placeholder img{
+    margin-right: 5px;
+    margin-top: 7px;
+    height: 20px; 
+    width: 20px;  
 }

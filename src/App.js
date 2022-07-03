@@ -2,12 +2,19 @@ import React, {useState} from 'react';
 import './App.css';
 import LoginForm from './components/LoginForm';
 
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+
 function App() {
   
   const adminUser = {
     email: "admin@admin.ro",
     password: "duckoff"
   }
+
 
   const [user, setUser] = useState({name: "", email: ""});
   const [error, setError] = useState("");
