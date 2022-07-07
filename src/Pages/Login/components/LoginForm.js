@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import '../components-css/LoginForm.css';
+import './LoginForm.css';
 import visibility from "../Icons/visibility.png";
 import unVisibility from "../Icons/visibility_slash.png"
 
@@ -42,7 +42,7 @@ function LoginForm({Login, error}) {
             return("text")
         }else{
             return("password")
-        };
+        }
     }
 
 
@@ -50,7 +50,7 @@ function LoginForm({Login, error}) {
         <form onSubmit={submitHandler}>
             <div className="form-inner">
                 <h2>Login</h2>
-                {(error != "") ? (<div className="error">{error}</div>) : ""}
+                {(error !== "") ? (<div className="error">{error}</div>) : ""}
                 <div className="form-group name">
                     <label htmlFor="name">Name: </label>
                     <input type={'text'} name='name' id='name' onChange={e => setDetails({...details, name: e.target.value})} value={details.name} />
