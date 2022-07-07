@@ -4,18 +4,31 @@ const app = express()
 const dbConnection = require('./db/connection')
 require('dotenv').config()
 const loginRegister = require('./routes/loginRegister')
-const port = process.env.MONGODB_URI || 5000
+const port = 3000 || process.env.PROCESS
+const user = require('./models/modelUser.js')
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
-app.use("/", loginRegister)
+app.use("/user", loginRegister)
 
-app.use(express.static("public"))
+app.get("/user/register", (req,res) => {
+    res.sendFile(__dirname + '/public/index.html')
+})
+app.get("/success_login",(req,res)=>{
+    res.json({login : "success"})
+})
 
-// app.get("/register", (req,res) => {
-//     res.sendFile(__dirname + '/public/index.html')
-// })
+//just a test to get profile with matching id
+app.get("/profile/:id", async (req,res)=>{
+    const id = req.params.id
+    const profileID = await user.findOne({userId: id})
+    if(profileID){
+        res.status(200).json({username: profileID.username})
+    }else{
+        res.status(404).json({msg : `User with id ${id} does not exist`})
+    }
+})
 
 const startConnection = async() => {
     try {
