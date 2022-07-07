@@ -1,3 +1,12 @@
+IMPORTANT!!!
+
+All packages installed until now were installed with npm
+It is recommended that you don't use yarn for installing other packages, and install them with npm
+Not doing so may create some errors between "package-lock"s
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
