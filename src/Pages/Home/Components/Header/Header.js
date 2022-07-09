@@ -1,11 +1,12 @@
 import React from "react";
-import logo from '../Icons/RServiceLogo_transparent.png';
-import bell from '../Icons/bell.png';
-import bellNotif from '../Icons/bell_notification.png';
-import msg from '../Icons/email_small.png';
-import msgNotif from '../Icons/email_small_unread.png';
-import menu from '../Icons/menu.png';
+import logo from '../../Icons/RServiceLogo_transparent.png';
+import bell from '../../Icons/bell.png';
+import bellNotif from '../../Icons/bell_notification.png';
+import msg from '../../Icons/email_small.png';
+import msgNotif from '../../Icons/email_small_unread.png';
+import menu from '../../Icons/menu.png';
 import './Header.css';
+import {Profile} from './Profile_Bar/Profile.js';
 
 class SearchBar extends React.Component{
     constructor(props){
@@ -49,16 +50,31 @@ class UserUtility extends React.Component{
             UserIcon: null,
             Notifications: 0,
             UnreadMsg: 0,
+            ProfileIsOpen: false,
         }
     }
 
+    OpenProfile= () => {
+        this.setState({ProfileIsOpen: !this.state.ProfileIsOpen});
+        console.log(this.state.ProfileIsOpen);
+    }
+
     render(){
+        var ProfileVar = null;
+        if(this.state.ProfileIsOpen){
+            ProfileVar = <Profile/>;
+        }else{
+            ProfileVar = null;
+        }
+
         return(
             <>
                 <div className="UserUtil">
-                    <div id='Profile' className="UserUtil-Group">
+                    <button id='Profile' className="UserUtil-Group" 
+                    onClick={this.OpenProfile}>
                         <label id='ProfileText'>U</label>
-                    </div>
+                    </button>
+                    {ProfileVar}
                 </div>
                 <div className="UserUtil">
                     <div id='Notifications' className="UserUtil-Group">

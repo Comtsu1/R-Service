@@ -105,3 +105,13 @@
   font-size: 30px;
   font-weight:600;
 }
+
+.Main-Header .UserUtil-Group#Profile{
+  border-color: none;
+  border: 0;
+}
+
+.Main-Header .UserUtil-Group#Profile :hover{
+  cursor: pointer;
+}
+
