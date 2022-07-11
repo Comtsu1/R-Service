@@ -60,39 +60,59 @@ class UserUtility extends React.Component{
     }
 
     render(){
-        var ProfileVar = null;
-        if(this.state.ProfileIsOpen){
-            ProfileVar = <Profile/>;
+        if(this.state.UserName){
+
+            var ProfileVar = null;
+            if(this.state.ProfileIsOpen){
+                ProfileVar = <Profile/>;
+            }else{
+                ProfileVar = null;
+            }
+    
+            return(
+                <>
+                    <div className="UserUtil">
+                        <button id='Profile' className="UserUtil-Group" 
+                        onClick={this.OpenProfile}>
+                            <label id='ProfileText'>U</label>
+                        </button>
+                        {ProfileVar}
+                    </div>
+                    <div className="UserUtil">
+                        <div id='Notifications' className="UserUtil-Group">
+                            <img src={this.state.Notifications>0?bellNotif:bell} alt='Notification Icon'></img>
+                        </div>
+                    </div>
+                    <div className="UserUtil">
+                        <div id='Messages' className="UserUtil-Group">
+                            <img src={this.state.UnreadMsg>0?msgNotif:msg} alt='Message Icon'></img>
+                        </div>
+                    </div>
+                    <div className="UserUtil">
+                        <div id='Menu' className="UserUtil-Group">
+                            <img src={menu}alt='Menu Icon'></img>
+                        </div>
+                    </div>
+                </>
+            )
         }else{
-            ProfileVar = null;
+            return(
+                <>
+                    <div className="UserUtil">
+                        <a href="login">
+                            <button id='LoginButton'>Login</button>
+                        </a>
+                    </div>
+                    <div className="UserUtil">
+                        <a href="register">
+                            <button id='SignUpButton'>SignUp</button>
+                        </a>
+                    </div>
+                </>
+            )
         }
 
-        return(
-            <>
-                <div className="UserUtil">
-                    <button id='Profile' className="UserUtil-Group" 
-                    onClick={this.OpenProfile}>
-                        <label id='ProfileText'>U</label>
-                    </button>
-                    {ProfileVar}
-                </div>
-                <div className="UserUtil">
-                    <div id='Notifications' className="UserUtil-Group">
-                        <img src={this.state.Notifications>0?bellNotif:bell} alt='Notification Icon'></img>
-                    </div>
-                </div>
-                <div className="UserUtil">
-                    <div id='Messages' className="UserUtil-Group">
-                        <img src={this.state.UnreadMsg>0?msgNotif:msg} alt='Message Icon'></img>
-                    </div>
-                </div>
-                <div className="UserUtil">
-                    <div id='Menu' className="UserUtil-Group">
-                        <img src={menu}alt='Menu Icon'></img>
-                    </div>
-                </div>
-            </>
-        )
+
     }
 
 }

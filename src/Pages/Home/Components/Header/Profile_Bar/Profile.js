@@ -2,15 +2,6 @@ import React from "react";
 import './Profile.css';
 
 class Profile extends React.Component{
-    constructor(props){
-        super(props);
-        this.state = {
-            User: '',
-            Img: '',
-        }
-    }
-
-
     render(){
         return(
             <aside className="Dropdown-Profile">

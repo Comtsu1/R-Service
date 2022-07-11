@@ -1,4 +1,5 @@
 .Main-Header{
+  --ButtonHighlight: #538e99;
   --darkblue: #43727a;
   --lightblue: #4ddde0;
   background-color: var(--darkblue);
@@ -115,3 +116,38 @@
   cursor: pointer;
 }
 
+/* -------Buttons---------------------------- */
+
+.Main-Header .ie.Right button{
+  background-color: transparent;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 5px;
+  padding-left: 8px;
+  padding-right: 8px;
+  margin-top: 5px;
+  border-width: 2px;
+  border-radius: 5px;
+  border-color: transparent;
+  transition: 200ms;
+  cursor: pointer;
+}
+
+.Main-Header #LoginButton{
+  border: 2px;
+  border-style: solid;
+  border-color: #fff;
+}
+
+
+.Main-Header #LoginButton:hover{
+  background-color: white;
+  color: #43727a;
+  transition: 400ms;
+}
+
+.Main-Header #SignUpButton:hover{
+  background-color: var(--ButtonHighlight);
+  transition: 400ms;
+}
