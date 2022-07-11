@@ -108,8 +108,17 @@
 }
 
 .Main-Header .UserUtil-Group#Profile{
+  width: 40px;
+  height: 40px;
+  margin-top: 0;
+  background-color: #fff;
+  border-radius: 100%;
+  color: black;
+  text-align: center;
+  align-items: center;
   border-color: none;
   border: 0;
+  transition: 0s;
 }
 
 .Main-Header .UserUtil-Group#Profile :hover{
