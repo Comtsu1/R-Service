@@ -181,3 +181,32 @@ background-position: 100% 0%;
     cursor: pointer;
 }
 
+
+/* ------ Forgot Password Form----------------------------- */
+
+
+.Login .Wrapper .Wrapper{
+    padding: 30px;
+    padding-top: 5px;
+}
+
+.Login .Wrapper .Wrapper h1{
+    text-align: center;
+}
+
+
+.Login #Forgot-description{
+    width: 300px;
+    text-align: center;
+}
+
+.Login #ForgotForm{
+    position: relative;
+    display: block;
+    padding: 5px 10px;
+    border-width: 1px;
+    border-color: #b9b9b9;
+    border-radius: 8px;
+    border-style: solid;
+
+}
