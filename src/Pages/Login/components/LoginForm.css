@@ -1,9 +1,13 @@
 .Login {
-height: 100vh;
-display: flex;
-align-items: center;
-justify-content: center;
-background-color: #282c34;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #282c34;
+    --Color1: #43727a;
+    --Color2: #ffffff;
+    --Color3: #f0f0f0;
+    --Color4: #538e99;
 }
 
 .logout {
@@ -51,7 +55,7 @@ background-position: 100% 0%;
     right: -5px;
     bottom: -5px;
     z-index: 1;
-    background-image: linear-gradient(to bottom right, #FECE00, #FE4880);
+    background-image: linear-gradient(to bottom right, var(--Color1), var(--Color4));
 }
 
 .Login form .form-inner {
@@ -63,7 +67,7 @@ background-position: 100% 0%;
 }
 
 .Login form .form-inner h2 {
-    color: #888;
+    color: var(--Color1);
     font-size: 28px;
     font-weight: 500;
     margin-bottom: 30px;
@@ -86,7 +90,7 @@ background-position: 100% 0%;
 
 
 .Login .form-inner .form-group:focus-within label{
-    color: #FE4880;
+    color: #68bac9;
 }
 
 .Login form .form-inner .form-group input {
@@ -107,7 +111,7 @@ background-position: 100% 0%;
     display: inline-block;
     padding: 10px 15px;
     border-radius: 8px;
-    background-image: linear-gradient(to right, #FFCE00 50%, #FFCE00 50%, #FE4800);
+    background-image: linear-gradient(to right, var(--Color4) 50%, var(--Color4) 50%, var(--Color1));
     background-size: 200%;
     background-position: 0%;
     transition: 0.4s;
