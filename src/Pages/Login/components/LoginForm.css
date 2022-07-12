@@ -10,6 +10,22 @@
     --Color4: #538e99;
 }
 
+.Login .Wrapper-bg{
+    padding: 8px;
+    background-image: linear-gradient(to bottom right, var(--Color1), var(--Color4));
+    
+}
+
+.Login .Wrapper{
+    background-color: #FFF;
+    z-index: 2;
+    position: relative;
+    display: block;
+    padding: 1px;
+    z-index: 2;
+}
+
+
 .logout {
     display: inline-block;
     padding: 10px 15px;
@@ -30,7 +46,7 @@ background-position: 100% 0%;
 
 .Login .error {
     color: red;
-    text-decoration: underline;
+    margin-bottom: 10px;
 }
 
 .Login input,.Login button {
@@ -46,17 +62,7 @@ background-position: 100% 0%;
     position: relative;
 }
 
-.Login form:after {
-    content: '';
-    display: block;
-    position: absolute;
-    top: -5px;
-    left: -5px;
-    right: -5px;
-    bottom: -5px;
-    z-index: 1;
-    background-image: linear-gradient(to bottom right, var(--Color1), var(--Color4));
-}
+
 
 .Login form .form-inner {
     position: relative;
@@ -108,8 +114,9 @@ background-position: 100% 0%;
 }
 
 .Login form .form-inner input[type='submit'] {
-    display: inline-block;
     padding: 10px 15px;
+    width: 300px;
+    margin-top: 11px;
     border-radius: 8px;
     background-image: linear-gradient(to right, var(--Color4) 50%, var(--Color4) 50%, var(--Color1));
     background-size: 200%;
@@ -153,3 +160,24 @@ background-position: 100% 0%;
     height: 20px; 
     width: 20px;  
 }
+
+.Login .Footer{
+    display: flex;
+    justify-content: space-between;
+    border-width: 0;
+    border-style: none;
+    border-top: 1px #b9b9b9 solid;
+    margin: 30px;
+    margin-top: 0;
+    padding-top: 10px;
+}
+
+.Login .Footer button{
+    color: var(--Color4);
+}
+
+.Login .Footer button:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+
