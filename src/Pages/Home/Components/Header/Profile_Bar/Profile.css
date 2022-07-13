@@ -1,0 +1,60 @@
+.Home .Dropdown-Profile{
+    position: fixed;
+    margin-top: 12px;
+    right: 10px;
+}
+
+.Home .Profile-Menu-Holder {
+    width: 200px;
+    border: 1px solid;
+    border-radius: 5px;
+    border-color: rgb(165, 165, 165);
+    background-color: #fff;
+}
+
+
+/* -----PROFILE----------------------- */   
+
+.Home .Profile-Placeholder{
+    height: 100px;
+    margin: 2px;
+    border: 0px rgb(165, 165, 165) solid;
+    background-color: rgb(240, 240, 240);
+    border-radius: 2px;
+    box-shadow: 0 0 2px rgb(165, 165, 165) inset ;
+    text-align: center;
+}
+
+.Home .Profile-Placeholder-Text{
+    color: rgb(165, 165, 165);
+    display: inline-block;
+    font-size: small;
+    margin-top: 40px;
+}
+
+
+
+
+
+/* -----LIST-------------------------- */
+
+.Home .Wrapper{
+    margin: 10px;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.Home .Profile-Menu {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.Home .Profile-Menu li{
+    margin: 2px;
+}
+
+.Home .Profile-Menu .Divider{
+    margin-top: 5px;
+    border-bottom: 1px rgb(165, 165, 165) solid;
+}

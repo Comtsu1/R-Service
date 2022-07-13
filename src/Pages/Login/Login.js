@@ -1,4 +1,4 @@
-import LoginForm from './components/LoginForm';
+import {LoginForm} from './components/LoginForm';
 import React, {useState} from 'react';
 
 
@@ -22,7 +22,15 @@ function Login(){
             email: details.email
           });
         } else {
-          setError("Go away!");
+          if(details.email && !details.password){
+            setError("Please insert password")
+          } else {
+            if(details.email || details.password){
+              setError("Username or password incorrect")
+            } else {
+              setError("Go away!");
+            }
+          }
         }
       }
     
@@ -35,16 +43,8 @@ function Login(){
       }
     
       return (
-        <div className="App">
-          {(user.email !== "") ? (
-            <div className='welcome'>
-              <h2>welcome <span>{user.name}</span></h2>
-              <button onClick={Logout} className='logout'>Logout</button>
-            </div>
-          ) :
-          (
-            <LoginForm Login={Login} error={error} />
-          )}
+        <div className="Login">
+          <LoginForm Login={Login} error={error} />
         </div>
       );
 }

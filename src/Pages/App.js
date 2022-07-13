@@ -1,11 +1,11 @@
 import './App.css';
 import React from 'react';
-import {Login} from './Login/Login.js';
+import {Home} from './Home/Home.js';
 
 
 function App() {
     return(
-      <Login/>
+      <Home/>
     );
 }
 
