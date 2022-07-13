@@ -15,8 +15,10 @@ class ForgotPassword extends React.Component{
     }
 
     handleSubmit(event){
+        if(this.state.email){
+            console.log("submitted password reset")
+        }
         event.preventDefault();
-        console.log("submitted password reset")
     }
 
     handleChange(event){
@@ -33,8 +35,8 @@ class ForgotPassword extends React.Component{
                 <p id='Forgot-description'>
                     Please enter your email address and we'll send you a link to reset your password. <br/> --false
                 </p>
-                <form id="ForgotForm" onSubmit={null}>
-                    <input placeholder="Enter your email" value={this.state.email} onChange={this.handleChange}></input>
+                <form id="ForgotForm" onSubmit={this.handleSubmit}>
+                    <input placeholder="Enter your email" type='email' value={this.state.email} onChange={this.handleChange}></input>
                 </form>
             </div>
         )
