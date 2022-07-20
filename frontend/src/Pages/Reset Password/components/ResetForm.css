@@ -1,0 +1,222 @@
+.ResetPassword {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #282c34;
+    --Color1: #43727a;
+    --Color2: #ffffff;
+    --Color3: #f0f0f0;
+    --Color4: #538e99;
+}
+
+.ResetPassword .Wrapper-bg{
+    padding: 8px;
+    background-image: linear-gradient(to bottom right, var(--Color1), var(--Color4));
+    
+}
+
+.ResetPassword .Wrapper{
+    background-color: #FFF;
+    z-index: 2;
+    position: relative;
+    display: block;
+    padding: 1px;
+    z-index: 2;
+}
+
+
+.logout {
+    display: inline-block;
+    padding: 10px 15px;
+    border-radius: 8px;
+    background-image: linear-gradient(to right, #922d05 50%, #922d05 50%, #710193);
+    background-size: 200%;
+    background-position: 0%;
+    transition: 0.4s;
+    color:black;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.logout:hover {
+background-position: 100% 0%;
+}
+
+
+.ResetPassword .error {
+    color: red;
+    margin-bottom: 10px;
+}
+
+.ResetPassword input,.ResetPassword button {
+    appearance: none;
+    border: none;
+    outline: none;
+    background: none;
+}
+
+
+.ResetPassword form {
+    display: block;
+    position: relative;
+}
+
+
+
+.ResetPassword form .form-inner {
+    position: relative;
+    display: block;
+    background-color: #FFF;
+    padding: 30px;
+    z-index: 2;
+}
+
+.ResetPassword form .form-inner h2 {
+    color: var(--Color1);
+    font-size: 28px;
+    font-weight: 500;
+    margin-bottom: 30px;
+}
+
+.ResetPassword form .form-inner .form-group {
+    display: block;
+    color: #666;
+    width: 300px;
+    margin-bottom: 15px;
+}
+
+.ResetPassword .form-inner .form-group label{
+    display: block;
+    color: #666;
+    font-size: 16px;
+    margin-bottom: 5px;
+    transition: 0.4s;
+}
+
+
+.ResetPassword .form-inner .form-group:focus-within label{
+    color: #68bac9;
+}
+
+.ResetPassword form .form-inner .form-group input {
+    display: block;
+    width: 270px;
+    padding: 10px 15px;
+    background-color: #ebebeb;
+    border-radius: 8px;
+    transition: 0.4;
+}
+
+
+.ResetPassword form .form-inner .form-group input:focus {
+    box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.2);
+}
+
+.ResetPassword form .form-inner input[type='submit'] {
+    padding: 10px 15px;
+    width: 300px;
+    margin-top: 11px;
+    border-radius: 8px;
+    background-image: linear-gradient(to right, var(--Color4) 50%, var(--Color4) 50%, var(--Color1));
+    background-size: 200%;
+    background-position: 0%;
+    transition: 0.4s;
+    color: #FFF;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.ResetPassword form .form-inner input[type='submit']:hover {
+    background-position: 100% 0%;
+}
+
+/* .ResetPassword #password{
+    background-color: none;
+}
+.ResetPassword #password:focus {
+    box-shadow: none;
+} */
+
+.ResetPassword #toggleText {
+    width: 43px;
+    box-shadow: none;
+}
+
+.ResetPassword .password-placeholder{
+    display: flex;
+    background-color: #ebebeb;
+    border-radius: 8px;
+}
+.ResetPassword .password-placeholder:focus-within{
+    box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.2);;
+}
+
+
+.ResetPassword .password-placeholder img{
+    margin-right: 5px;
+    margin-top: 7px;
+    height: 20px; 
+    width: 20px;  
+}
+
+.ResetPassword .Footer{
+    display: flex;
+    justify-content: space-between;
+    border-width: 0;
+    border-style: none;
+    border-top: 1px #b9b9b9 solid;
+    margin: 30px;
+    margin-top: 0;
+    padding-top: 10px;
+}
+
+.ResetPassword .Footer button{
+    color: var(--Color4);
+}
+
+.ResetPassword .Footer button:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+
+/* ------ Forgot Password Form----------------------------- */
+
+
+.ResetPassword .Wrapper .Wrapper{
+    padding: 30px;
+    padding-top: 5px;
+}
+
+.ResetPassword .Wrapper .Wrapper h1{
+    text-align: center;
+}
+
+
+.ResetPassword #Forgot-description{
+    width: 300px;
+    text-align: center;
+}
+
+.ResetPassword #ForgotForm{
+    position: relative;
+    display: block;
+    padding: 5px 10px;
+    border-width: 1px;
+    border-color: #b9b9b9;
+    border-radius: 8px;
+    border-style: solid;
+
+}
+
+.ResetPassword #Passwords-matching{
+    color: #00c400;
+    font-size: 12px;
+    transition: 300ms;
+}
+
+.ResetPassword #Passwords-mismatching{
+    color: #ff0000;
+    font-size: 12px;
+}
