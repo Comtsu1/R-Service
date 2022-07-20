@@ -58,16 +58,9 @@ function LoginForm({ Login, error }) {
 		setDetails({ ...details, PasswordTextIsShown: !details.PasswordTextIsShown })
 	}
 
-<<<<<<< HEAD
     function ToggleForgotPasswordForm(){
         setDetails({...details, ForgotPass: !details.ForgotPass})
     }
-=======
-	function ToggleForgotPasswordForm() {
-		setDetails({ ...details, ForgotPass: !details.ForgotPass })
-		console.log(details.ForgotPass)
-	}
->>>>>>> 59845b8173f2f01eea1c44ee1414f053dd24f522
 
 	function renderToggleButton() {
 		if (details.password) {

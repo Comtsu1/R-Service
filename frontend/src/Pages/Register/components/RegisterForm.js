@@ -38,6 +38,10 @@ function RegisterForm({Register}) {
                 <form onSubmit={submitHandler}>
                     <div className="form-inner">
                         <h2>Login</h2>
+                        <div className="form-group username">
+                            <label htmlFor="username">Username: </label>
+                            <input type={'username'} name='username' id='username' onChange={e => setDetails({...details, username: e.target.value})} value={details.username} />
+                        </div>
                         <div className="form-group email">
                             <label htmlFor="email">Email: </label>
                             <input type={'email'} name='email' id='email' onChange={e => setDetails({...details, email: e.target.value})} value={details.email} />

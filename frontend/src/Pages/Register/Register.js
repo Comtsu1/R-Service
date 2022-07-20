@@ -6,7 +6,8 @@ function Register(){
     
       const Register = details => {
         console.log(details);
-    
+        
+        ///if username exists block request
         ///connect back-end
       }
     
