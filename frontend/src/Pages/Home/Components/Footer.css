@@ -1,0 +1,12 @@
+.Main-Footer{
+    --darkblue: #43727a;
+    --lightblue: #4ddde0;
+    position: fixed;
+    background-color: var(--darkblue);
+    width: 100%;
+    height: 60px;
+    display: flex;
+    text-align: left;
+    align-items: left;
+    bottom: 0;
+}

@@ -1,0 +1,162 @@
+.Main-Header{
+  --ButtonHighlight: #538e99;
+  --darkblue: #43727a;
+  --lightblue: #4ddde0;
+  background-color: var(--darkblue);
+  box-shadow: 0px 3px 3px rgba(34, 57, 61, 0.863);
+  height: 60px;
+  width: 100%;
+  display: flex;
+  text-align: left;
+  align-items: left;
+}
+
+
+.Main-Header #topBannerLogo-placeholder{
+  background-color: #fff;
+  /* box-shadow: 0px 1px 5px rgba(34, 57, 61, 0.918) inset; */
+  width: 45px;
+  height: 45px;
+  padding: 5px;
+  border-radius: 50%;
+  margin-top: 2px;
+}
+
+.Main-Header #BannerLogo {
+  height: 40px;
+  width: 40px;
+  margin: 3px;
+}
+  
+.Main-Header .searchbarInput{
+  padding: 10px;
+  border-radius: 20px;
+  margin: 13px;
+  border: 0px;
+  outline:none; 
+  box-shadow:none;
+}
+
+.Main-Header .searchbarInput:focus{
+  border: 0px;
+  outline:none;
+  box-shadow: none;
+}
+
+.Main-Header .ie{
+  display: flex;
+}
+
+.Main-Header .ie.Left:first-child{
+  margin-left: 10px;
+}
+
+.Main-Header .Right{
+  flex-direction: row-reverse;
+}
+
+.Main-Header .ie.Right{
+  width: 100%;
+}
+
+.Main-Header #test{
+  background-color: #fff;
+  border-radius: 100%;
+  height: 40px;
+  width: 40px;
+}
+
+.Main-Header .UserUtil{
+  height: 40px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-right: 10px;
+}
+.Main-Header .UserUtil:first-child{
+  margin-right: 20px;
+}
+
+.Main-Header .UserUtil-Group{
+  width: 40px;
+  height: 40px;
+  background-color: #fff;
+  border-radius: 100%;
+  text-align: center;
+  align-items: center;
+}
+
+.Main-Header .UserUtil-Group img{
+  width: 25px;
+  height: 25px;
+  margin: 7px;
+}
+
+.Main-Header #Messages img{
+  width: 27px;
+  height: 27px;
+}
+
+.Main-Header #Menu img{
+  width: 22px;
+  height: 22px;
+  margin: 9px;
+}
+
+.Main-Header #ProfileText{
+  font-size: 30px;
+  font-weight:600;
+}
+
+.Main-Header .UserUtil-Group#Profile{
+  width: 40px;
+  height: 40px;
+  margin-top: 0;
+  background-color: #fff;
+  border-radius: 100%;
+  color: black;
+  text-align: center;
+  align-items: center;
+  border-color: none;
+  border: 0;
+  transition: 0s;
+}
+
+.Main-Header .UserUtil-Group#Profile :hover{
+  cursor: pointer;
+}
+
+/* -------Buttons---------------------------- */
+
+.Main-Header .ie.Right button{
+  background-color: transparent;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 5px;
+  padding-left: 8px;
+  padding-right: 8px;
+  margin-top: 5px;
+  border-width: 2px;
+  border-radius: 5px;
+  border-color: transparent;
+  transition: 200ms;
+  cursor: pointer;
+}
+
+.Main-Header #LoginButton{
+  border: 2px;
+  border-style: solid;
+  border-color: #fff;
+}
+
+
+.Main-Header #LoginButton:hover{
+  background-color: white;
+  color: #43727a;
+  transition: 400ms;
+}
+
+.Main-Header #SignUpButton:hover{
+  background-color: var(--ButtonHighlight);
+  transition: 400ms;
+}

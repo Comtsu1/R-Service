@@ -1,0 +1,212 @@
+.Login {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #282c34;
+    --Color1: #43727a;
+    --Color2: #ffffff;
+    --Color3: #f0f0f0;
+    --Color4: #538e99;
+}
+
+.Login .Wrapper-bg{
+    padding: 8px;
+    background-image: linear-gradient(to bottom right, var(--Color1), var(--Color4));
+    
+}
+
+.Login .Wrapper{
+    background-color: #FFF;
+    z-index: 2;
+    position: relative;
+    display: block;
+    padding: 1px;
+    z-index: 2;
+}
+
+
+.logout {
+    display: inline-block;
+    padding: 10px 15px;
+    border-radius: 8px;
+    background-image: linear-gradient(to right, #922d05 50%, #922d05 50%, #710193);
+    background-size: 200%;
+    background-position: 0%;
+    transition: 0.4s;
+    color:black;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.logout:hover {
+background-position: 100% 0%;
+}
+
+
+.Login .error {
+    color: red;
+    margin-bottom: 10px;
+}
+
+.Login input,.Login button {
+    appearance: none;
+    border: none;
+    outline: none;
+    background: none;
+}
+
+
+.Login form {
+    display: block;
+    position: relative;
+}
+
+
+
+.Login form .form-inner {
+    position: relative;
+    display: block;
+    background-color: #FFF;
+    padding: 30px;
+    z-index: 2;
+}
+
+.Login form .form-inner h2 {
+    color: var(--Color1);
+    font-size: 28px;
+    font-weight: 500;
+    margin-bottom: 30px;
+}
+
+.Login form .form-inner .form-group {
+    display: block;
+    color: #666;
+    width: 300px;
+    margin-bottom: 15px;
+}
+
+.Login .form-inner .form-group label{
+    display: block;
+    color: #666;
+    font-size: 12px;
+    margin-bottom: 5px;
+    transition: 0.4s;
+}
+
+
+.Login .form-inner .form-group:focus-within label{
+    color: #68bac9;
+}
+
+.Login form .form-inner .form-group input {
+    display: block;
+    width: 270px;
+    padding: 10px 15px;
+    background-color: #ebebeb;
+    border-radius: 8px;
+    transition: 0.4;
+}
+
+
+.Login form .form-inner .form-group input:focus {
+    box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.2);
+}
+
+.Login form .form-inner input[type='submit'] {
+    padding: 10px 15px;
+    width: 300px;
+    margin-top: 11px;
+    border-radius: 8px;
+    background-image: linear-gradient(to right, var(--Color4) 50%, var(--Color4) 50%, var(--Color1));
+    background-size: 200%;
+    background-position: 0%;
+    transition: 0.4s;
+    color: #FFF;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.Login form .form-inner input[type='submit']:hover {
+    background-position: 100% 0%;
+}
+
+.Login #password{
+    width: 250px;
+    background-color: none;
+}
+.Login #password:focus {
+    box-shadow: none;
+}
+
+.Login #toggleText {
+    width: 43px;
+    box-shadow: none;
+}
+
+.Login .password-placeholder{
+    display: flex;
+    background-color: #ebebeb;
+    border-radius: 8px;
+}
+.Login .password-placeholder:focus-within{
+    box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.2);;
+}
+
+
+.Login .password-placeholder img{
+    margin-right: 5px;
+    margin-top: 7px;
+    height: 20px; 
+    width: 20px;  
+}
+
+.Login .Footer{
+    display: flex;
+    justify-content: space-between;
+    border-width: 0;
+    border-style: none;
+    border-top: 1px #b9b9b9 solid;
+    margin: 30px;
+    margin-top: 0;
+    padding-top: 10px;
+}
+
+.Login .Footer button{
+    color: var(--Color4);
+}
+
+.Login .Footer button:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+
+/* ------ Forgot Password Form----------------------------- */
+
+
+.Login .Wrapper .Wrapper{
+    padding: 30px;
+    padding-top: 5px;
+}
+
+.Login .Wrapper .Wrapper h1{
+    text-align: center;
+}
+
+
+.Login #Forgot-description{
+    width: 300px;
+    text-align: center;
+}
+
+.Login #ForgotForm{
+    position: relative;
+    display: block;
+    padding: 5px 10px;
+    border-width: 1px;
+    border-color: #b9b9b9;
+    border-radius: 8px;
+    border-style: solid;
+
+}
