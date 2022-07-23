@@ -45,9 +45,16 @@ router.post('/register', async (req,res) => {
 router.post("/login", async (req, res) => {
     const existCheck = await user.findOne({email : req.body.email})
     if(existCheck){
-    const passCheck = await bcrypt.compare(req.body.password, existCheck.password, (err, response) => {
+    const passCheck = await bcrypt.compare(req.body.password, existCheck.password, async (err, response) => {
         if(response){
-            res.status(200).redirect("/success_login")  //json({message : "Passwords are matching"})
+            //res.status(200).redirect("/success_login")  //json({message : "Passwords are matching"})
+            const userEmail = existCheck.email
+    const token = await jwt.sign({
+        userEmail
+    }, "secretc0de1234123jbhb2@#$Gyh4SEG",{
+        expiresIn: 86400
+    })
+    res.status(200).json({token})
         }else{
                  res.status(400).json({error : "Wrong password"})
              }
@@ -55,14 +62,6 @@ router.post("/login", async (req, res) => {
     else{
         res.status(401).json({error : "User does not exist"})
     }
-
-    const userEmail = existCheck.email
-    const token = await jwt.sign({
-        userEmail
-    }, "secretc0de1234123jbhb2@#$Gyh4SEG",{
-        expiresIn: 86400
-    })
-    res.status(200).json({token})
 })
 
 module.exports = router
