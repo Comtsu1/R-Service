@@ -30,7 +30,6 @@ const post = new mongoose.Schema({
     },
     createdAt:{
         type: Date,
-        default: () => Date.now(),
         immutable : true
     },
     category:{
@@ -67,7 +66,6 @@ const userProfileSchema = new mongoose.Schema({
         minLength: 8,
         maxLength: 15
     },
-    posts: [post],
     userId: Number,
 })
 

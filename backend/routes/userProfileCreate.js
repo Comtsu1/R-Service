@@ -5,13 +5,17 @@ const router  = express.Router()
 const user = require('../models/modelUser.js')
 const jwt = require('jsonwebtoken')
 const userProfile = require('../models/userProfile')
+const db = mongoose.connection
+const verify = require('../middleware/authToken')
 
-router.post('/profile', async (req, res)=>{
+router.post('/create-profile', verify, async (req, res)=>{
     const token = req.header('x-auth-token')
     let payload = JSON.parse(Buffer.from(token.split(".")[1], "base64url"));
     const existCheck = await user.findOne({email : payload.userEmail})
-
-
+    const profileCheck = await post.findOne({user : existCheck.userId})
+    if(profileCheck)return res.status(409).json({msg : "profile already created"})
+// let result = await post.find({author : existCheck.userId})
+    // console.log(result);
     if(existCheck){
         const profile = new userProfile({
             firstName : req.body.firstName,
@@ -19,22 +23,13 @@ router.post('/profile', async (req, res)=>{
             image : req.body.image,
             user : existCheck.userId,
             description : req.body.description,
-            phoneNum : req.body.phoneNum})
-
-        post.find({ author : existCheck.userId}, function (err, docs) {
-            if (err){
-                console.log(err);
-            }
-            else{
-               docs.forEach(item => profile.posts.push(item))
-            }
-        });
-
+            phoneNum : req.body.phoneNum,
+        })
         profile.save()
         res.status(200).json({msg : "profile created"})
     }
     else{
-        res.status(401).json({error : "User does not exist"})
+        res.status(409).json({error : "User does not exist"})
     }
 })
 

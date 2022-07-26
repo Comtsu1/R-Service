@@ -23,7 +23,7 @@ router.post('/forgot-password', async (req,res)=>{
         res.send(`Email sent to ${existCheck.email}`)
     }
     else{
-        res.status(401).json({error : "User does not exist"})
+        res.status(404).json({error : "User does not exist"})
     }
 })
 
@@ -37,7 +37,7 @@ router.get('/reset-password/:id/:token', async (req,res)=>{
        //here must be rendered reset password page with confirm password also
     }
     else{
-        res.status(401).json({error : "User does not exist"})
+        res.status(404).json({error : "User does not exist"})
     }
 })
 
@@ -54,7 +54,7 @@ router.post('/reset-password/:id/:token', async (req,res)=>{
         res.status(400).send('Password changed')
     }
     else{
-        res.status(401).json({error : "User does not exist"})
+        res.status(404).json({error : "User does not exist"})
     }
 })
 

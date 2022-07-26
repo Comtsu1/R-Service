@@ -10,7 +10,7 @@ const verify = require('./middleware/authToken')
 const recoveryPass = require('./routes/forgotPassword')
 const bcrypt = require('bcrypt')
 const addPost = require("./routes/postAdd")
-const userProfile = require('./routes/userProfile')
+const userProfile = require('./routes/userProfileCreate')
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))

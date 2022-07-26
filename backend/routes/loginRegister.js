@@ -56,11 +56,11 @@ router.post("/login", async (req, res) => {
     })
     res.status(200).json({token})
         }else{
-                 res.status(400).json({error : "Wrong password"})
+                 res.status(401).json({error : "Wrong password"})
              }
     })}
     else{
-        res.status(401).json({error : "User does not exist"})
+        res.status(404).json({error : "User does not exist"})
     }
 })
 
