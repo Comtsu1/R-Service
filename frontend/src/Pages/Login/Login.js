@@ -1,6 +1,6 @@
 import {LoginForm} from './components/LoginForm';
 import React, {useState} from 'react';
-
+import axios from 'axios';
 
 function Login(){
     const adminUser = {
@@ -11,29 +11,37 @@ function Login(){
     
       const [user, setUser] = useState({name: "", email: ""});
       const [error, setError] = useState("");
+      
+      const sendDataDB = (details) => {
+        const payload = {
+          email: details.email,
+          password: details.password
+        };
     
-      const Login = details => {
-        console.log(details);
+        axios.post('http://localhost:8080/user/login', payload)
+          .then(res => {console.log(res)})
+          .catch((err) => {
+            if(err.response) {
+              // means we have a successful error, sever connected. client-side error
     
-        if(details.email === adminUser.email && details.password === adminUser.password) {
-          console.log("Logged in");
-          setUser({
-            name: details.name,
-            email: details.email
-          });
-        } else {
-          if(details.email && !details.password){
-            setError("Please insert password")
-          } else {
-            if(details.email || details.password){
-              setError("Username or password incorrect")
-            } else {
-              setError("Go away!");
+              console.log(err.response.data); // testing
+              setError(err.response.data.error);
+              console.log(err.response.status); // testing
+              // console.log(err.response.headers); // testing headers
             }
-          }
+          });
+
+        } 
+
+      const Login = details => {
+        if(!details.email || !details.password){
+          setError("Please complete all available slots!")
+          return;
         }
-      }
-    
+
+        sendDataDB(details);
+      }    
+
       const Logout = () => {
         setUser({
           name: '',

@@ -4,15 +4,26 @@ import './RegisterForm.css';
 
 
 
-function RegisterForm({Register}) {
+function RegisterForm({Register, error}) {
     const [details, setDetails] = useState({username: "", email: "", password: "", confirmPassword: "", passwordsMatching: false});
 
     const submitHandler = e => {
         e.preventDefault();
 
-        details.passwordsMatching && details.email? 
-        Register(details):
-        console.log("didn't send data")
+        Register(details);
+
+        return;
+
+        // invalidated
+        if(details.passwordsMatching && details.email)
+        {
+            Register(details);
+        }
+        else
+        {
+            error = "Please complete all available slots!";
+            console.log('fuck you')
+        }
     }
 
     function comparePasswords(value){
@@ -37,7 +48,11 @@ function RegisterForm({Register}) {
             <div className="Wrapper">
                 <form onSubmit={submitHandler}>
                     <div className="form-inner">
-                        <h2>Login</h2>
+                        <h2>Register</h2>
+
+                        {/* Error div */}
+                        {(error !== "") ? (<div className="error">{error}</div>) : ""}
+
                         <div className="form-group username">
                             <label htmlFor="username">Username: </label>
                             <input type={'username'} name='username' id='username' onChange={e => setDetails({...details, username: e.target.value})} value={details.username} />

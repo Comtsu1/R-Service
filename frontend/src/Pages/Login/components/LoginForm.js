@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import './LoginForm.css';
 import visibility from "../Icons/visibility.png";
 import unVisibility from "../Icons/visibility_slash.png";
-import axios from 'axios';
 
 class ForgotPassword extends React.Component {
 	constructor(props) {
@@ -46,7 +45,7 @@ class ForgotPassword extends React.Component {
 }
 
 function LoginForm({ Login, error }) {
-	const [details, setDetails] = useState({ name: "", email: "", password: "", PasswordTextIsShown: false, ForgotPass: false });
+	const [details, setDetails] = useState({email: "", password: "", PasswordTextIsShown: false, ForgotPass: false });
 
 	const submitHandler = e => {
 		e.preventDefault();
@@ -88,19 +87,6 @@ function LoginForm({ Login, error }) {
 		} else {
 			return ("password")
 		}
-	}
-
-	function sendDataDB() {
-		const payload = {
-			username: "IchWill",
-			email: details.email,
-			password: details.password
-		};
-
-		axios.post('http://localhost:8080/user/login', payload)
-			.then(res => console.log("bruh: " + res.status))
-			.catch(err => console.log("Error status: " + err.response.status + "\n data: " + err))
-
 	}
 
 
@@ -150,7 +136,7 @@ function LoginForm({ Login, error }) {
 
 								</div>
 							</div>
-							<input type={'submit'} value="LOGIN" onClick={sendDataDB} />
+							<input type={'submit'} value="LOGIN" />
 						</div>
 					</form>
 

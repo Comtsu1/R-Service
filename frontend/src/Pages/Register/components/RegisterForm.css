@@ -43,6 +43,10 @@
 background-position: 100% 0%;
 }
 
+.Register .error {
+    color: red;
+    margin-bottom: 10px;
+}
 
 .Register .error {
     color: red;
