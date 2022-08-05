@@ -1,15 +1,20 @@
 import {LoginForm} from './components/LoginForm';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
+import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 
 function Login(){
+    const navigate = useNavigate();
+
     const adminUser = {
         email: "admin@admin.ro",
         password: "duckoff"
       } 
     
-    
-      const [user, setUser] = useState({name: "", email: ""});
+      // user is not used anywhere and the check if the user is signed in 
+      // is not even in this class, its in Header.js from Home component
+      // const [user, setUser] = useState({name: "", email: ""});
+
       const [error, setError] = useState("");
       
       const sendDataDB = (details) => {
@@ -22,7 +27,7 @@ function Login(){
           .then((res) => ManageResponse(res))
           .catch((err) => {
             if(err.response) {
-              // means we have a successful error, sever connected. client-side error
+              // means we have a successful error 
     
               console.log(err.response.data); // testing
               setError(err.response.data.error);
@@ -35,6 +40,8 @@ function Login(){
       const ManageResponse = (res) => {
         console.log(res.data.token);
         localStorage.setItem("token", JSON.stringify(res.data.token));
+
+        navigate('/');
       } 
 
       const Login = details => {
@@ -45,12 +52,15 @@ function Login(){
 
         sendDataDB(details);
       }    
-
+      
+      // doesnt do anything, 
+      // everything is handled by Home component
       const Logout = () => {
-        setUser({
-          name: '',
-          email: ''
-        });
+        // setUser({
+          // name: '',
+          // email: ''
+        // });
+        localStorage.removeItem("token")
         console.log("Logout");
       }
     
