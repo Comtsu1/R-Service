@@ -44,7 +44,20 @@
     margin-bottom: 15px;
 }
 
+.Home .Log-Out {
+    border-radius: 10px;
+    color: black;
+    transition: 0.3s;
+}
+
+.Home .Log-Out:hover {
+    color: red;
+    opacity: 0.8;
+    opacity: 1;
+}
+
 .Home .Profile-Menu {
+    line-height: 25px;
     list-style-type: none;
     margin: 0;
     padding: 0;

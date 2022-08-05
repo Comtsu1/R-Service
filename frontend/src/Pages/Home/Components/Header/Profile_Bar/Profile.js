@@ -30,7 +30,7 @@ function Profile() {
                             <li>option1</li>
                             <li>option2</li>
                             <li>option3</li>
-                            <li onClick={Logout}>option4</li>
+                            <li onClick={Logout} className="Log-Out">Logout</li>
                             <li className="Divider"></li>
                         </ul>
                     </div>
