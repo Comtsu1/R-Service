@@ -6,15 +6,12 @@ require('dotenv').config()
 const loginRegister = require('./routes/loginRegister')
 const port = 8080 || process.env.PROCESS
 const user = require('./models/modelUser.js')
-<<<<<<< HEAD
 const verify = require('./middleware/authToken')
 const recoveryPass = require('./routes/forgotPassword')
 const bcrypt = require('bcrypt')
 const addPost = require("./routes/postAdd")
 const userProfile = require('./routes/userProfileCreate')
-=======
 const cors = require('cors')
->>>>>>> connect-login-backend
 
 
 // user cors, it doesnt work at all on firefox if not included
