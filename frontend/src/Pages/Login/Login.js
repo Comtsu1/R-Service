@@ -19,7 +19,7 @@ function Login(){
         };
     
         axios.post('http://localhost:8080/user/login', payload)
-          .then(res => {console.log(res)})
+          .then((res) => ManageResponse(res))
           .catch((err) => {
             if(err.response) {
               // means we have a successful error, sever connected. client-side error
@@ -30,8 +30,12 @@ function Login(){
               // console.log(err.response.headers); // testing headers
             }
           });
-
-        } 
+      }
+      
+      const ManageResponse = (res) => {
+        console.log(res.data.token);
+        localStorage.setItem("token", JSON.stringify(res.data.token));
+      } 
 
       const Login = details => {
         if(!details.email || !details.password){
@@ -59,4 +63,4 @@ function Login(){
 
 
 
-export {Login};
+export { Login };
