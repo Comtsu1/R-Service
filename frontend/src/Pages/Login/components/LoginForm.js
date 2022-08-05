@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import './LoginForm.css';
 import visibility from "../Icons/visibility.png";
 import unVisibility from "../Icons/visibility_slash.png";
+import axios from 'axios';
 
 class ForgotPassword extends React.Component {
 	constructor(props) {
@@ -88,8 +89,6 @@ function LoginForm({ Login, error }) {
 			return ("password")
 		}
 	}
-
-
 	if (details.ForgotPass) {
 		return (
 			<>
