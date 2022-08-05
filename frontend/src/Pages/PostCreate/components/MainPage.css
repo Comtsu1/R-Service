@@ -48,7 +48,8 @@
 .PostCreate .FormContent{
     padding-left: 10px;
     width: calc(80% - 10px);
-    display: block;
+    display: flex;
+
 }
 
 .PostCreate .FormContent input{
@@ -112,6 +113,48 @@
     border-color: #6d6d6d;
     background-color: #f0f0f0;
     border-style: solid;
+}
+
+
+/* Images */
+.PostCreate .FormContent .PhotoAttachment{
+    width: 200px;
+    height: 160px;
+    border-width: 2px;
+    border-color: #aaaaaa;
+    border-radius: 10px;
+    border-style: solid;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    user-select: none;
+    margin-right: 15px;
+    color: #aaaaaa;
+}
+
+.PostCreate .FormContent .PhotoAttachment.First label{
+    cursor: pointer;
+    font-size: 24px;
+    font-weight: 600;
+    padding-top: 65px;
+    padding-bottom: 65px;
+    padding-left: 35px;
+    padding-right: 35px;
+}
+
+.PostCreate .FormContent .PhotoAttachment label{
+    cursor: pointer;
+    font-size: 40px;
+    font-weight: bolder;
+    padding-top: 65px;
+    padding-bottom: 65px;
+    padding-left: 35px;
+    padding-right: 35px;
+}
+
+.PostCreate .FormContent .PhotoAttachment input{
+    display: none;
 }
 
 /* Specific Content */
