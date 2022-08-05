@@ -50,7 +50,7 @@ class PostForm extends React.Component{
     constructor(props){
         super(props)
         this.state = {
-            imgs: [1,2,3,4],
+            imgs: [],
             title: "",
             description: "",
             location: "",
@@ -73,8 +73,11 @@ class PostForm extends React.Component{
     ImgSubmit(event) {
         event.preventDefault()
 
+        console.log("Submitted img")
         // send request to get link for photo
+        // callback (resposnse)
     }
+
 
     TitleChange(event){
         event.preventDefault()
@@ -140,13 +143,13 @@ class PostForm extends React.Component{
                             {numOfImgs===0?
                             <div className="PhotoAttachment First">
                                 <label for="photo-attachment">Add images</label>
-                                <input type="file" id="photo-attachment" accept=".jpg, .jpeg, .png, .gif" onSubmit={e => this.ImgSubmit(e)}></input>
+                                <input type="file" id="photo-attachment" accept=".jpg, .jpeg, .png, .gif" onChange={e => this.ImgSubmit(e)}></input>
                             </div>
                             :<>
                                 {this.ShowImgs()}
                                 <div className="PhotoAttachment">
                                 <label for="photo-attachment">+</label>
-                                    <input type="file" id="photo-attachment" accept=".jpg, .jpeg, .png, .gif"></input>
+                                    <input type="file" id="photo-attachment" accept=".jpg, .jpeg, .png, .gif" onChange={e => this.ImgSubmit(e)}></input>
                                 </div>
                             </>}
                         </div>
