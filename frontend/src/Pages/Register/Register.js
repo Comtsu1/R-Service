@@ -1,14 +1,16 @@
 import {RegisterForm} from './components/RegisterForm';
 import React, {useState} from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 function Register(){
 
+      const navigate = useNavigate();
       const [error, setError] = useState("");
 
       const SendRegisterDB = (details) => {
-        axios.post("https:localhost:8080/user/register", details)
-            .then(res => console.log(res))
+        axios.post("http://localhost:8080/user/register", details)
+            .then(res => ManageResponse(res))
             .catch(err => (err) => {
               // clientside error
               
@@ -17,6 +19,13 @@ function Register(){
               console.log(err.response.data);
               console.log(err.response.status);
             })
+      }
+      
+      const ManageResponse = (res) => {
+        console.log(res.data.token);
+        localStorage.setItem("token", JSON.stringify(res.data.token));
+
+        navigate('/');
       }
 
       const Register = details => {
@@ -36,7 +45,7 @@ function Register(){
     
       return (
         <div className="Register">
-          <RegisterForm Register={Register} error = {error}/>
+          <RegisterForm Register={Register} error={error}/>
         </div>
       );
 }
