@@ -1,12 +1,11 @@
 const mongoose = require('mongoose')
 
-
 const userSchema = new mongoose.Schema({
     email:{
         type: String,
         required: [true, "email is required"],
         trim: true,
-        maxLength: 20
+        maxLength: 50
     },
     password:{
         type: String,
@@ -18,11 +17,10 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: [true, "username is required"],
         trim: true,
-        maxLength: [20, "username too long"],
+        maxLength: [30, "username too long"],
         minLength: [3, "username too short"]
     },
-    userId: Number
+    userId: Number,
 })
-
 
 module.exports = mongoose.model('user', userSchema)

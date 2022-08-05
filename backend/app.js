@@ -6,6 +6,11 @@ require('dotenv').config()
 const loginRegister = require('./routes/loginRegister')
 const port = 8080 || process.env.PROCESS
 const user = require('./models/modelUser.js')
+const verify = require('./middleware/authToken')
+const recoveryPass = require('./routes/forgotPassword')
+const bcrypt = require('bcrypt')
+const addPost = require("./routes/postAdd")
+const userProfile = require('./routes/userProfileCreate')
 const cors = require('cors')
 
 
@@ -15,6 +20,9 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
 app.use("/user", loginRegister)
+app.use("/", recoveryPass)
+app.use("/", addPost)
+app.use("/", userProfile)
 
 app.get("/user/register", (req,res) => {
     res.sendFile(__dirname + '/public/index.html')
@@ -24,7 +32,7 @@ app.get("/success_login",(req,res)=>{
 })
 
 //just a test to get profile with matching id
-app.get("/profile/:id", async (req,res)=>{
+app.get("/profile/:id", verify, async (req,res)=>{
     const id = req.params.id
     const profileID = await user.findOne({userId: id})
     if(profileID){
@@ -46,4 +54,3 @@ const startConnection = async() => {
 }
 
 startConnection()
-
