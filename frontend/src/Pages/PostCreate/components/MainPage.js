@@ -66,7 +66,49 @@ class PostForm extends React.Component{
         console.log("UrlList", this.state.imgs)
         const listItems = this.state.imgs.map((item) =>
             <div className="PhotoAttachment">
-                <img src={item} alt="image"m key={item}></img>
+                {item == "Loading"?
+                <>
+                    <div class="loader">
+                        <div class="loader-inner">
+                            <div class="loader-line-wrap">
+                                <div class="loader-line"></div>
+                            </div>
+                            <div class="loader-line-wrap">
+                                <div class="loader-line"></div>
+                            </div>
+                            <div class="loader-line-wrap">
+                                <div class="loader-line"></div>
+                            </div>
+                            <div class="loader-line-wrap">
+                                <div class="loader-line"></div>
+                            </div>
+                            <div class="loader-line-wrap">
+                                <div class="loader-line"></div>
+                            </div>
+                        </div>
+                        <div className="ShadowLoader">
+                                <div class="loader-inner">
+                                    <div class="loader-line-wrap">
+                                        <div class="loader-line"></div>
+                                    </div>
+                                    <div class="loader-line-wrap">
+                                        <div class="loader-line"></div>
+                                    </div>
+                                    <div class="loader-line-wrap">
+                                        <div class="loader-line"></div>
+                                    </div>
+                                    <div class="loader-line-wrap">
+                                        <div class="loader-line"></div>
+                                    </div>
+                                    <div class="loader-line-wrap">
+                                        <div class="loader-line"></div>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                </>
+                    :<img src={item} alt="image"m key={item}></img>
+                }
             </div>
         )
         return <>{listItems}</>
@@ -76,11 +118,13 @@ class PostForm extends React.Component{
         
         event.preventDefault()
         let img = event.target.files[0];
-        
+        var ImgList = this.state.imgs
+        ImgList.push("Loading")
+        this.setState({imgs: ImgList})
+
         // send request to get link for photo
         var dataUrl
         if(img) {
-            var ImgList = this.state.imgs
             const fd = new FormData()
             fd.append('image', img)
             fd.append('key', "4af9c545bc82a3cd91982cd1549eb771")
@@ -88,6 +132,7 @@ class PostForm extends React.Component{
             axios.post("https://api.imgbb.com/1/upload", fd)
             // callback (resposnse)
             .then ((res) =>{ const linkContainer = res 
+                ImgList.pop()
                 ImgList.push(linkContainer.data.data.url)
                 this.setState({imgs: ImgList})
                 })
@@ -163,7 +208,7 @@ class PostForm extends React.Component{
                             </div>
                             :<>
                                 {this.ShowImgs()}
-                                <div className="PhotoAttachment">
+                                <div className="PhotoAttachment" id="addCard">
                                 <label for="photo-attachment">+</label>
                                     <input type="file" id="photo-attachment" accept=".jpg, .jpeg, .png, .gif" onChange={e => this.ImgSubmit(e)}></input>
                                 </div>
