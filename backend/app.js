@@ -1,3 +1,4 @@
+
 const express = require('express')
 const mongoose = require('mongoose')
 const app = express()
@@ -11,10 +12,15 @@ const recoveryPass = require('./routes/forgotPassword')
 const bcrypt = require('bcrypt')
 const addPost = require("./routes/postAdd")
 const userProfile = require('./routes/userProfileCreate')
+const http = require('http')
+const server = http.createServer(app)
+const { Server } = require('socket.io')
+const io = new Server(server)
+// const cors = require('cors')
+// app.use(cors());
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
-
 app.use("/user", loginRegister)
 app.use("/", recoveryPass)
 app.use("/", addPost)
@@ -37,6 +43,25 @@ app.get("/profile/:id", verify, async (req,res)=>{
         res.status(404).json({msg : `User with id ${id} does not exist`})
     }
 })
+
+///messages
+app.get("/message", (req,res) => {
+    res.sendFile(__dirname + '/index.html')
+})
+
+io.on('connection', socket =>{
+    console.log('new user connection');
+    socket.on('dissconect', () =>{
+        console.log('user dissconected')
+    })
+    socket.on('chat message', (msg) =>{
+        console.log('message:' + msg )
+    })
+    socket.on('chat message', (msg) =>{
+        io.emit('chat message' , msg)
+    })
+})
+
 
 const startConnection = async() => {
     try {
