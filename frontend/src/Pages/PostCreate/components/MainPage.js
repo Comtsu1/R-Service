@@ -1,7 +1,7 @@
 import React from "react"
 import './MainPage.css'
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-
+import axios from "axios";
 
 
 class PostCreatePage extends React.Component{
@@ -62,20 +62,36 @@ class PostForm extends React.Component{
 
 
     ShowImgs() {
+        
+        console.log("UrlList", this.state.imgs)
         const listItems = this.state.imgs.map((item) =>
             <div className="PhotoAttachment">
-                <img src={item} alt="image"></img>
+                <img src={item} alt="image"m key={item}></img>
             </div>
         )
         return <>{listItems}</>
     }
 
     ImgSubmit(event) {
+        
         event.preventDefault()
-
-        console.log("Submitted img")
+        let img = event.target.files[0];
+        
         // send request to get link for photo
-        // callback (resposnse)
+        var dataUrl
+        if(img) {
+            var ImgList = this.state.imgs
+            const fd = new FormData()
+            fd.append('image', img)
+            fd.append('key', "4af9c545bc82a3cd91982cd1549eb771")
+            
+            axios.post("https://api.imgbb.com/1/upload", fd)
+            // callback (resposnse)
+            .then ((res) =>{ const linkContainer = res 
+                ImgList.push(linkContainer.data.data.url)
+                this.setState({imgs: ImgList})
+                })
+            }
     }
 
 
