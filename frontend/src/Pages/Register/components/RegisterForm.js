@@ -95,7 +95,7 @@ function RegisterForm({Register, error}) {
                             </label>
                              : null}
                         </div>
-                        <input type={'submit'} value="LOGIN" />
+                        <input type={'submit'} value="REGISTER" />
                     </div>
                 </form>
 
