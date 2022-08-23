@@ -1,4 +1,4 @@
-.Register {
+.ResetPassword {
     height: 100vh;
     display: flex;
     align-items: center;
@@ -10,13 +10,13 @@
     --Color4: #538e99;
 }
 
-.Register .Wrapper-bg{
+.ResetPassword .Wrapper-bg{
     padding: 8px;
     background-image: linear-gradient(to bottom right, var(--Color1), var(--Color4));
     
 }
 
-.Register .Wrapper{
+.ResetPassword .Wrapper{
     background-color: #FFF;
     z-index: 2;
     position: relative;
@@ -43,12 +43,13 @@
 background-position: 100% 0%;
 }
 
-.Register .error {
+
+.ResetPassword .error {
     color: red;
     margin-bottom: 10px;
 }
 
-.Register input,.Register button {
+.ResetPassword input,.ResetPassword button {
     appearance: none;
     border: none;
     outline: none;
@@ -56,14 +57,14 @@ background-position: 100% 0%;
 }
 
 
-.Register form {
+.ResetPassword form {
     display: block;
     position: relative;
 }
 
 
 
-.Register form .form-inner {
+.ResetPassword form .form-inner {
     position: relative;
     display: block;
     background-color: #FFF;
@@ -71,21 +72,21 @@ background-position: 100% 0%;
     z-index: 2;
 }
 
-.Register form .form-inner h2 {
+.ResetPassword form .form-inner h2 {
     color: var(--Color1);
     font-size: 28px;
     font-weight: 500;
     margin-bottom: 30px;
 }
 
-.Register form .form-inner .form-group {
+.ResetPassword form .form-inner .form-group {
     display: block;
     color: #666;
     width: 300px;
     margin-bottom: 15px;
 }
 
-.Register .form-inner .form-group label{
+.ResetPassword .form-inner .form-group label{
     display: block;
     color: #666;
     font-size: 16px;
@@ -94,11 +95,11 @@ background-position: 100% 0%;
 }
 
 
-.Register .form-inner .form-group:focus-within label{
+.ResetPassword .form-inner .form-group:focus-within label{
     color: #68bac9;
 }
 
-.Register form .form-inner .form-group input {
+.ResetPassword form .form-inner .form-group input {
     display: block;
     width: 270px;
     padding: 10px 15px;
@@ -108,11 +109,11 @@ background-position: 100% 0%;
 }
 
 
-.Register form .form-inner .form-group input:focus {
+.ResetPassword form .form-inner .form-group input:focus {
     box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.2);
 }
 
-.Register form .form-inner input[type='submit'] {
+.ResetPassword form .form-inner input[type='submit'] {
     padding: 10px 15px;
     width: 300px;
     margin-top: 11px;
@@ -126,40 +127,40 @@ background-position: 100% 0%;
     cursor: pointer;
 }
 
-.Register form .form-inner input[type='submit']:hover {
+.ResetPassword form .form-inner input[type='submit']:hover {
     background-position: 100% 0%;
 }
 
-/* .Register #password{
+/* .ResetPassword #password{
     background-color: none;
 }
-.Register #password:focus {
+.ResetPassword #password:focus {
     box-shadow: none;
 } */
 
-.Register #toggleText {
+.ResetPassword #toggleText {
     width: 43px;
     box-shadow: none;
 }
 
-.Register .password-placeholder{
+.ResetPassword .password-placeholder{
     display: flex;
     background-color: #ebebeb;
     border-radius: 8px;
 }
-.Register .password-placeholder:focus-within{
+.ResetPassword .password-placeholder:focus-within{
     box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.2);;
 }
 
 
-.Register .password-placeholder img{
+.ResetPassword .password-placeholder img{
     margin-right: 5px;
     margin-top: 7px;
     height: 20px; 
     width: 20px;  
 }
 
-.Register .Footer{
+.ResetPassword .Footer{
     display: flex;
     justify-content: space-between;
     border-width: 0;
@@ -170,11 +171,11 @@ background-position: 100% 0%;
     padding-top: 10px;
 }
 
-.Register .Footer button{
+.ResetPassword .Footer button{
     color: var(--Color4);
 }
 
-.Register .Footer button:hover{
+.ResetPassword .Footer button:hover{
     text-decoration: underline;
     cursor: pointer;
 }
@@ -183,22 +184,22 @@ background-position: 100% 0%;
 /* ------ Forgot Password Form----------------------------- */
 
 
-.Register .Wrapper .Wrapper{
+.ResetPassword .Wrapper .Wrapper{
     padding: 30px;
     padding-top: 5px;
 }
 
-.Register .Wrapper .Wrapper h1{
+.ResetPassword .Wrapper .Wrapper h1{
     text-align: center;
 }
 
 
-.Register #Forgot-description{
+.ResetPassword #Forgot-description{
     width: 300px;
     text-align: center;
 }
 
-.Register #ForgotForm{
+.ResetPassword #ForgotForm{
     position: relative;
     display: block;
     padding: 5px 10px;
@@ -209,13 +210,13 @@ background-position: 100% 0%;
 
 }
 
-.Register #Passwords-matching{
+.ResetPassword #Passwords-matching{
     color: #00c400;
     font-size: 12px;
     transition: 300ms;
 }
 
-.Register #Passwords-mismatching{
+.ResetPassword #Passwords-mismatching{
     color: #ff0000;
     font-size: 12px;
 }

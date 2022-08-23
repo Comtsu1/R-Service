@@ -6,7 +6,9 @@ import {Login} from './Pages/Login/Login'
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Register } from './Pages/Register/Register';
+
 import { PostCreate, PostForm } from './Pages/PostCreate/PostCreate';
+import { Reset } from './Pages/Reset Password/Register';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -17,6 +19,7 @@ root.render(
         <Route path='login' element={<Login/>} />
         <Route path='register' element={<Register/>} />
         <Route path='CreatePost/*' element={<PostCreate/>}/>
+        <Route path='reset' element={<Reset/>} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
