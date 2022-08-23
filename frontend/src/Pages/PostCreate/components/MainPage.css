@@ -16,6 +16,9 @@
 
 .PostCreate .Flex-Wrapper{
     margin: 5px;
+    padding-top: 20px;
+    padding-left: 5%;
+    padding-right: 5%;
     width: calc(100%-5px);
 }
 
@@ -117,7 +120,13 @@
 
 
 /* Images */
+.PostCreate #ImgFormContent{
+    flex-wrap: wrap;
+}
+
 .PostCreate .FormContent .PhotoAttachment{
+    min-width: 200px;
+    min-height: 160px;
     width: 200px;
     height: 160px;
     border-width: 2px;
@@ -130,7 +139,13 @@
     overflow: hidden;
     user-select: none;
     margin-right: 15px;
+    margin-bottom: 15px;
     color: #aaaaaa;
+}
+
+.PostCreate .FormContent .PhotoAttachment img{
+    max-height: 100%;
+    min-height: 100%;
 }
 
 .PostCreate .FormContent .PhotoAttachment.First label{

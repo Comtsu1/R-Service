@@ -155,7 +155,7 @@ class PostForm extends React.Component{
                             <label>Images</label>
                             <p>Perhaps add some images, so customers know exactly what to expect</p>
                         </div>
-                        <div className="FormContent">
+                        <div className="FormContent" id="ImgFormContent">
                             {numOfImgs===0?
                             <div className="PhotoAttachment First">
                                 <label for="photo-attachment">Add images</label>
