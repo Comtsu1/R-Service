@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import axios from "axios";
 
 
+
 class PostCreatePage extends React.Component{
 
     render(){
@@ -131,7 +132,8 @@ class PostForm extends React.Component{
             
             axios.post("https://api.imgbb.com/1/upload", fd)
             // callback (resposnse)
-            .then ((res) =>{ const linkContainer = res 
+            .then ((res) => {
+                const linkContainer = res;
                 ImgList.pop()
                 ImgList.push(linkContainer.data.data.url)
                 this.setState({imgs: ImgList})
@@ -153,6 +155,7 @@ class PostForm extends React.Component{
     LocationChange(event){
         event.preventDefault()
         this.setState({location: event.target.value})
+        console.log(event.target.value)
     }
 
     MobileChange(event){
@@ -162,12 +165,41 @@ class PostForm extends React.Component{
 
     PriceChange(event){
         event.preventDefault()
+        event.target.value = Math.abs(event.target.value)
         this.setState({price: event.target.value})
     }
 
     handleSubmit(event) {
         event.preventDefault();
-        alert('submitted: ' + this.state);
+
+        const payload = {
+            name: this.state.title,
+            description: this.state.description,
+            location: this.state.location,
+            phoneNum: this.state.mobile,
+            price: this.state.price,
+            author: "a mystery",
+            category: "to be added",
+            image: this.state.imgs
+        };
+
+        const config = {
+            headers:{
+                'x-auth-token': localStorage.getItem("token")
+            }
+        };
+
+        console.log(localStorage.getItem("token"));
+
+        axios.post("http://localhost:8080/add-post", payload, config)
+        .then((res) => {
+                alert('submitted: ' + this.state);
+                console.log(res);
+            })
+            .catch((err) => {
+                console.log(err.response.error);
+            })
+
     }
 
     render(){
@@ -181,7 +213,7 @@ class PostForm extends React.Component{
                             <p>Add a title for the bussiness so customers will now exactly what to expect.</p>
                         </div>
                         <div className="FormContent">
-                            <input className="Title" onChange={e => this.TitleChange(e) }></input>
+                            <input className="Title" onChange={e => this.TitleChange(e)} required="required"></input>
                         </div>
                     </div>
                     <div className="Form-Wrapper">
@@ -189,7 +221,7 @@ class PostForm extends React.Component{
                             <label>Description</label>
                         </div>
                         <div className="FormContent">
-                            <textarea className="Description" onChange={e => this.DescChange(e)}
+                            <textarea required="required" className="Description" onChange={e => this.DescChange(e)}
                             placeholder="Share a bit about the bussiness that you are selling, porjects you've completed, and area of expertise"
                             ></textarea>
                         </div>
@@ -221,7 +253,51 @@ class PostForm extends React.Component{
                             <p>Tell your location so you are not booked by a customer that is not in your area</p>
                         </div>
                         <div className="FormContent">
-                            <input className="Location" onChange={e => this.LocationChange(e)}></input>
+                            {/* <input className="Location" onChange={e => this.LocationChange(e)}></input> */}
+                            <select className="Location" onChange={e => this.LocationChange(e)} required="required">
+                                <option value={"AB"}>Alba</option>
+                                <option value={"AR"}>Arad</option>
+                                <option value={"AG"}>Arges</option>
+                                <option value={"BC"}>Bacau</option>
+                                <option value={"BH"}>Bihor</option>
+                                <option value={"BN"}>Bistrita-Nasaud</option>
+                                <option value={"BT"}>Botosani</option>
+                                <option value={"BR"}>Braila</option>
+                                <option value={"BV"}>Brasov</option>
+                                <option value={"B"}>Bucharest</option>
+                                <option value={"BZ"}>Buzau</option>
+                                <option value={"CL"}>Calarasi</option>
+                                <option value={"CS"}>Caras-Severin</option>
+                                <option value={"CJ"}>Cluj</option>
+                                <option value={"CT"}>Constanta</option>
+                                <option value={"CV"}>Covasna</option>
+                                <option value={"DB"}>Dambovita</option>
+                                <option value={"DJ"}>Dolj</option>
+                                <option value={"GL"}>Galati</option>
+                                <option value={"GR"}>Giurgiu</option>
+                                <option value={"GJ"}>Gorj</option>
+                                <option value={"HR"}>Harghita</option>
+                                <option value={"HD"}>Hunedoara</option>
+                                <option value={"IL"}>Ialomita</option>
+                                <option value={"IS"}>Iasi</option>
+                                <option value={"IF"}>Ilfov</option>
+                                <option value={"MM"}>Maramures</option>
+                                <option value={"MH"}>Mehedinti</option>
+                                <option value={"MS"}>Mures</option>
+                                <option value={"NT"}>Neamt</option>
+                                <option value={"OT"}>Olt</option>
+                                <option value={"PH"}>Prahova</option>
+                                <option value={"SJ"}>Salaj</option>
+                                <option value={"SM"}>Satu Mare</option>
+                                <option value={"SB"}>Sibiu</option>
+                                <option value={"SV"}>Suceava</option>
+                                <option value={"TR"}>Teleorman</option>
+                                <option value={"TM"}>Timis</option>
+                                <option value={"TL"}>Tulcea</option>
+                                <option value={"VL"}>Valcea</option>
+                                <option value={"VS"}>Vaslui</option>
+                                <option value={"VN"}>Vrancea</option>
+                            </select>
                         </div>
                     </div>
                     <div className="Form-Wrapper">
@@ -230,7 +306,7 @@ class PostForm extends React.Component{
                             <p>Add your mobile number so customers will have a way to contact you</p>
                         </div>
                         <div className="FormContent">
-                            <input className="MobileNumber" onChange={e => this.MobileChange(e)}></input>
+                            <input type="tel" required="required" pattern="^[0-9]{3,45}$" className="MobileNumber" onChange={e => this.MobileChange(e)}></input>
                         </div>
                     </div>
                     <div className="Form-Wrapper">
@@ -239,7 +315,7 @@ class PostForm extends React.Component{
                             <p>Lastly, choose a fair price for you services</p>
                         </div>
                         <div className="FormContent">
-                            <input className="Price" onChange={e => this.PriceChange(e)}></input>
+                            <input type="number" min="0" className="Price" required="required" onChange={e => this.PriceChange(e)}></input>
                         </div>
                     </div>
                 </div>
@@ -253,4 +329,5 @@ class PostForm extends React.Component{
 
 
 }
+
 export {PostForm}

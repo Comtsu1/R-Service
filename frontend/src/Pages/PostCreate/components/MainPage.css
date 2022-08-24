@@ -75,11 +75,44 @@
     padding: 5px;
 }
 
+.PostCreate .FormContent select{
+
+    /* border & background */
+    border-width: 2px;
+    border-radius: 5px; 
+    border-color: #aaaaaa;
+    border-style: solid;
+    background-color: #ffffff;
+    
+    /* text */
+    font-size: 16px;
+
+
+    /* misc */
+    transition: 300ms;
+
+    /* size */
+    height: 40px;
+    width: 180px;
+    padding: 5px;
+}
+
 .PostCreate .FormContent input:hover{
     border-color: #6d6d6d;
 }
 
+.PostCreate .FormContent select:hover {
+    border-color: #6d6d6d;
+}
+
 .PostCreate .FormContent input:focus{
+    outline: none;
+    border-color: #6d6d6d;
+    background-color: #f0f0f0;
+    border-style: solid;
+}
+
+.PostCreate .FormContent select:focus{
     outline: none;
     border-color: #6d6d6d;
     background-color: #f0f0f0;
