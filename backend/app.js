@@ -4,7 +4,7 @@ const app = express()
 const dbConnection = require('./db/connection')
 require('dotenv').config()
 const loginRegister = require('./routes/loginRegister')
-const port = 3000 || process.env.PROCESS
+const port = 8080 || process.env.PROCESS
 const user = require('./models/modelUser.js')
 const verify = require('./middleware/authToken')
 const recoveryPass = require('./routes/forgotPassword')
@@ -13,7 +13,11 @@ const addPost = require("./routes/postAdd")
 const userProfile = require('./routes/userProfileCreate')
 const userProfileSchema = require('./models/userProfile')
 const post = require('./models/post')
+const cors = require('cors')
 
+
+// user cors, it doesnt work at all on firefox if not included
+app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 

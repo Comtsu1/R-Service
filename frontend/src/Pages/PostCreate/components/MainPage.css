@@ -1,0 +1,163 @@
+.PostCreate .Main-Content .Wrapper{
+    margin: 20px;
+}
+
+.PostCreate h2{
+    font-size: 32px;
+    color: #6d6d6d;
+
+    padding-bottom: 5px;
+    border-width: 0;
+    border-bottom: 1px;
+    border-color: #8d8d8d;
+    border-style: solid;
+    margin-bottom: 0;
+}
+
+.PostCreate .Flex-Wrapper{
+    margin: 5px;
+    width: calc(100%-5px);
+}
+
+.PostCreate .Form-Wrapper{
+    display: flex;
+    justify-content: stretch;
+    padding-top: 35px;
+    padding-bottom: 95px;
+}
+
+
+/* ========Title================ */
+.PostCreate .FormTitle{
+    width: 20%;
+}
+.PostCreate .FormTitle label{
+    color: #8d8d8d;
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.PostCreate .FormTitle p{
+    margin: 0;
+    color: #8d8d8d;
+    font-size: 14px;
+}
+
+
+/* =======Content=============== */
+.PostCreate .FormContent{
+    padding-left: 10px;
+    width: calc(80% - 10px);
+    display: block;
+}
+
+.PostCreate .FormContent input{
+    /* border & background */
+    border-width: 2px;
+    border-radius: 5px; 
+    border-color: #aaaaaa;
+    border-style: solid;
+    background-color: #ffffff;
+    
+    /* text */
+    font-size: 16px;
+
+
+    /* misc */
+    transition: 300ms;
+
+    /* size */
+    height: 20px;
+    padding: 5px;
+}
+
+.PostCreate .FormContent input:hover{
+    border-color: #6d6d6d;
+}
+
+.PostCreate .FormContent input:focus{
+    outline: none;
+    border-color: #6d6d6d;
+    background-color: #f0f0f0;
+    border-style: solid;
+}
+
+.PostCreate .FormContent textarea{
+    /* size */
+    resize: none;
+    height: 100px;
+    width: calc(100% - 8px);
+    
+    /* border & background */
+    border-width: 2px;
+    border-radius: 5px; 
+    border-color: #aaaaaa;
+    border-style: solid;
+    background-color: #ffffff;
+    
+    /* text */
+    font-size: 16px;
+
+    
+    /* misc */
+    transition: 300ms;
+}
+
+.PostCreate .FormContent textarea:hover{
+    border-color: #6d6d6d;
+}
+
+.PostCreate .FormContent textarea:focus{
+    outline: none;
+    border-color: #6d6d6d;
+    background-color: #f0f0f0;
+    border-style: solid;
+}
+
+/* Specific Content */
+.PostCreate .FormContent .Title{
+    /* size */
+    width: 480px;
+    
+}
+
+.PostCreate .FormContent .Description::placeholder{
+    font-size: 16px;
+    
+}
+
+
+/* Continue Button */
+.PostCreate #Continue-Button-Wrapper{
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.PostCreate #Continue-Button{
+    /* size */
+    width: 120px;
+    height: 40px;
+
+    /* font */
+    font-weight: 700;
+    font-size: 18px;
+    color: #43727a;
+
+    /* background & border */
+    outline: none;
+    border-width: 2px;
+    border-radius: 7px;
+    border-color: #43727a;
+    border-style: solid;
+    background-color: #ffffff;
+
+    /* misc */
+    transition: 300ms;
+}
+
+.PostCreate #Continue-Button:hover{
+    cursor: pointer;
+
+    color: #ffffff;
+    background-color: #43727a;
+}

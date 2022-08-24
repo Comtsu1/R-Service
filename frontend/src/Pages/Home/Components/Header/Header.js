@@ -60,7 +60,8 @@ class UserUtility extends React.Component{
     }
 
     render(){
-        if(this.state.UserName){
+        // if(this.state.UserName){
+        if(localStorage.getItem('token') !== null) {
 
             var ProfileVar = null;
             if(this.state.ProfileIsOpen){
@@ -105,7 +106,7 @@ class UserUtility extends React.Component{
                     </div>
                     <div className="UserUtil">
                         <a href="register">
-                            <button id='SignUpButton'>SignUp</button>
+                            <button id='SignUpButton'>Sign Up</button>
                         </a>
                     </div>
                 </>
