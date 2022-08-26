@@ -9,6 +9,7 @@ import { Register } from './Pages/Register/Register';
 
 import { PostCreate, PostForm } from './Pages/PostCreate/PostCreate';
 import { Reset } from './Pages/Reset Password/Register';
+import { Profile } from './Pages/Profile/Profile';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -20,6 +21,7 @@ root.render(
         <Route path='register' element={<Register/>} />
         <Route path='CreatePost/*' element={<PostCreate/>}/>
         <Route path='reset' element={<Reset/>} />
+        <Route path='profile' element={<Profile/>}/>
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

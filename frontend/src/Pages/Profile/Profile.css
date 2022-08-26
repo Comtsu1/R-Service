@@ -1,0 +1,224 @@
+
+.Profile .Wrapper {
+    size: 100%;
+    padding: 10px 30px;
+}
+
+.Profile .Background {
+    size: 100%;
+    padding: 20px 50px;
+    margin-top: 10px;
+    border-radius: 10px;
+    background-color: #f7f7f7;
+}
+
+/* Profile Bar */
+
+.Profile .ProfileBar {
+    /* min-height: 90px; */
+    height: 10%;
+    max-height: 200px;
+
+    border-radius: 40px;
+    align-items: center;    
+
+    background-color: rgb(202,221,225);
+    display: flex;
+}
+
+.Profile .ProfileBar .ImgWrapper{
+    aspect-ratio: 1/1;
+    box-sizing: border-box;
+    padding: 10px;
+    margin-left: 50px;
+    max-height: 100%;
+    min-width: 90px ;
+}
+
+.Profile .ProfileBar .ProfileImage{
+    aspect-ratio: 1/1;
+    border-radius: 100%;
+    max-height: 100px;
+    border-color: transparent;
+    background-color: #f7f7f7;
+}
+
+.Profile .ProfileBar .ProfileName{
+    font-size: 40px;
+    font-weight: 500;
+    color: #20707E;
+
+
+}
+
+.Profile .ProfileDescription {
+    padding: 0 10px;
+}
+
+.Profile .ProfileDescription {
+    text-align: justify;
+}
+
+/* Menu */
+.Profile .ProfilePageMenu {
+    background-color: #20707E;
+    height: 40px;
+    padding: 10px;
+    border-radius: 40px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    margin-top: 60px;
+}
+
+.Profile .ProfilePageMenu button{
+    background-color: transparent;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 5px;
+    padding-left: 40px;
+    padding-right: 40px;
+    position: relative;
+    top: 4px;
+    border-width: 2px;
+    border-radius: 5px;
+    border-color: transparent;
+    transition: 200ms;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+.Profile .ProfilePageMenu button:hover{
+    background-color:  #538e99;
+    transition: 400ms;
+    z-index: 1;
+}
+
+.Profile .ProfilePageMenu .Highlighter{
+    position: relative;
+    border-width: 2px;
+    border-color: rgba(225,225,225, 1);
+    border-style: solid;
+    border-radius: 2px;
+    transition: 200ms;
+    /* width: 0px; */
+    margin: auto;
+    z-index: 2;
+}
+@keyframes open {
+    0% {
+    transform: scaleX(0);
+    border-color: rgba(225,225,225, 0);    
+    }
+    15% {transform: scaleX(0);
+        border-color: rgba(225,225,225, 1)}
+    100%{transform: scaleX(1);}    
+}
+
+.Profile .ProfilePageMenu .Highlighter.Focused{
+    border-color: #fff;
+    animation: open 0.5s cubic-bezier(.44,.45,0,.49);
+}
+
+@keyframes close {
+    0%{transform: scaleX(1);
+        border-color: rgba(225,225,225, 1);}    
+    99% {transform: scaleX(0);
+        border-color: rgba(225,225,225, 1);}
+    100% {
+        border-color: rgba(225,225,225, 0);    
+        }
+}
+.Profile .ProfilePageMenu .Highlighter.Unfocused{
+    border-color: rgba(225,225,225, 0);
+    animation: close 0.3s cubic-bezier(.05,1.01,.49,.99);
+}
+
+
+.Profile .ProfilePageMenu .Divider {
+    border: 2px;
+    border-style: solid;
+    border-color: #538e99;
+    border-radius: 2px;
+    margin: 0 100px;
+    z-index: 999999999999999999999;
+}
+
+
+
+
+/* Posts */
+
+.Profile .Service{
+    height: 100px;
+    padding: 20px;
+    background-color: rgb(202,221,225);
+    border-radius: 40px;
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.Profile .Service .Image{
+    aspect-ratio: 1/1;
+    max-height: 100px;
+    border-radius: 15px;
+    margin-left: 30px;
+}
+
+.Profile .Service .PostWrapper {
+    margin-left: 30px;
+    margin-right: 20px;
+    width: 70%;
+    overflow: hidden;
+}
+
+.Profile .Service .Title{
+    font-size: 24px;
+    color: #20707E;
+    font-weight: 600;
+}
+
+.Profile .Service .Description {
+    margin-top: 5px;
+    text-align: justify;
+}
+
+
+.Profile .Service .Details{
+    display: flex;
+    flex-wrap: wrap-reverse;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: end;
+}
+
+.Profile .Service .Fader{
+    height: 20px;
+    width: 200px;
+    background-image: linear-gradient(to right, rgba(202,221,225, 0), rgb(202,221,225,1) 30%);
+    box-sizing: border-box;
+    right: 120px;
+    position:relative;
+}
+
+.Profile .NoService {
+    min-height: 200px;
+    height: 200px;
+    box-sizing: border-box;
+    
+    display: flex;
+    justify-content: center;
+}
+
+.Profile .NoService label{
+    margin: 0;
+    font-size: 24px;
+    color: #6d6d6d;
+    box-sizing: content-box;
+    position: relative;
+    top:    50%;
+    bottom: 50%;
+    transform:  translate(0, 0);
+}

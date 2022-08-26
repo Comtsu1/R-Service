@@ -63,8 +63,6 @@ class PostForm extends React.Component{
 
 
     ShowImgs() {
-        
-        console.log("UrlList", this.state.imgs)
         const listItems = this.state.imgs.map((item) =>
             <div className="PhotoAttachment">
                 {item == "Loading"?
