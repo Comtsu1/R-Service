@@ -1,0 +1,73 @@
+
+.ViewPost .Wrapper{
+    padding: 10px 50px;
+}
+
+.ViewPost .Post{
+    background-color: #f0f0f0;
+    padding: 40px;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 20px;
+}
+
+.ViewPost #sp1{
+    display: block;
+    width: calc(60% - 50px);
+    padding: 0 25px;
+}
+
+.ViewPost #sp2{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 50px;
+}   
+
+.ViewPost #sp3{
+    display: flex;
+    align-items: center;
+}
+
+.ViewPost #sp4{
+    display: block;
+}
+
+.ViewPost #sp5{
+    display: flex;
+    justify-content: space-around;
+    height: 100%;
+}
+
+/* content */
+/* sp1 */
+
+.ViewPost #sp1 .Description{
+    text-align: justify;
+    text-indent: 50px;
+}
+
+/* sp2 */
+.ViewPost #sp2 .Title{
+    margin: 0;
+    font-size: 40px;
+}
+
+/* sp3 */
+.ViewPost #sp3 .AuthorImg{
+    height: 60px;
+    aspect-ratio: 1/1;
+    border-radius: 100%;
+}
+
+.ViewPost #sp3 .Author{
+    margin-right: 10px;
+    font-size: 18px;
+}
+
+.ViewPost .PostImg{
+    aspect-ratio: 1/1;
+    border-radius: 3%;
+    width: 40%;
+    max-width: 500px;
+}
