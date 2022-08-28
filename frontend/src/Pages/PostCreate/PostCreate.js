@@ -1,5 +1,5 @@
 import React from "react";
-import { PostCreatePage } from "./components/MainPage";
+import { PostCreatePage, PostForm } from "./components/MainPage";
 
 
 function PostCreate() {
@@ -12,4 +12,4 @@ function PostCreate() {
 }
 
 
-export {PostCreate}
+export {PostCreate, PostForm}

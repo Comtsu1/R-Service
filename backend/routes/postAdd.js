@@ -8,6 +8,7 @@ const jwt = require('jsonwebtoken')
 router.post('/add-post', async (req, res)=>{
     const token = req.header('x-auth-token')
     let payload = JSON.parse(Buffer.from(token.split(".")[1], "base64url"));
+    
     const existCheck = await user.findOne({email : payload.userEmail})
 
     if(existCheck){
