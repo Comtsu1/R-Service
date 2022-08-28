@@ -51,7 +51,7 @@ app.get("/profile", verify, async (req,res)=>{
 
 const startConnection = async() => {
     try {
-        await dbConnection(process.env.MONGO_URI)
+        await dbConnection("mongodb+srv://leo:mongo123@r-services.ulww9.mongodb.net/INFO?retryWrites=true&w=majority")
         app.listen(port, () => {
             console.log(`Listening on port ${port}`);
         })
