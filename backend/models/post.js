@@ -17,7 +17,7 @@ const postSchema = new mongoose.Schema({
     location:{
         type: String,
         required: true,
-        minLength: 4
+        minLength: 1
     },
     price:{
         type: Number,
