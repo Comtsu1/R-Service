@@ -10,6 +10,7 @@
     border-radius: 5px;
     border-color: rgb(165, 165, 165);
     background-color: #fff;
+    z-index: 999;
 }
 
 

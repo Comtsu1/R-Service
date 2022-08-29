@@ -1,10 +1,55 @@
+import { useEffect } from "react";
 import {Header} from "../../Pages/Home/Components/Header/Header"
 import { Footer } from "../Home/Components/Footer";
+import { useState } from "react";
 import "./ViewPost.css"
 
 function ViewPost(){
 
-    const images=["https://i.ibb.co/3zwwr2B/Desert.jpg","https://i.ibb.co/C6PLcyf/Lighthouse.jpg"];
+    const images=["https://i.ibb.co/HtVnSr5/Desert.jpg", "https://i.ibb.co/WBT3cnm/Lighthouse.jpg", "https://i.ibb.co/DCbD2MX/site-1552-0001-1200-630-20180219161055.jpg", "https://i.ibb.co/LS7TDjP/landscape-new-zealand-S-shape.jpg"];
+    usePreloadImages(images)
+    
+
+    const [details, setDetails]= useState({currentImgIndex: 0});
+
+    function navigateImages(event, direction = true){
+        event.preventDefault()
+        console.log("called")
+        if (direction === true){
+            var index = details.currentImgIndex+1
+            if(index >(images.length - 1)){
+                index = 0;
+            }
+            setDetails({...details, currentImgIndex: index})
+        }else{
+            var index = details.currentImgIndex-1
+            if(index <0){
+                index = (images.length - 1);
+            }
+            setDetails({...details, currentImgIndex: index})
+        }
+        console.log(details.currentImgIndex)
+    }
+
+    function RenderImgNav(){
+        if(images.length>1){
+            return(
+                <div className="ImgNav">
+                    <button onClick={(e) => navigateImages(e, false)}>
+                        <div className="buttonBody">
+                            <div>{"<"}</div>    
+                        </div>
+                    </button>
+                    <button onClick={(e) => navigateImages(e, true)}>
+                        <div className="buttonBody" id="right">
+                            <div>{">"}</div>
+                        </div>
+                        </button>
+                </div>
+            )
+        }
+    }
+
 
     // rendering
     return(
@@ -39,7 +84,8 @@ function ViewPost(){
                             </div>
                         </div>
                         <div className="ImgContainer">
-                            <img className="PostImg" src={images[0]} alt="PostImg"></img>
+                            <img className="PostImg" src={images[details.currentImgIndex]} alt="PostImg"/>
+                            {RenderImgNav()}
                         </div>
                     </div>
                 </div>
@@ -51,3 +97,18 @@ function ViewPost(){
     )
 }
 export {ViewPost}
+export const usePreloadImages = (imageSrcs) => {
+    useEffect(() => {
+      const randomStr = Math.random().toString(32).slice(2) + Date.now();
+      window.usePreloadImagesData = window.usePreloadImagesData ?? {};
+      window.usePreloadImagesData[randomStr] = [];
+      for (const src of imageSrcs) {
+        const img = new Image();
+        img.src = src;
+        window.usePreloadImagesData[randomStr].push(img);
+      }
+      return () => {
+        delete window.usePreloadImagesData?.[randomStr];
+      };
+    }, [imageSrcs]);
+  };
