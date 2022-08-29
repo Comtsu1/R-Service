@@ -15,3 +15,5 @@ router.post('/reservation', async (req, res)=>{
         status: 'pending'
 })
 })
+
+module.exports = router
