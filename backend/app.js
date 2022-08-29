@@ -14,7 +14,7 @@ const userProfile = require('./routes/userProfileCreate')
 const userProfileSchema = require('./models/userProfile')
 const post = require('./models/post')
 const cors = require('cors')
-
+const reservationSchema = require('./models/reservation')
 
 // user cors, it doesnt work at all on firefox if not included
 app.use(cors())
@@ -33,20 +33,21 @@ app.get("/success_login",(req,res)=>{
     res.json({login : "success"})
 })
 
-//just a test to get profile with matching id
 app.get("/profile", verify, async (req,res)=>{
     // const id = req.params.id
     // const profileID = await user.findOne({userId: id})
     const token = req.header('x-auth-token')
     let payload = JSON.parse(Buffer.from(token.split(".")[1], "base64url"));
     const userProfileCheck = await userProfileSchema.findOne({email : payload.userEmail})
+    const userReservations = await reservationSchema.find({to : payload.userId})
     if(userProfileCheck){
         let result = await post.find({author : userProfileCheck.userId})
-        res.status(200).json({profile : userProfileCheck, posts: result})
+        res.status(200).json({profile : userProfileCheck, posts : result, reservations : userReservations})
     }else{
         res.status(404).json({msg : `Something went wrong`})
     }
 })
+
 
 
 const startConnection = async() => {
