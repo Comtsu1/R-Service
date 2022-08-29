@@ -1,9 +1,13 @@
-import { useState } from "react"
+import axios from "axios";
+import { useEffect, useState } from "react"
 import "./Profile.css"
 
 function Profile(){
-    const Services = [
-        // {"id123": 
+
+    const [profile, setProfile] = useState(null);
+
+    let Services =  [];
+              // {"id123": 
         // {
         //     "Imagine": "https://i.ibb.co/wdhr0HL/Capture.png",
         //     "Nume": "Cortana Services",
@@ -20,10 +24,10 @@ function Profile(){
         //     "Locatie": "B",
         //     "Cost": 169,
         // }}
-    ];
+      //
 
     const RentedServices = [
-        // {"id125": 
+              // {"id125": 
         // {
         //     "Imagine": "https://i.ibb.co/rvbm0J9/ShibaInu.png",
         //     "Nume": "Dodge Services",
@@ -40,11 +44,9 @@ function Profile(){
         //     "Locatie": "B",
         //     "Cost": 169,
         // }}
-    ];
+      ];
 
     const [PageDetails, setDetails] = useState({PostFocused: true})
-
-        
 
     function WordCount(str) { 
         return str.split(" ").length;
@@ -68,8 +70,32 @@ function Profile(){
         return desc
     }
 
+    function FetchProfile() {
+        axios.get("http://localhost:8080/profile", {
+            headers:{"x-auth-token": localStorage.getItem("token")}
+            })
+            .then((res) => {
+                profile = res.data.profile;
+            })
+            .catch((err) => {
+                // TODO error handling
+            });
+    }
+
+    useEffect(() => {
+        axios.get("http://localhost:8080/profile", {
+            headers:{"x-auth-token": localStorage.getItem("token")}
+            })
+            .then((res) => {
+                setProfile(res.data.profile);
+            })
+            .catch((err) => {
+                // TODO error handling
+            });
+    }, [])
 
     function RenderServices(){
+
         if (Services.length === 0){
             return(
             <div className="NoService">
@@ -82,15 +108,15 @@ function Profile(){
             {
                 Object.entries(value).map(([key, value]) =>
                     <div key={key} className="Service">
-                        <img className = "Image" src={value.Imagine}></img>
+                        <img className = "Image" src={value.image}></img>
                         <div className = "PostWrapper">
-                            <label className="Title">{value.Nume}</label>
+                            <label className="Title">{value.firstName} {value.secondName}</label>
                             
-                            <p className="Description">{value.Descriptie}</p>
+                            <p className="Description">{value.description}</p>
                         </div>
                         <div className="Details">
-                            <span className="Cost">{value.Cost}$</span>
-                            <span className="Location">{value.Locatie}</span>
+                            <span className="Cost">{value.cost}$</span>
+                            <span className="Location">{value.location}</span>
                             <div>
                                 <div className="Fader"></div>
                             </div>
@@ -149,27 +175,29 @@ function Profile(){
     }
 
 
+    console.log("fuck you" + profile)
+
+
     // Rendering
     return(
         <div className="Profile">
             <div className="Main-Header"></div>
             <div className="Main-Content">
+                
+                {profile ? 
+
                 <div className="Wrapper">
                     <div className="Background">
                         <div className="ProfileBar">
                             <div className="ImgWrapper">
-                                <img className="ProfileImage" src="https://i.ibb.co/wdhr0HL/Capture.png"/>
+                                <img className="ProfileImage" src={profile.image}/>
                             </div>
-                            <p className="ProfileName">Cortana Assistant</p>
+                            <p className="ProfileName">{profile.firstName} {profile.secondName}</p>
                         </div>
                         <div className="ProfileDescription">
                             <h2 className="ProfileDescLabel">Description</h2>
                             <p>
-                            Nulla elementum nunc id fringilla rhoncus. Nullam enim ex, imperdiet lobortis massa eu, 
-                            bibendum convallis felis. Nulla sodales mauris vitae purus commodo, et dignissim urna consectetur. 
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam tincidunt posuere scelerisque. 
-                            Morbi ipsum leo, accumsan et placerat vitae, blandit vitae libero. Cras eleifend ligula diam, 
-                            nec tincidunt velit gravida quis.
+                            {profile.description}
                             </p>
                         </div>
 
@@ -194,6 +222,11 @@ function Profile(){
 
                     </div>
                 </div>
+
+                :
+                // data not loaded yet
+                <div className="fuck-all"></div>
+                }
             </div>
             <div className="Main-Footer"></div>
         </div>
