@@ -20,7 +20,6 @@ router.post('/add-post', async (req, res)=>{
             author : existCheck.userId,
             phoneNum: req.body.phoneNum,
             category : req.body.category,
-            image : req.body.image,
         })
         newPost.save()
         res.status(200).json({msg : "post created"})

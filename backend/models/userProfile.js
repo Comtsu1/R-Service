@@ -1,41 +1,4 @@
 const mongoose = require('mongoose')
-//const post = require('../models/post')
-
-const post = new mongoose.Schema({
-    postId: Number,
-    image : [String],
-    name: {
-        type: String,
-        trim: true,
-        minLength: 1
-    },
-    description: {
-        type: String,
-        minLength: 15
-    },
-    location:{
-        type: String,
-        minLength: 4
-    },
-    price:{
-        type: Number,
-    },
-    author:{
-        type: String,
-    },
-    phoneNum:{
-        type: String,
-        minLength: 8,
-        maxLength: 15
-    },
-    createdAt:{
-        type: Date,
-        immutable : true
-    },
-    category:{
-        type: String,
-    }
-})
 
 const userProfileSchema = new mongoose.Schema({
 
