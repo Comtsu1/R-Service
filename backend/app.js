@@ -14,7 +14,6 @@ const userProfile = require('./routes/userProfileCreate')
 const cors = require('cors')
 const userProfileSchema = require('./models/userProfile')
 const post = require('./models/post')
-const userProfileSchema = require('./models/userProfile')
 const reservationSchema = require('./models/reservation')
 
 // user cors, it doesnt work at all on firefox if not included
