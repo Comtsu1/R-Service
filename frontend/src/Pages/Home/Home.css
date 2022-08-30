@@ -1,3 +1,8 @@
 .Home {
   text-align: center;
 }
+
+.Home .Main-Footer{
+  position: fixed;
+  bottom: 0;
+}

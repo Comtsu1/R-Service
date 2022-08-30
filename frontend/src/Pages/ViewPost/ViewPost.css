@@ -1,0 +1,160 @@
+
+.ViewPost .Wrapper{
+    padding: 10px 50px;
+}
+
+.ViewPost .Post{
+    background-color: #f0f0f0;
+    padding: 40px;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 20px;
+}
+
+.ViewPost #sp1{
+    display: block;
+    width: calc(60% - 50px);
+    padding: 0 25px;
+}
+
+.ViewPost #sp2{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 50px;
+}   
+
+.ViewPost #sp3{
+    display: flex;
+    align-items: center;
+}
+
+.ViewPost #sp4{
+    display: block;
+    height: calc(100% - 110px);
+}
+
+.ViewPost #sp5{
+    margin-bottom: 20px;
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.ViewPost #sp6{
+    min-height: calc(100% - 75px);
+}
+
+/* content */
+/* sp1 */
+
+.ViewPost #sp1 .Description{
+    text-align: justify;
+    text-indent: 50px;
+}
+
+/* sp2 */
+.ViewPost #sp2 .Title{
+    margin: 0;
+    font-size: 40px;
+}
+
+/* sp3 */
+.ViewPost #sp3 .AuthorImg{
+    height: 60px;
+    aspect-ratio: 1/1;
+    border-radius: 100%;
+}
+
+.ViewPost #sp3 .Author{
+    margin-right: 10px;
+    font-size: 18px;
+}
+
+.ViewPost .ImgContainer{
+    aspect-ratio: 1/1;
+    width: 40%;
+    height: auto;
+    overflow: hidden;
+    min-width: 10px;
+    max-width: 500px;
+    border-radius: 3%;
+
+}
+
+.ViewPost .PostImg{
+    display: block;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+}
+
+.ViewPost .ImgContainer .ImgNav{
+    width: 100%;
+    height: 100%;
+    bottom: 100%;
+    position: relative;
+    
+    display: flex;
+    justify-content: space-between;
+}
+
+.ViewPost .ImgContainer .ImgNav button{
+    width: 30%;
+    background: transparent;
+    border: none;
+}
+
+.ViewPost .ImgContainer .ImgNav .buttonBody{
+    width: 50%;
+    aspect-ratio: 1/1;
+    border-radius: 100%;
+    background-color: rgba(255,255,255,0);
+    color: transparent;
+    margin: 0;
+    overflow: auto;
+    transition: 150ms;
+}
+.ViewPost .ImgContainer .ImgNav button:hover .buttonBody{
+    background-color: rgba(255,255,255,0.5);
+    color: black;
+}
+
+.ViewPost .ImgContainer .ImgNav .buttonBody#right{
+    left: 50%;
+    position: relative;
+}
+
+.ViewPost .ImgContainer .ImgNav .buttonBody div{
+    font-size: 32px;
+    font-weight: 900;
+    margin-top: calc(50% - 22px);
+}
+
+
+
+.ViewPost #sp5 button{
+    background-color: #43727a;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 600;
+    padding: 5px;
+    padding-left: 8px;
+    padding-right: 8px;
+    margin-top: 5px;
+    border-width: 2px;
+    border-radius: 5px;
+    border-color: #43727a;
+    border-style: solid;
+    transition: 200ms;
+    cursor: pointer;
+} 
+
+.ViewPost #sp5 button:hover{
+    background-color: white;
+    color: #43727a;
+    transition: 400ms;
+}
