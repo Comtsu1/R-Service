@@ -38,7 +38,7 @@ app.get("/profile", verify, async (req,res)=>{
     // const profileID = await user.findOne({userId: id})
     const token = req.header('x-auth-token')
     let payload = JSON.parse(Buffer.from(token.split(".")[1], "base64url"));
-    const userProfileCheck = await userProfileSchema.findOne({email : payload.userEmail})
+    const userProfileCheck = await user.findOne({email : payload.userEmail})
     if(userProfileCheck){
         let result = await post.find({author : userProfileCheck.userId})
         res.status(200).json({profile : userProfileCheck, posts: result})
