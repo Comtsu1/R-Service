@@ -6,7 +6,7 @@ function Profile(){
 
     const [profile, setProfile] = useState(null);
 
-    let Services =  [];
+ //   let Services =  [];
               // {"id123": 
         // {
         //     "Imagine": "https://i.ibb.co/wdhr0HL/Capture.png",
@@ -26,7 +26,7 @@ function Profile(){
         // }}
       //
 
-    const RentedServices = [
+  //  const RentedServices = [ ];
               // {"id125": 
         // {
         //     "Imagine": "https://i.ibb.co/rvbm0J9/ShibaInu.png",
@@ -44,9 +44,10 @@ function Profile(){
         //     "Locatie": "B",
         //     "Cost": 169,
         // }}
-      ];
 
     const [PageDetails, setDetails] = useState({PostFocused: true})
+    const [Services, setServices] = useState([])
+    const [RentedServices, setRentedServices] = useState([])
 
     function WordCount(str) { 
         return str.split(" ").length;
@@ -70,24 +71,16 @@ function Profile(){
         return desc
     }
 
-    function FetchProfile() {
-        axios.get("http://localhost:8080/profile", {
-            headers:{"x-auth-token": localStorage.getItem("token")}
-            })
-            .then((res) => {
-                profile = res.data.profile;
-            })
-            .catch((err) => {
-                // TODO error handling
-            });
-    }
-
     useEffect(() => {
         axios.get("http://localhost:8080/profile", {
             headers:{"x-auth-token": localStorage.getItem("token")}
             })
             .then((res) => {
                 setProfile(res.data.profile);
+                setRentedServices(RentedServices, [...RentedServices, res.data.reservations]);
+                setServices(Services, [...Services, res.data.posts]);
+                console.log(Services);
+                console.log("no you" + RentedServices);
             })
             .catch((err) => {
                 // TODO error handling
@@ -173,10 +166,6 @@ function Profile(){
         event.preventDefault()
         setDetails({...PageDetails, PostFocused: false})
     }
-
-
-    console.log("fuck you" + profile)
-
 
     // Rendering
     return(
