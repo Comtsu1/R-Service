@@ -11,6 +11,7 @@ import { PostCreate, PostForm } from './Pages/PostCreate/PostCreate';
 import { Reset } from './Pages/Reset Password/Register';
 import { Profile } from './Pages/Profile/Profile';
 import { ViewPost } from './Pages/ViewPost/ViewPost';
+import { Chat } from './Pages/Chat/Chat';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -24,6 +25,7 @@ root.render(
         <Route path='reset' element={<Reset/>} />
         <Route path='profile' element={<Profile/>}/>
         <Route path='Post/*' element={<ViewPost/>}/>
+        <Route path='chat' element={<Chat/>}/>
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

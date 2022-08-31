@@ -14,6 +14,7 @@ const userProfile = require('./routes/userProfileCreate')
 const cors = require('cors')
 const userProfileSchema = require('./models/userProfile')
 const post = require('./models/post')
+const messages = require('./routes/messages')
 
 // user cors, it doesnt work at all on firefox if not included
 app.use(cors())
@@ -24,6 +25,7 @@ app.use("/user", loginRegister)
 app.use("/", recoveryPass)
 app.use("/", addPost)
 app.use("/", userProfile)
+app.use("/", messages)
 
 app.get("/user/register", (req,res) => {
     res.sendFile(__dirname + '/public/index.html')
