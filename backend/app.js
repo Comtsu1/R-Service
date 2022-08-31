@@ -48,7 +48,16 @@ app.get("/profile", verify, async (req,res)=>{
     }
 })
 
+app.get("/posts", async (req,res)=>{
+    const newPosts = await post.find().sort({ $natural: -1 }).limit(20)
+    res.json({newest20Posts : newPosts})
+})
 
+app.get("/posts/:startingId/:postsNum", async (req,res)=>{
+    let {startingId, postsNum} = req.params
+    const newPosts = await post.find().limit(postsNum).skip(Number(startingId)-1)
+    res.json({postToShow : newPosts})
+})
 
 const startConnection = async() => {
     try {
