@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react"
 import "./Profile.css"
 import NoProfileImg from "./Components/user.png"
+import NoProfileImg from "./Components/user.png"
 
 function Profile(){
 
