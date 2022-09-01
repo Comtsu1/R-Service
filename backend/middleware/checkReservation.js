@@ -8,6 +8,7 @@ module.exports = async (req, res, next) => {
     let payload = JSON.parse(Buffer.from(token.split(".")[1], "base64url"));
     const existCheck = await user.findOne({email : payload.userEmail})
     const reservationUser = await reservationSchema.findOne({from : existCheck.userId})
+
     try {
        if(reservationUser.status !== "pending")next()
     } catch (error) {

@@ -5,49 +5,10 @@ import "./Profile.css"
 function Profile(){
 
     const [profile, setProfile] = useState(null);
-
-    let Services =  [];
-              // {"id123": 
-        // {
-        //     "Imagine": "https://i.ibb.co/wdhr0HL/Capture.png",
-        //     "Nume": "Cortana Services",
-        //     "Descriptie": 
-        //     "Lorem ipsum dolor sit amet Quisque in venenatis nibh, faucibus convallis diam. Aliquam erat volutpat. Nullam elementum turpis id dolor bibendum, sed venenatis quam porta. Nunc tristique non leo sit amet luctus. Sed placerat quam ac sapien iaculis sodales. Maecenas iaculis molestie risus, eget mollis nunc ullamcorper ac. Quisque lacus tellus, malesuada vitae nunc convallis, mollis maximus justo. Aenean rutrum libero et quam ornare, ac vestibulum sem tincidunt. Mauris dapibus mattis elit at faucibus. Praesent in commodo ipsum. In porttitor nisl non molestie tempus. Donec neque ipsum, maximus non turpis at, congue fringilla ipsum. Etiam vel auctor eros. Donec rutrum metus eget sem accumsan, sed fermentum metus cursus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.",
-        //     "Locatie": "B",
-        //     "Cost": 169,
-        // }},
-        // {"id124": 
-        // {
-        //     "Imagine": "https://i.ibb.co/wdhr0HL/Capture.png",
-        //     "Nume": "Cortana Services",
-        //     "Descriptie": "Lorem ipsum dolor sit amet",
-        //     "Locatie": "B",
-        //     "Cost": 169,
-        // }}
-      //
-
-    const RentedServices = [
-              // {"id125": 
-        // {
-        //     "Imagine": "https://i.ibb.co/rvbm0J9/ShibaInu.png",
-        //     "Nume": "Dodge Services",
-        //     "Descriptie": 
-        //     "Lorem ipsum dolor sit amet Quisque in venenatis nibh, faucibus convallis diam. Aliquam erat volutpat. Nullam elementum turpis id dolor bibendum, sed venenatis quam porta. Nunc tristique non leo sit amet luctus. Sed placerat quam ac sapien iaculis sodales. Maecenas iaculis molestie risus, eget mollis nunc ullamcorper ac. Quisque lacus tellus, malesuada vitae nunc convallis, mollis maximus justo. Aenean rutrum libero et quam ornare, ac vestibulum sem tincidunt. Mauris dapibus mattis elit at faucibus. Praesent in commodo ipsum. In porttitor nisl non molestie tempus. Donec neque ipsum, maximus non turpis at, congue fringilla ipsum. Etiam vel auctor eros. Donec rutrum metus eget sem accumsan, sed fermentum metus cursus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.",
-        //     "Locatie": "B",
-        //     "Cost": 169,
-        // }},
-        // {"id126": 
-        // {
-        //     "Imagine": "https://i.ibb.co/rvbm0J9/ShibaInu.png",
-        //     "Nume": "Dodge Services",
-        //     "Descriptie": "Lorem ipsum dolor sit amet",
-        //     "Locatie": "B",
-        //     "Cost": 169,
-        // }}
-      ];
-
     const [PageDetails, setDetails] = useState({PostFocused: true})
-
+    const [Services, setServices] = useState([])
+    const [RentedServices, setRentedServices] = useState([])
+    
     function WordCount(str) { 
         return str.split(" ").length;
       }
@@ -70,24 +31,16 @@ function Profile(){
         return desc
     }
 
-    function FetchProfile() {
-        axios.get("http://localhost:8080/profile", {
-            headers:{"x-auth-token": localStorage.getItem("token")}
-            })
-            .then((res) => {
-                profile = res.data.profile;
-            })
-            .catch((err) => {
-                // TODO error handling
-            });
-    }
-
     useEffect(() => {
         axios.get("http://localhost:8080/profile", {
             headers:{"x-auth-token": localStorage.getItem("token")}
             })
             .then((res) => {
                 setProfile(res.data.profile);
+                setRentedServices(RentedServices, [...RentedServices, res.data.reservations]);
+                setServices(Services, [...Services, res.data.posts]);
+                console.log(Services);
+                console.log("no you" + RentedServices);
             })
             .catch((err) => {
                 // TODO error handling
@@ -173,10 +126,6 @@ function Profile(){
         event.preventDefault()
         setDetails({...PageDetails, PostFocused: false})
     }
-
-
-    console.log("fuck you" + profile)
-
 
     // Rendering
     return(

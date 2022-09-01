@@ -63,7 +63,7 @@ class PostForm extends React.Component{
 
 
     ShowImgs() {
-        const listItems = this.state.imgs.map((item) =>
+        const listItems = this.state.imgs.map((item, index) =>
             <div className="PhotoAttachment">
                 {item == "Loading"?
                 <>
@@ -106,7 +106,20 @@ class PostForm extends React.Component{
                             </div>
                     </div>
                 </>
-                    :<img src={item} alt="image"m key={item}></img>
+                :
+                <>
+                    <img src={item} alt="image"m key={item}/>
+                    <div className="RemoveImage">
+                        <button className="RemoveLabel" onClick={
+                            (e) => {
+                                e.preventDefault()
+                                const arr = this.state.imgs
+                                const deleted = arr.splice(index, 1)
+                                this.setState({imgs: arr})
+                            }
+                        } type="button">Remove Image</button>
+                    </div>
+                </>
                 }
             </div>
         )

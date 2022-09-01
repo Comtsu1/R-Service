@@ -8,7 +8,9 @@ const Reservation = new mongoose.Schema({
         type: String
     },
     date:{
-        type: Date
+        type: Date,
+        default: () => Date.now(),
+        immutable : true
     },
     status:{
         type: String
