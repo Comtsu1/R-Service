@@ -1,0 +1,75 @@
+.Dropdown-Profile{
+    position: fixed;
+    margin-top: 12px;
+    right: 10px;
+}
+
+.Profile-Menu-Holder {
+    width: 200px;
+    border: 1px solid;
+    border-radius: 5px;
+    border-color: rgb(165, 165, 165);
+    background-color: #fff;
+    z-index: 999;
+}
+
+
+/* -----PROFILE----------------------- */   
+
+.Profile-Placeholder{
+    height: 100px;
+    margin: 2px;
+    border: 0px rgb(165, 165, 165) solid;
+    background-color: rgb(240, 240, 240);
+    border-radius: 2px;
+    box-shadow: 0 0 2px rgb(165, 165, 165) inset ;
+    text-align: center;
+}
+
+.Profile-Placeholder-Text{
+    color: rgb(165, 165, 165);
+    display: inline-block;
+    font-size: small;
+    margin-top: 40px;
+}
+
+
+
+
+
+/* -----LIST-------------------------- */
+
+.Wrapper{
+    margin: 10px;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.Log-Out {
+    border-radius: 10px;
+    color: black;
+    transition: 0.3s;
+}
+
+.Log-Out:hover {
+    color: red;
+    opacity: 0.8;
+    opacity: 1;
+}
+
+.Profile-Menu {
+    line-height: 25px;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+}
+
+.Profile-Menu li{
+    margin: 2px;
+}
+
+.Profile-Menu .Divider{
+    margin-top: 5px;
+    border-bottom: 1px rgb(165, 165, 165) solid;
+}
