@@ -11,9 +11,9 @@ const recoveryPass = require('./routes/forgotPassword')
 const bcrypt = require('bcrypt')
 const addPost = require("./routes/postAdd")
 const userProfile = require('./routes/userProfileCreate')
-const cors = require('cors')
 const userProfileSchema = require('./models/userProfile')
 const post = require('./models/post')
+const cors = require('cors')
 const reservationSchema = require('./models/reservation')
 
 // user cors, it doesnt work at all on firefox if not included
@@ -38,7 +38,7 @@ app.get("/profile", verify, async (req,res)=>{
     // const profileID = await user.findOne({userId: id})
     const token = req.header('x-auth-token')
     let payload = JSON.parse(Buffer.from(token.split(".")[1], "base64url"));
-    const userProfileCheck = await userProfileSchema.findOne({email : payload.userEmail})
+    const userProfileCheck = await user.findOne({email : payload.userEmail})
     const userReservations = await reservationSchema.find({to : payload.userId})
     if(userProfileCheck){
         let result = await post.find({author : userProfileCheck.userId})
@@ -48,7 +48,16 @@ app.get("/profile", verify, async (req,res)=>{
     }
 })
 
+app.get("/posts", async (req,res)=>{
+    const newPosts = await post.find().sort({ $natural: -1 }).limit(20)
+    res.json({newest20Posts : newPosts})
+})
 
+app.get("/posts/:startingId/:postsNum", async (req,res)=>{
+    let {startingId, postsNum} = req.params
+    const newPosts = await post.find().limit(postsNum).skip(Number(startingId)-1)
+    res.json({postToShow : newPosts})
+})
 
 const startConnection = async() => {
     try {

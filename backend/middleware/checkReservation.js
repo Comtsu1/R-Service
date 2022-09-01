@@ -10,9 +10,8 @@ module.exports = async (req, res, next) => {
     const reservationUser = await reservationSchema.findOne({from : existCheck.userId})
 
     try {
-       if(reservationUser)next()
+       if(reservationUser.status !== "pending")next()
     } catch (error) {
         return res.status(403).json({error : 'you already made a reservation'})
     }
-    
 }
