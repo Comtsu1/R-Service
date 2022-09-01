@@ -1,4 +1,4 @@
-const post = require('../models/post')
+//const userProfileSche = require('../models/userProfile')
 const mongoose = require('mongoose')
 const express = require('express')
 const router  = express.Router()
@@ -12,7 +12,7 @@ router.post('/create-profile', verify, async (req, res)=>{
     const token = req.header('x-auth-token')
     let payload = JSON.parse(Buffer.from(token.split(".")[1], "base64url"));
     const existCheck = await user.findOne({email : payload.userEmail})
-    const profileCheck = await post.findOne({user : existCheck.userId})
+    const profileCheck = await userProfile.findOne({user : existCheck.userId})
     if(profileCheck)return res.status(409).json({msg : "profile already created"})
 // let result = await post.find({author : existCheck.userId})
     // console.log(result);
