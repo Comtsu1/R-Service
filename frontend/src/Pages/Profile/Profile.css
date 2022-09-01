@@ -16,8 +16,7 @@
 
 .Profile .ProfileBar {
     /* min-height: 90px; */
-    height: 10%;
-    max-height: 200px;
+    height: 130px;
 
     border-radius: 40px;
     align-items: center;    
@@ -31,14 +30,65 @@
     box-sizing: border-box;
     padding: 10px;
     margin-left: 50px;
-    max-height: 100%;
+    height: 100%;
     min-width: 90px ;
+}
+
+.Profile .ProfileBar .ChangeImage{
+    aspect-ratio: 1/1;
+    height: 105px;
+    margin: 0;
+    padding: 0;
+    border: none;
+    border-radius: 100%;
+}
+.Profile .ProfileBar .ChangeImage:hover{
+    cursor: pointer;
+}
+
+.Profile .ProfileBar .ChangeImage .ChangeImgLabel{
+    height: 100%;
+    bottom: 108px;
+    position: relative;
+    background-color: rgba(0,0,0,0);
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(225,225,225,0);
+    font-size: 14px;
+    transition: 200ms;
+    overflow: hidden;
+}
+.Profile .ProfileBar .ChangeImage input{
+    display: none;
+}
+
+.Profile .ProfileBar .ChangeImage .ChangeImgLabel:hover{
+    background-color: rgba(0,0,0,.75);
+    color: #fff;
+}
+
+.Profile .ProfileBar .ChangeImage .ChangeImgLabel label{
+    padding: 34px 30px;
 }
 
 .Profile .ProfileBar .ProfileImage{
     aspect-ratio: 1/1;
     border-radius: 100%;
     max-height: 100px;
+    min-height: 100%;
+    border-color: transparent;
+    background-color: #f7f7f7;
+}
+
+.Profile .ProfileBar .NoProfileImage{
+    aspect-ratio: 1/1;
+    border-radius: 100%;
+    max-height: 80px;
+    min-height: 80%;
+    padding: 10%;
+    margin: auto;
     border-color: transparent;
     background-color: #f7f7f7;
 }
