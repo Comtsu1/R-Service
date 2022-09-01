@@ -185,10 +185,9 @@ function Profile(){
                                 {profile.description}
                             </p>
                             :
-                            <textarea className="ProfileDescriptionEdit" value={profile.}>
+                            <textarea className="ProfileDescriptionEdit" value={profile.description}>
 
                             </textarea>
-
                             }
                         </div>
 
