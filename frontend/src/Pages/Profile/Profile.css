@@ -101,6 +101,28 @@
 
 }
 
+/* profile description */
+
+.Profile .ProfileDescription .DescFlex{
+    display: flex;
+    align-items: baseline;
+}
+
+.Profile .ProfileDescription .DescFlex button{
+    bottom: 2px;
+    position: relative;
+
+    background-color: transparent;
+    border: none;
+
+    color: #727272;
+    text-decoration: underline;
+}
+
+.Profile .ProfileDescription .DescFlex button:hover{
+    cursor: pointer;
+}
+
 .Profile .ProfileDescription {
     padding: 0 10px;
 }

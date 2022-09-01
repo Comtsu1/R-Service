@@ -9,6 +9,8 @@ function Profile(){
     const [PageDetails, setDetails] = useState({PostFocused: true})
     const [Services, setServices] = useState([])
     const [RentedServices, setRentedServices] = useState([])
+
+    var DescEditing = false;
     
     function WordCount(str) { 
         return str.split(" ").length;
@@ -174,10 +176,20 @@ function Profile(){
                             <p className="ProfileName">{profile.username}</p>
                         </div>
                         <div className="ProfileDescription">
-                            <h2 className="ProfileDescLabel">Description</h2>
+                            <div className="DescFlex"> 
+                                <h2 className="ProfileDescLabel">Description</h2>
+                                <button>edit</button>
+                            </div>
+                            {DescEditing === flase?
                             <p>
-                            {profile.description}
+                                {profile.description}
                             </p>
+                            :
+                            <textarea className="ProfileDescriptionEdit" value={profile.}>
+
+                            </textarea>
+
+                            }
                         </div>
 
                         <div className="ProfilePageMenu">
