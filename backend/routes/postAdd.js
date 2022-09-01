@@ -25,7 +25,6 @@ router.post('/add-post', async (req, res)=>{
             postId: uuidv4()
         })
 
-     
         newPost.save().then(() => {
             res.status(200).json({msg : "post created"})
         }).catch((error) => {
