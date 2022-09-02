@@ -180,7 +180,7 @@ function Profile(){
                                 <h2 className="ProfileDescLabel">Description</h2>
                                 <button>edit</button>
                             </div>
-                            {DescEditing === flase?
+                            {DescEditing === false?
                             <p>
                                 {profile.description}
                             </p>
