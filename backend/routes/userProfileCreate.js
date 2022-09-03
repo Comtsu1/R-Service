@@ -14,8 +14,6 @@ router.post('/create-profile', verify, async (req, res)=>{
     const existCheck = await user.findOne({email : payload.userEmail})
     const profileCheck = await userProfile.findOne({user : existCheck.userId})
     if(profileCheck)return res.status(409).json({msg : "profile already created"})
-// let result = await post.find({author : existCheck.userId})
-    // console.log(result);
     if(existCheck){
         const profile = new userProfile({
             firstName : req.body.firstName,
