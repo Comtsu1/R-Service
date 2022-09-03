@@ -8,7 +8,8 @@ function ViewPost(){
 
     const images=["https://i.ibb.co/HtVnSr5/Desert.jpg", "https://i.ibb.co/WBT3cnm/Lighthouse.jpg", "https://i.ibb.co/DCbD2MX/site-1552-0001-1200-630-20180219161055.jpg", "https://i.ibb.co/LS7TDjP/landscape-new-zealand-S-shape.jpg"];
     usePreloadImages(images)
-    
+    const urlParams = new URLSearchParams(window.location.search);
+    console.log("id = ", urlParams.get("id"))
 
     const [details, setDetails]= useState({currentImgIndex: 0});
 
