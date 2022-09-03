@@ -3,12 +3,12 @@
 }
 
 
-.Home .Wrapper{
+.Home .HomeWrapper{
   padding: 50px 90px;
   margin: 0%;
 }
 
-.Home .Wrapper .Background{
+.Home .HomeWrapper .Background{
   background-color: #F7F7F7;
   border-radius: 5px;
   padding: 40px;

@@ -39,7 +39,7 @@
 
 /* -----LIST-------------------------- */
 
-.Wrapper{
+.Profile-Menu-Holder .ProfileWrapper{
     margin: 10px;
     text-align: center;
     margin-bottom: 15px;
@@ -66,10 +66,24 @@
 }
 
 .Profile-Menu li{
+    font-weight: 500;
     margin: 2px;
+    white-space: nowrap;
 }
 
 .Profile-Menu .Divider{
     margin-top: 5px;
     border-bottom: 1px rgb(165, 165, 165) solid;
+}
+
+.Profile-Menu li a{
+    text-decoration: none;
+    transition: 300ms;
+    color: black;
+}
+
+.Profile-Menu li a:hover{
+    color: #538e99;
+    opacity: 0.8;
+    opacity: 1;
 }
