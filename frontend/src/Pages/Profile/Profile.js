@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react"
 import "./Profile.css"
+import NoProfileImg from "./Components/user.png"
 
 function Profile(){
 
@@ -8,6 +9,8 @@ function Profile(){
     const [PageDetails, setDetails] = useState({PostFocused: true})
     const [Services, setServices] = useState([])
     const [RentedServices, setRentedServices] = useState([])
+
+    var DescEditing = false;
     
     function WordCount(str) { 
         return str.split(" ").length;
@@ -115,6 +118,29 @@ function Profile(){
         return <>{list}</>
     }
 
+    function ChangeImage(event){
+        event.preventDefault()
+
+        let img = event.target.files[0];
+        // ImgList.push("Loading")
+
+        // send request to get link for photo
+        if(img) {
+            const fd = new FormData()
+            fd.append('image', img)
+            fd.append('key', "4af9c545bc82a3cd91982cd1549eb771")
+            
+            axios.post("https://api.imgbb.com/1/upload", fd)
+            // callback (resposnse)
+            .then ((res) => {
+                const linkContainer = res;
+                setProfile({...profile, image: linkContainer.data.data.url})
+
+                //update the database
+                })
+            }
+    }
+
     function FocusPost(event)
     {
         event.preventDefault()
@@ -139,15 +165,30 @@ function Profile(){
                     <div className="Background">
                         <div className="ProfileBar">
                             <div className="ImgWrapper">
-                                <img className="ProfileImage" src={profile.image}/>
+                                <div  type="file" className="ChangeImage" >
+                                    <img className={profile.image?"ProfileImage":"NoProfileImage"} src={profile.image?profile.image:NoProfileImg} alt="profileImage"/>
+                                    <div className="ChangeImgLabel">
+                                        <label htmlFor={"ChngImg"} >change<br/>image</label>
+                                    </div>
+                                    <input type={"file"} id="ChngImg" accept=".jpg, .jpeg, .png, .gif" onChange={(e) => ChangeImage(e)}></input>
+                                </div>
                             </div>
-                            <p className="ProfileName">{profile.firstName} {profile.secondName}</p>
+                            <p className="ProfileName">{profile.username}</p>
                         </div>
                         <div className="ProfileDescription">
-                            <h2 className="ProfileDescLabel">Description</h2>
+                            <div className="DescFlex"> 
+                                <h2 className="ProfileDescLabel">Description</h2>
+                                <button>edit</button>
+                            </div>
+                            {DescEditing === false?
                             <p>
-                            {profile.description}
+                                {profile.description}
                             </p>
+                            :
+                            <textarea className="ProfileDescriptionEdit" value={profile.description}>
+
+                            </textarea>
+                            }
                         </div>
 
                         <div className="ProfilePageMenu">

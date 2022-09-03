@@ -2,7 +2,84 @@
   text-align: center;
 }
 
-.Home .Main-Footer{
-  position: fixed;
-  bottom: 0;
+
+.Home .Wrapper{
+  padding: 50px 90px;
+  margin: 0%;
 }
+
+.Home .Wrapper .Background{
+  background-color: #F7F7F7;
+  border-radius: 5px;
+  padding: 40px;
+  display: grid;
+
+  grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+  column-gap: 40px;
+  row-gap: 40px;
+}
+
+
+.Home .Background .Mask {
+  background-color: rgba(255, 0, 0, 0.5);
+  aspect-ratio: 3/4;
+  border-radius: 10px;
+  max-height: 400px;
+  transition: 300ms;
+  overflow: hidden;
+}
+
+.Home .Background .Post {
+  aspect-ratio: 3/4;
+  border-radius: 10px;
+  max-height: 400px;
+  background-color: #43727A;
+  position: relative;
+  overflow: auto;
+}
+
+.Home .Background .Post .ImgWrapper{
+  width: 90%;
+  margin: 5%;
+  aspect-ratio: 1/1;
+  background-color: #538e99;
+  overflow: hidden;
+  border-radius: 7px;
+  transition: 300ms;
+  position: relative;
+}
+
+.Home .Background .Post .ImgWrapper img{
+  max-height: 100%;
+}
+
+.Home .Post a{
+  text-decoration: none;
+}
+
+.Home .Background .Post .Title{
+  color: #fff;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.Home .Post .Cost{
+  color: #fff;
+  font-size: 12px;
+  font-weight: 500;
+  position: absolute;
+  bottom: 5px;
+  right: 10px;
+  display: block;
+  
+}
+
+
+@keyframes openPost {
+  0% {transform: scale(1);}
+  100% {transform: scale(1.33)}
+  110% {width: 300px;}
+  
+}
+
+
