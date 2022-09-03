@@ -2,6 +2,9 @@ import axios from "axios";
 import { useEffect, useState } from "react"
 import "./Profile.css"
 import NoProfileImg from "./Components/user.png"
+import {Header} from "../Home/Components/Header/Header";
+import {Footer} from "../Home/Components/Footer";
+
 
 function Profile(){
 
@@ -156,7 +159,7 @@ function Profile(){
     // Rendering
     return(
         <div className="Profile">
-            <div className="Main-Header"></div>
+            <Header/>
             <div className="Main-Content">
                 
                 {profile ? 
@@ -218,7 +221,7 @@ function Profile(){
                 <div className="fuck-all"></div>
                 }
             </div>
-            <div className="Main-Footer"></div>
+            <Footer/>
         </div>
     )
 }

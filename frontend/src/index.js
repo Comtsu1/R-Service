@@ -20,10 +20,10 @@ root.render(
         <Route path='/' element={<App/>} />
         <Route path='login' element={<Login/>} />
         <Route path='register' element={<Register/>} />
-        <Route path='CreatePost/*' element={<PostCreate/>}/>
+        <Route path='create_post/*' element={<PostCreate/>}/>
         <Route path='reset' element={<Reset/>} />
         <Route path='profile' element={<Profile/>}/>
-        <Route path='Post/*' element={<ViewPost/>}/>
+        <Route path='post/*' element={<ViewPost/>}/>
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

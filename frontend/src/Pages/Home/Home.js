@@ -111,7 +111,7 @@ function MainContent(){
   }
 
   return(
-    <div className='Wrapper'>
+    <div className='HomeWrapper'>
       <div className='Background'>
         {
           posts.length?

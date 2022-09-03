@@ -7,6 +7,7 @@ import msgNotif from '../../Icons/email_small_unread.png';
 import menu from '../../Icons/menu.png';
 import './Header.css';
 import {Profile} from './Profile_Bar/Profile.js';
+import {Navigate} from "react-router-dom";
 
 class SearchBar extends React.Component{
     constructor(props){
@@ -46,7 +47,7 @@ class UserUtility extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            UserName: '',
+            UserName: 'Signed in as',
             UserIcon: null,
             Notifications: 0,
             UnreadMsg: 0,
@@ -79,21 +80,7 @@ class UserUtility extends React.Component{
                         </button>
                         {ProfileVar}
                     </div>
-                    <div className="UserUtil">
-                        <div id='Notifications' className="UserUtil-Group">
-                            <img src={this.state.Notifications>0?bellNotif:bell} alt='Notification Icon'></img>
-                        </div>
-                    </div>
-                    <div className="UserUtil">
-                        <div id='Messages' className="UserUtil-Group">
-                            <img src={this.state.UnreadMsg>0?msgNotif:msg} alt='Message Icon'></img>
-                        </div>
-                    </div>
-                    <div className="UserUtil">
-                        <div id='Menu' className="UserUtil-Group">
-                            <img src={menu}alt='Menu Icon'></img>
-                        </div>
-                    </div>
+                    <label className="UserName">{this.state.UserName}</label>
                 </>
             )
         }else{
@@ -119,16 +106,21 @@ class UserUtility extends React.Component{
 }
 
 
-
 class Header extends React.Component{
+
+    nav(path){
+        // this.history.push(path)
+    }
 
     render(){
         return(
             <div className='Main-Header'>
                 <div className="ie Left">
                     <div id = 'ie7'>
-                        <div id='topBannerLogo-placeholder'>
-                            <img src={logo} alt='logo transparent' id='BannerLogo'></img>
+                        <div id='topBannerLogo-placeholder' onClick={this.nav("/")}>
+                            <a href="/">
+                                <img src={logo} alt='logo transparent' id='BannerLogo'></img>
+                            </a>
                         </div>
                     </div>
                     <div id = 'searchBar-placeholder'>

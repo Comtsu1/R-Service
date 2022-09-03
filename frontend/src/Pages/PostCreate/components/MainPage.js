@@ -2,6 +2,8 @@ import React from "react"
 import './MainPage.css'
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import axios from "axios";
+import {Header} from "../../Home/Components/Header/Header";
+import {Footer} from "../../Home/Components/Footer";
 
 
 
@@ -17,6 +19,7 @@ class PostCreatePage extends React.Component{
                     </div>
                 </div>
                 <PostForm/>
+                <Footer/>
             </>
         )
     }
@@ -27,23 +30,6 @@ class PostCreatePage extends React.Component{
 
 
 // ==============Components================================================================== \\
-
-class Header extends React.Component{
-
-    render(){
-        return(
-            <div className='Main-Header'></div>
-        )
-    }
-}
-
-class Footer extends React.Component{
-    render(){
-        return(
-            <div className="Main-Footer"></div>
-        )
-    }
-}
 export {PostCreatePage}
 
 
