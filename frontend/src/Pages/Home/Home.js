@@ -58,8 +58,8 @@ class Post extends React.Component{
   
   render(){
     return(
-      <div key={this.props.value._id} className={this.state.Focused?"Post Focused":"Post"} onMouseEnter={(e) => this.MouseHandler(e)} onMouseLeave={(e) => this.MouseExit(e)}>
-        <div>
+      <div key={this.props.value._id} className="Post" onMouseEnter={(e) => this.MouseHandler(e)} onMouseLeave={(e) => this.MouseExit(e)}>
+        <div className='ImgDescWrapper'>
           <div className='ImgWrapper'>
             <img src={this.props.value.image[0]} alt="post Image"></img>
           </div>
@@ -68,6 +68,14 @@ class Post extends React.Component{
           </a>
         </div>
         <span className='Cost'><br/>{this.props.value.price + " btc"}</span>
+        
+        {/* {this.state.Focused?
+        <aside className='Mask'>
+          <p>{this.props.value.description}</p>
+        </aside>
+        :
+        null
+        } */}
       </div>
     )
     }
