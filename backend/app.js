@@ -15,6 +15,7 @@ const userProfileSchema = require('./models/userProfile')
 const post = require('./models/post')
 const cors = require('cors')
 const reservationSchema = require('./models/reservation')
+const MUUID = require('uuid-mongodb');
 
 // user cors, it doesnt work at all on firefox if not included
 app.use(cors())
@@ -49,13 +50,21 @@ app.get("/profile", verify, async (req,res)=>{
 
 app.get("/posts", async (req,res)=>{
     const newPosts = await post.find().sort({ $natural: -1 }).limit(20)
-    res.json({newest20Posts : newPosts})
+    res.status(200).json({newest20Posts : newPosts})
 })
 
 app.get("/posts/:startingId/:postsNum", async (req,res)=>{
     let {startingId, postsNum} = req.params
     const newPosts = await post.find().limit(postsNum).skip(Number(startingId)-1)
-    res.json({postToShow : newPosts})
+    res.status(200).json({postToShow : newPosts})
+})
+
+app.get("/posts/:postId", async (req,res)=>{
+    let postId = req.params
+    const uuidPost = postId.postId
+    const uuidToSearch = MUUID.from(uuidPost)
+    const postFromId = await post.find({postId : uuidToSearch})
+    res.json({postToShow : postFromId})
 })
 
 const startConnection = async() => {
