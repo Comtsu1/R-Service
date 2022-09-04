@@ -10,14 +10,14 @@ function Register(){
 
       const SendRegisterDB = (details) => {
         axios.post("http://localhost:8080/user/register", details)
-            .then(res => ManageResponse(res, details))
-            .catch(err => (err) => {
+            .then(res => {ManageResponse(res, details);})
+            .catch(err => {
               // clientside error
-              
-              //testing
-              setError(err.response.data);
-              console.log(err.response.data);
+              console.log(err);
+              console.log(err.response.data.error);
               console.log(err.response.status);
+              //testing
+              setError(err.response.data.error + " (" + err.response.status + ")");
             })
       }
       
@@ -25,8 +25,14 @@ function Register(){
         console.log(res.data.token);
         localStorage.setItem("token", res.data.token);
         
-        axios.post("http://localhost:8080/create-profile", { headers: { "x-auth-toke": localStorage.getItem("token"), data: details } })
-          .catch(err => {setError(err.response.data.error); return;})
+        // const config = {
+        //     headers:{
+        //         'x-auth-token': localStorage.getItem("token")
+        //     }
+        // };
+        //axios.post("http://localhost:8080/create-profile", details, config)
+        //  .then(() => navigate('/'))
+        //  .catch(err => {setError(err.response.data.error); return;})
         navigate('/');
       }
 
@@ -36,7 +42,7 @@ function Register(){
         ///if username exists block request
         ///connect back-end: doing rn chief
         
-        if(!details.email || !details.password || !details.username || !details.confirmPassword){
+        if(!details.email || !details.password || !details.firstName || !details.secondName || !details.confirmPassword){
           setError("Please complete all available slots!");
           return;
         }
@@ -50,7 +56,7 @@ function Register(){
             return specialChars.test(str);
         }
         if(!hasNumber.test(details.password) || !containsSpecialChars(details.password)) {setError("Password must contain numbers and characters!"); return}
-
+        
         SendRegisterDB(details);
       }
     

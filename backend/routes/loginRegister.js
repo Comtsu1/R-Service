@@ -7,10 +7,6 @@ const jwt = require('jsonwebtoken')
 
 router.post('/register', async (req,res) => {
 
-    if(!(req.body.username && req.body.password && req.body.email)){
-        return res.status(400).send({error : "every field must be completed"})
-    }
-
     const doesExistEmail = await user.findOne({ email: req.body.email })
     if(doesExistEmail)return res.status(400).json({error : "email already exist"})
     const newUser = new user(req.body)

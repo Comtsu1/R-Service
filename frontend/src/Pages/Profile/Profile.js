@@ -5,9 +5,11 @@ import NoProfileImg from "./Components/user.png"
 import {Header} from "../Home/Components/Header/Header";
 import {Footer} from "../Home/Components/Footer";
 import {BackendLink} from "../../Refferences/RefferencesFile"
+import { useNavigate, Navigate } from 'react-router-dom';
 
 function Profile(){
 
+    const navigate = useNavigate()
     const [profile, setProfile] = useState(null);
     const [PageDetails, setDetails] = useState({PostFocused: true})
     const [Services, setServices] = useState([])
@@ -42,11 +44,12 @@ function Profile(){
             headers:{"x-auth-token": localStorage.getItem("token")}
             })
             .then((res) => {
+                console.log("aa" + res.data.profile)
                 setProfile(res.data.profile);
                 setRentedServices(RentedServices, [...RentedServices, res.data.reservations]);
                 setServices(Services, [...Services, res.data.posts]);
-                console.log(Services);
-                console.log("no you" + RentedServices);
+                //console.log(Services);
+                //console.log("no you" + RentedServices);
             })
             .catch((err) => {
                 // TODO error handling
@@ -156,6 +159,10 @@ function Profile(){
         setDetails({...PageDetails, PostFocused: false})
     }
 
+    function GoBack() {
+        navigate('/');
+    }
+
     // Rendering
     return(
         <div className="Profile">
@@ -218,7 +225,7 @@ function Profile(){
 
                 :
                 // data not loaded yet
-                <div className="fuck-all"></div>
+                (<Navigate to="/" replace={true} />)
                 }
             </div>
             <Footer/>
