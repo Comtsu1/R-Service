@@ -8,6 +8,7 @@ import {BackendLink} from "../../Refferences/RefferencesFile"
 
 function ViewPost(){
     const [post, setPost] = useState(null);
+    const [profile, setProfile] = useState(null);
     const urlParams = new URLSearchParams(window.location.search);
     console.log("id = ", urlParams.get("id"))
     const id = urlParams.get("id");
@@ -35,6 +36,16 @@ function ViewPost(){
             .catch((err) => {
                 // TODO error handling
             });
+
+            // axios.get(`${BackendLink}/profile`, {
+            //     headers:{"x-auth-token": localStorage.getItem("token")}
+            // })
+            // .then((res) => {
+            //     setProfile(res.data.profile);
+            //     if (res.data.profile.image){
+            //         preloadImage(res.data.profile.image)
+            //     }
+            // })
     }, [])
 
     function navigateImages(event, direction = true){
@@ -82,7 +93,7 @@ function ViewPost(){
             <Header/>
             <div className="Main-Content">
                 <div className="Wrapper">
-                    {post? 
+                    {post /*&& profile}*/? 
                     <>
                         <div className="Post">
                             <div id="sp1">
