@@ -10,7 +10,7 @@ function Register(){
 
       const SendRegisterDB = (details) => {
         axios.post("http://localhost:8080/user/register", details)
-            .then(res => ManageResponse(res))
+            .then(res => ManageResponse(res, details))
             .catch(err => (err) => {
               // clientside error
               
@@ -21,10 +21,12 @@ function Register(){
             })
       }
       
-      const ManageResponse = (res) => {
+      const ManageResponse = (res, details) => {
         console.log(res.data.token);
         localStorage.setItem("token", res.data.token);
-
+        
+        axios.post("http://localhost:8080/create-profile", { headers: { "x-auth-toke": localStorage.getItem("token"), data: details } })
+          .catch(err => {setError(err.response.data.error); return;})
         navigate('/');
       }
 
@@ -38,6 +40,16 @@ function Register(){
           setError("Please complete all available slots!");
           return;
         }
+
+        // html button handles this perfectly
+        //if(!String(details.email).includes('@')) {setError("Email is not valid!"); return;}
+
+        const hasNumber = /\d/
+        function containsSpecialChars(str) {
+            const specialChars = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
+            return specialChars.test(str);
+        }
+        if(!hasNumber.test(details.password) || !containsSpecialChars(details.password)) {setError("Password must contain numbers and characters!"); return}
 
         SendRegisterDB(details);
       }
