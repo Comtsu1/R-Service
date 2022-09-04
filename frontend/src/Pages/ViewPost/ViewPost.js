@@ -1,19 +1,54 @@
-import { useEffect, useCallback, useRef } from "react";
+import React,{ useEffect, useCallback, useRef } from "react";
 import {Header} from "../../Pages/Home/Components/Header/Header"
 import { Footer } from "../Home/Components/Footer";
 import { useState } from "react";
 import "./ViewPost.css"
 import axios from "axios";
-import {BackendLink} from "../../Refferences/RefferencesFile"
+import {BackendLink} from "../../Refferences/RefferencesFile";
+import '@hassanmojab/react-modern-calendar-datepicker/lib/DatePicker.css';
+import {Calendar} from '@hassanmojab/react-modern-calendar-datepicker';
+
+const Calendar1 = (selectedDay, setSelectedDay, setDetails, details) => {
+  return (
+    <Calendar
+      value={selectedDay}
+      onChange={setSelectedDay}
+      shouldHighlightWeekends
+      renderFooter={() =>(
+        <div className="CalendarFooter">
+            <button type="button" id="cancel" onClick={
+            (e) =>{
+                setSelectedDay(null);
+                setDetails({...details, calendarOpened: false});
+            }
+            }>
+                Cancel
+            </button>
+
+            <button type="button" onClick={(e) =>
+                {
+                    console.log(selectedDay.day, selectedDay.month, selectedDay.year)
+                    setDetails({...details, calendarOpened: false})
+                }
+            }>
+                Make Reservation!
+            </button>
+        </div>
+      )
+        
+    }
+    />
+  );
+};
 
 function ViewPost(){
     const [post, setPost] = useState(null);
     const [profile, setProfile] = useState(null);
-    const urlParams = new URLSearchParams(window.location.search);
-    console.log("id = ", urlParams.get("id"))
+    const urlParams = new URLSearchParams(window.location.search);  
+    const [selectedDay, setSelectedDay] = useState(null);
     const id = urlParams.get("id");
 
-    const [details, setDetails]= useState({currentImgIndex: 0});
+    const [details, setDetails]= useState({currentImgIndex: 0, calendarOpened: false, disabledDays: [],});
 
     const {current: deboucnce} = useRef(["one", "two"]);
     function preloadImage(url)
@@ -28,7 +63,6 @@ function ViewPost(){
             })
             .then((res) => {
                 setPost(res.data.postToShow[0]);
-                console.log(res.data.postToShow[0]);
                 res.data.postToShow[0].image.forEach((img) => {
                     preloadImage(img)
                 });
@@ -50,7 +84,6 @@ function ViewPost(){
 
     function navigateImages(event, direction = true){
         event.preventDefault()
-        console.log("called")
         if (direction === true){
             var index = details.currentImgIndex+1
             if(index >(post.image.length - 1)){
@@ -64,7 +97,21 @@ function ViewPost(){
             }
             setDetails({...details, currentImgIndex: index})
         }
-        console.log(details.currentImgIndex)
+    }
+
+    function makeReservation(event){
+        event.preventDefault()
+        setDetails({...details, calendarOpened: true})
+    }
+
+    function buyReservation(){
+        console.log(selectedDay.day, selectedDay.month, selectedDay.year)
+        setDetails({...details, calendarOpened: false})
+    }
+
+    function cancelBuy(){
+        setSelectedDay(null);
+        setDetails({...details, calendarOpened: false});
     }
 
     function RenderImgNav(){
@@ -114,8 +161,16 @@ function ViewPost(){
                                         </p>
                                     </div>
                                     <div id="sp5">
-                                        <button id="Hire">Make Reservation</button>
-                                        <button id="Contact">Contact Me</button>
+                                        <div className="Buy">
+                                        {details.calendarOpened?
+                                            Calendar1(selectedDay, setSelectedDay, setDetails, details)
+                                        :null
+                                        }
+                                        <button className="button" id="Hire" onClick={
+                                            (e) => {makeReservation(e)}
+                                        }>Make Reservation</button>
+                                        </div>
+                                        <button className="button" id="Contact">Contact Me</button>
                                     </div>
                                 </div>
                             </div>
