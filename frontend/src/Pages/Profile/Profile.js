@@ -4,7 +4,7 @@ import "./Profile.css"
 import NoProfileImg from "./Components/user.png"
 import {Header} from "../Home/Components/Header/Header";
 import {Footer} from "../Home/Components/Footer";
-
+import {BackendLink} from "../../Refferences/RefferencesFile"
 
 function Profile(){
 
@@ -38,7 +38,7 @@ function Profile(){
     }
 
     useEffect(() => {
-        axios.get("http://localhost:8080/profile", {
+        axios.get(`${BackendLink}/profile`, {
             headers:{"x-auth-token": localStorage.getItem("token")}
             })
             .then((res) => {
