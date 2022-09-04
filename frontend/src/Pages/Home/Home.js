@@ -63,7 +63,7 @@ class Post extends React.Component{
           <div className='ImgWrapper'>
             <img src={this.props.value.image[0]} alt="post Image"></img>
           </div>
-          <a href={`/post?id=${this.props.value._id}`}>
+          <a href={`/post?id=${this.props.value.postId}`}>
             <span className='Title'>{this.props.value.name}</span>
           </a>
         </div>
