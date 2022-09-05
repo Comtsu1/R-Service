@@ -5,6 +5,7 @@ const express = require('express')
 const router  = express.Router()
 const user = require('../models/modelUser.js')
 const uuid = require('uuid')
+const amqp = require('amqplib/callback_api')
 
 router.get('/contacts', verify, async (req, res) => {
 
@@ -69,7 +70,23 @@ router.post('/sendMessage', async (req, res)=>{
         date : req.body.date,
     })
     newMessage.save()
-
+    amqp.connect('amqp://localhost', (connError, connection) =>{
+        if(connError){
+            throw connError
+        }
+        // Create Channel
+        connection.createChannel((channelError, channel) =>{
+            if(channelError){
+                throw channelError
+            }
+            // Assert Queue
+            const QUEUE = 'r-service'
+            channel.assertQueue(QUEUE)
+            // Send message to queue
+            channel.sendToQueue(QUEUE, Buffer.from(req.body.message))
+            console.log(`Message send to ${QUEUE}`)
+        })
+    })
     res.status(200).json({msg : "Message sent"})
 })
 
