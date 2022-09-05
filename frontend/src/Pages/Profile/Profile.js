@@ -11,11 +11,10 @@ function Profile(){
 
     const navigate = useNavigate()
     const [profile, setProfile] = useState(null);
-    const [PageDetails, setDetails] = useState({PostFocused: true})
+    const [PageDetails, setDetails] = useState({PostFocused: true, DescEditing: false, DescEdit: null})
     const [Services, setServices] = useState([])
     const [RentedServices, setRentedServices] = useState([])
 
-    var DescEditing = false;
     
     function WordCount(str) { 
         return str.split(" ").length;
@@ -48,20 +47,25 @@ function Profile(){
                 setProfile(res.data.profile);
                 console.log(res.data.profile)
                 setRentedServices(RentedServices, [...RentedServices, res.data.reservations]);
-                setServices(Services, [...Services, res.data.posts]);
-<<<<<<< HEAD
-=======
-                //console.log(Services);
-                //console.log("no you" + RentedServices);
->>>>>>> ab5a10eb961d338a91fce0a911f9f8a65b0e4959
+                setServices(res.data.posts);
+                if(res.data.profile.description === undefined){
+                    setProfile({...profile, description: ""})
+                }
             })
             .catch((err) => {
                 // TODO error handling
             });
     }, [])
 
-    function RenderServices(){
+    function editDesc(){
+        setDetails({...PageDetails, DescEditing: !PageDetails.DescEditing})
+        if(PageDetails.DescEditing === true){
+            setDetails({...PageDetails, DescEdit: profile.description ,DescEditing: !PageDetails.DescEditing})
+        }
+    }
 
+    function RenderServices(){
+        console.log(Services)
         if (Services.length === 0){
             return(
             <div className="NoService">
@@ -69,27 +73,29 @@ function Profile(){
             </div>
             )
         }
-        const list = Services.map((value) => 
+        const list = Services.map((value, key) => 
         <>
-            {
-                Object.entries(value).map(([key, value]) =>
-                    <div key={key} className="Service">
+            
+                <div key={key} className="Service">
+                        {console.log(value)}
                         <img className = "Image" src={value.image}></img>
                         <div className = "PostWrapper">
-                            <label className="Title">{value.firstName} {value.secondName}</label>
+                            <a href={`/post?id=${value.postId}`}>
+
+                                <label className="Title">{value.name}</label>
+                            </a>
                             
                             <p className="Description">{value.description}</p>
                         </div>
                         <div className="Details">
-                            <span className="Cost">{value.cost}$</span>
+                            <span className="Cost">{value.price}$</span>
                             <span className="Location">{value.location}</span>
                             <div>
                                 <div className="Fader"></div>
                             </div>
                         </div>
                     </div>   
-                )
-            }
+        
         </>
         )
         return <>{list}</>
@@ -126,6 +132,17 @@ function Profile(){
         }
         </>)
         return <>{list}</>
+    }
+
+    function OnDescEdit(event){
+        event.preventDefault();
+        setDetails({...PageDetails, DescEdit: event.target.value})
+    }
+    
+    function SubmitDescriptionEdit(event){
+        event.preventDefault();
+        setProfile({...profile, description: PageDetails.DescEdit})
+        setDetails({...PageDetails, DescEditing: false})
     }
 
     function ChangeImage(event){
@@ -190,25 +207,29 @@ function Profile(){
                             {profile.username?
                             <p className="ProfileName">{profile.username}</p>
                             :
-                            <div className="NameInputWrapper">
-                                <input className="Name" placeholder="Please input your username"></input>
-                                <button>submit</button>
-                            </div>
+                            <p className="ProfileName">{"Yaoi Enjoyer"}</p>
+                            // <div className="NameInputWrapper">
+                            //     <input className="Name" placeholder="Please input your username"></input>
+                            //     <button>submit</button>
+                            // </div>
                             }
                         </div>
                         <div className="ProfileDescription">
                             <div className="DescFlex"> 
                                 <h2 className="ProfileDescLabel">Description</h2>
-                                <button>edit</button>
+                                <button onClick={() => editDesc()}>edit</button>
                             </div>
-                            {DescEditing === false?
+                            {PageDetails.DescEditing === false?
                             <p>
                                 {profile.description}
                             </p>
                             :
-                            <textarea className="ProfileDescriptionEdit" value={profile.description}>
+                            <div className="DescEditWrapper">
+                                <textarea className="ProfileDescriptionEdit" value={PageDetails.DescEdit} onChange={(e) => OnDescEdit(e)} >
 
-                            </textarea>
+                                </textarea>
+                                <button className="SubmitDescriptionEdit" onClick={(e) => SubmitDescriptionEdit(e)}>done</button>
+                            </div>
                             }
                         </div>
 
@@ -235,8 +256,8 @@ function Profile(){
                 </div>
 
                 :
-                // data not loaded yet
-                (<Navigate to="/" replace={true} />)
+                <div>data not loaded yet</div>
+                // (<Navigate to="/" replace={true} />)
                 }
             </div>
             <Footer/>
