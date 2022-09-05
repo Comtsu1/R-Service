@@ -6,6 +6,7 @@ import {Header} from "../Home/Components/Header/Header";
 import {Footer} from "../Home/Components/Footer";
 import {BackendLink} from "../../Refferences/RefferencesFile"
 import { useNavigate, Navigate } from 'react-router-dom';
+import NoProfileImg from "./Components/user.png"
 
 function Profile(){
 
@@ -45,7 +46,7 @@ function Profile(){
             .then((res) => {
                 console.log("aa" + res.data.profile)
                 setProfile(res.data.profile);
-                console.log(res.data.profile)
+                setProfile({...profile, username:"none"})
                 setRentedServices(RentedServices, [...RentedServices, res.data.reservations]);
                 setServices(res.data.posts);
                 if(res.data.profile.description === undefined){
@@ -99,6 +100,16 @@ function Profile(){
         </>
         )
         return <>{list}</>
+    }
+    function HandleDescSubmit(event){
+        event.preventDefault()
+        setDetails({...PageDetails, DescEditing:false})
+    }
+
+    function HandleDescChange(event){
+        event.preventDefault()
+        setProfile({...profile, description: event.target.value})
+   
     }
 
     function RenderRentedServices(){
@@ -217,7 +228,7 @@ function Profile(){
                         <div className="ProfileDescription">
                             <div className="DescFlex"> 
                                 <h2 className="ProfileDescLabel">Description</h2>
-                                <button onClick={() => editDesc()}>edit</button>
+                                <button onClick={(e) => EditDesc(e)}>edit</button>
                             </div>
                             {PageDetails.DescEditing === false?
                             <p>
