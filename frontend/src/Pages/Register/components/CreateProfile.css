@@ -1,0 +1,480 @@
+.CreateProfile .Main-Content .Wrapper{
+    margin: 20px;
+}
+
+.CreateProfile h2{
+    font-size: 32px;
+    color: #6d6d6d;
+
+    padding-bottom: 5px;
+    border-width: 0;
+    border-bottom: 1px;
+    border-color: #8d8d8d;
+    border-style: solid;
+    margin-bottom: 0;
+}
+
+.CreateProfile .Flex-Wrapper{
+    margin: 5px;
+    padding-top: 20px;
+    padding-left: 5%;
+    padding-right: 5%;
+    width: calc(100%-5px);
+}
+
+.CreateProfile .Form-Wrapper{
+    display: flex;
+    justify-content: stretch;
+    padding-top: 35px;
+    padding-bottom: 95px;
+}
+
+
+/* ========Title================ */
+.CreateProfile .FormTitle{
+    width: 20%;
+}
+.CreateProfile .FormTitle label{
+    color: #8d8d8d;
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.CreateProfile .FormTitle p{
+    margin: 0;
+    color: #8d8d8d;
+    font-size: 14px;
+}
+
+
+/* =======Content=============== */
+.CreateProfile .FormContent{
+    padding-left: 10px;
+    width: calc(80% - 10px);
+    display: flex;
+
+}
+
+.CreateProfile .FormContent input{
+    /* border & background */
+    border-width: 2px;
+    border-radius: 5px; 
+    border-color: #aaaaaa;
+    border-style: solid;
+    background-color: #ffffff;
+    
+    /* text */
+    font-size: 16px;
+
+
+    /* misc */
+    transition: 300ms;
+
+    /* size */
+    height: 20px;
+    padding: 5px;
+}
+
+.CreateProfile .FormContent select{
+
+    /* border & background */
+    border-width: 2px;
+    border-radius: 5px; 
+    border-color: #aaaaaa;
+    border-style: solid;
+    background-color: #ffffff;
+    
+    /* text */
+    font-size: 16px;
+
+
+    /* misc */
+    transition: 300ms;
+
+    /* size */
+    height: 40px;
+    width: 180px;
+    padding: 5px;
+}
+
+.CreateProfile .FormContent input:hover{
+    border-color: #6d6d6d;
+}
+
+.CreateProfile .FormContent select:hover {
+    border-color: #6d6d6d;
+}
+
+.CreateProfile .FormContent input:focus{
+    outline: none;
+    border-color: #6d6d6d;
+    background-color: #f0f0f0;
+    border-style: solid;
+}
+
+.CreateProfile .FormContent select:focus{
+    outline: none;
+    border-color: #6d6d6d;
+    background-color: #f0f0f0;
+    border-style: solid;
+}
+
+.CreateProfile .FormContent textarea{
+    /* size */
+    resize: none;
+    height: 100px;
+    width: calc(100% - 8px);
+    
+    /* border & background */
+    border-width: 2px;
+    border-radius: 5px; 
+    border-color: #aaaaaa;
+    border-style: solid;
+    background-color: #ffffff;
+    
+    /* text */
+    font-size: 16px;
+
+    
+    /* misc */
+    transition: 300ms;
+}
+
+.CreateProfile .FormContent textarea:hover{
+    border-color: #6d6d6d;
+}
+
+.CreateProfile .FormContent textarea:focus{
+    outline: none;
+    border-color: #6d6d6d;
+    background-color: #f0f0f0;
+    border-style: solid;
+}
+
+
+/* Images */
+.CreateProfile #ImgFormContent{
+    flex-wrap: wrap;
+}
+
+.CreateProfile .FormContent .PhotoAttachment{
+    min-width: 200px;
+    min-height: 160px;
+    width: 200px;
+    height: 160px;
+    border-width: 2px;
+    border-color: #aaaaaa;
+    border-radius: 10px;
+    border-style: solid;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    user-select: none;
+    margin-right: 15px;
+    margin-bottom: 15px;
+    color: #aaaaaa;
+    position: relative;
+}
+
+.CreateProfile .FormContent .PhotoAttachment#addCard{
+    transition: 1000ms;
+}
+
+@keyframes KeyFrame {
+    100% {transform: rotate(360deg);}
+
+}
+
+.CreateProfile .FormContent .PhotoAttachment label#Loading{
+    animation-name: KeyFrame;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+}
+
+.CreateProfile .FormContent .PhotoAttachment img{
+    max-height: 100%;
+    min-height: 100%;
+}
+
+.CreateProfile .FormContent .PhotoAttachment.First label{
+    cursor: pointer;
+    font-size: 24px;
+    font-weight: 600;
+    padding-top: 65px;
+    padding-bottom: 65px;
+    padding-left: 35px;
+    padding-right: 35px;
+}
+
+
+
+.CreateProfile .FormContent .PhotoAttachment label{
+    cursor: pointer;
+    font-size: 40px;
+    font-weight: bolder;
+    padding-top: 65px;
+    padding-bottom: 65px;
+    padding-left: 35px;
+    padding-right: 35px;
+}
+
+.CreateProfile .FormContent .PhotoAttachment input{
+    display: none;
+}
+
+.CreateProfile .FormContent .PhotoAttachment .RemoveImage{
+    width: 100%;
+    min-width: 100%;
+    min-height: 100%;
+    height: 100%;
+    right: 0;
+    position: absolute;
+    display: block;
+}
+
+.CreateProfile .FormContent .PhotoAttachment .RemoveImage .RemoveLabel{
+    font-size: 14px;
+    color: rgba(0,0,0,0);
+    font-weight: 700;
+    border-radius: 10px;
+    padding: 2px 4px;
+    padding-top: 1px;
+    background-color: rgba(255,255,255,0);
+    border-color: transparent;
+    margin: 35% 20%;
+    transition: 200ms;
+}
+
+.CreateProfile .FormContent .PhotoAttachment .RemoveImage:hover .RemoveLabel{
+    background-color: rgba(255,255,255,0.75);
+    color: #030303;
+}
+
+.CreateProfile .FormContent .PhotoAttachment .RemoveImage .RemoveLabel:hover{
+    cursor: pointer;
+}
+
+/* Specific Content */
+.CreateProfile .FormContent .Name{
+    /* size */
+    width: 200px;
+    margin-right: 20px;
+    
+}
+
+.CreateProfile .FormContent .Description::placeholder{
+    font-size: 16px;
+    
+}
+
+
+/* Loading animation */
+
+/* .CreateProfile .FormContent .PhotoAttachment .loader {
+    background: #000;
+    background: radial-gradient(#222, #000);
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 99999;
+} */
+
+.CreateProfile .FormContent .PhotoAttachment .loader-inner {
+    bottom: 0;
+    height: 60px;
+    left: 0;
+    margin: auto;
+    position: relative;
+    right: 0;
+    top: 25px;
+    width: 100px;
+}
+
+.CreateProfile .FormContent .PhotoAttachment .loader-line-wrap {
+    animation: 
+        spin 2000ms cubic-bezier(.175, .885, .32, 1.2) infinite
+    ;
+    box-sizing: border-box;
+    height: 50px;
+    right: 35px;
+    overflow: hidden;
+    position: absolute;
+    bottom: 25px;
+    transform-origin: 75% 100%;
+    width: 50px;
+}
+.CreateProfile .FormContent .PhotoAttachment .loader-line {
+    border: 4px solid transparent;
+    border-radius: 100%;
+    box-sizing: border-box;
+    height: 100px;
+    margin: 0 auto;
+    position: relative;
+    width: 100px;
+}
+.CreateProfile .FormContent .PhotoAttachment .loader-line-wrap:nth-child(1) { animation-delay: -50ms; }
+.CreateProfile .FormContent .PhotoAttachment .loader-line-wrap:nth-child(2) { animation-delay: -125ms; }
+.CreateProfile .FormContent .PhotoAttachment .loader-line-wrap:nth-child(3) { animation-delay: -200ms; }
+.CreateProfile .FormContent .PhotoAttachment .loader-line-wrap:nth-child(4) { animation-delay: -275ms; }
+.CreateProfile .FormContent .PhotoAttachment .loader-line-wrap:nth-child(5) { animation-delay: -350ms; }
+
+.CreateProfile .FormContent .PhotoAttachment .loader-line-wrap:nth-child(1) .loader-line {
+    border-color: hsl(189, 29%, 37%);
+    height: 50px;
+    width: 50px;
+    top: 21px;
+}
+.CreateProfile .FormContent .PhotoAttachment .loader-line-wrap:nth-child(2) .loader-line {
+    border-color: hsl(189, 29%, 37%);
+    height: 40px;
+    width: 40px;
+    top: 27px;
+}
+.CreateProfile .FormContent .PhotoAttachment .loader-line-wrap:nth-child(3) .loader-line {
+    border-color: hsl(189, 29%, 37%);
+    height: 30px;
+    width: 30px;
+    top: 33px;
+}
+.CreateProfile .FormContent .PhotoAttachment .loader-line-wrap:nth-child(4) .loader-line {
+    border-color: hsl(189, 29%, 37%);
+    height: 20px;
+    width: 20px;
+    top: 39px;
+}
+.CreateProfile .FormContent .PhotoAttachment .loader-line-wrap:nth-child(5) .loader-line {
+    border-color: hsl(189, 29%, 37%);
+    height: 10px;
+    width: 10px;
+    top: 45px;
+}
+
+@keyframes spin {
+    0%, 15% {
+        transform: rotate(0);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
+.CreateProfile .FormContent .PhotoAttachment .ShadowLoader .loader-inner {
+    bottom: 0;
+    height: 60px;
+    left: 0;
+    margin: auto;
+    position: relative;
+    right: 0;
+    top: -25px;
+    width: 100px;
+}
+
+.CreateProfile .FormContent .PhotoAttachment .ShadowLoader .loader-line-wrap {
+    animation: 
+        spinShadow 2000ms cubic-bezier(.175, .885, .32, 1.2) infinite
+    ;
+    box-sizing: border-box;
+    height: 50px;
+    right: 35px;
+    overflow: hidden;
+    position: absolute;
+    bottom: 25px;
+    transform-origin: 75% 100%;
+    width: 50px;
+}
+.CreateProfile .FormContent .PhotoAttachment .ShadowLoader .loader-line {
+    border: 4px solid transparent;
+    border-radius: 100%;
+    box-sizing: border-box;
+    height: 100px;
+    margin: 0 auto;
+    position: relative;
+    width: 100px;
+}
+.CreateProfile .FormContent .PhotoAttachment .ShadowLoader .loader-line-wrap:nth-child(1) { animation-delay: -50ms; }
+.CreateProfile .FormContent .PhotoAttachment .ShadowLoader .loader-line-wrap:nth-child(2) { animation-delay: -125ms; }
+.CreateProfile .FormContent .PhotoAttachment .ShadowLoader .loader-line-wrap:nth-child(3) { animation-delay: -200ms; }
+.CreateProfile .FormContent .PhotoAttachment .ShadowLoader .loader-line-wrap:nth-child(4) { animation-delay: -275ms; }
+.CreateProfile .FormContent .PhotoAttachment .ShadowLoader .loader-line-wrap:nth-child(5) { animation-delay: -350ms; }
+
+.CreateProfile .FormContent .PhotoAttachment .ShadowLoader .loader-line-wrap:nth-child(1) .loader-line {
+    border-color: hsl(189, 29%, 70%);
+    height: 50px;
+    width: 50px;
+    top: 21px;
+}
+.CreateProfile .FormContent .PhotoAttachment .ShadowLoader .loader-line-wrap:nth-child(2) .loader-line {
+    border-color: hsl(189, 29%, 70%);
+    height: 40px;
+    width: 40px;
+    top: 27px;
+}
+.CreateProfile .FormContent .PhotoAttachment .ShadowLoader .loader-line-wrap:nth-child(3) .loader-line {
+    border-color: hsl(189, 29%, 70%);
+    height: 30px;
+    width: 30px;
+    top: 33px;
+}
+.CreateProfile .FormContent .PhotoAttachment .ShadowLoader .loader-line-wrap:nth-child(4) .loader-line {
+    border-color: hsl(189, 29%, 70%);
+    height: 20px;
+    width: 20px;
+    top: 39px;
+}
+.CreateProfile .FormContent .PhotoAttachment .ShadowLoader .loader-line-wrap:nth-child(5) .loader-line {
+    border-color: hsl(189, 29%, 70%);
+    height: 10px;
+    width: 10px;
+    top: 45px;
+}
+
+@keyframes spinShadow {
+    0%, 15% {
+        transform: rotate(180deg);
+    }
+    100% {
+        transform: rotate(540deg);
+    }
+}
+
+/* Continue Button */
+.CreateProfile #Continue-Button-Wrapper{
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.CreateProfile #Continue-Button{
+    /* size */
+    width: 180px;
+    height: 40px;
+    margin-right: 30px;
+
+    /* font */
+    font-weight: 700;
+    font-size: 18px;
+    color: #43727a;
+
+    /* background & border */
+    outline: none;
+    border-width: 2px;
+    border-radius: 7px;
+    border-color: #43727a;
+    border-style: solid;
+    background-color: #ffffff;
+
+    /* misc */
+    transition: 300ms;
+}
+
+.CreateProfile #Continue-Button:hover{
+    cursor: pointer;
+
+    color: #ffffff;
+    background-color: #43727a;
+    
+}
