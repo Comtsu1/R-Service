@@ -45,7 +45,6 @@ function Profile(){
             .then((res) => {
                 console.log("aa" + res.data.profile)
                 setProfile(res.data.profile);
-                setProfile({...profile, username:"none"})
                 setRentedServices(RentedServices, [...RentedServices, res.data.reservations]);
                 setServices(res.data.posts);
                 if(res.data.profile.description === undefined){
@@ -207,6 +206,7 @@ function Profile(){
                         <div className="ProfileBar">
                             <div className="ImgWrapper">
                                 <div  type="file" className="ChangeImage" >
+                                    {console.log(profile.image)}
                                     <img className={profile.image?"ProfileImage":"NoProfileImage"} src={profile.image?profile.image:NoProfileImg} alt="profileImage"/>
                                     <div className="ChangeImgLabel">
                                         <label htmlFor={"ChngImg"} >change<br/>image</label>
