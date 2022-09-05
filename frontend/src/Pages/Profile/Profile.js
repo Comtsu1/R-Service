@@ -214,15 +214,7 @@ function Profile(){
                                     <input type={"file"} id="ChngImg" accept=".jpg, .jpeg, .png, .gif" onChange={(e) => ChangeImage(e)}></input>
                                 </div>
                             </div>
-                            {profile.username?
-                            <p className="ProfileName">{profile.username}</p>
-                            :
-                            <p className="ProfileName">{"Yaoi Enjoyer"}</p>
-                            // <div className="NameInputWrapper">
-                            //     <input className="Name" placeholder="Please input your username"></input>
-                            //     <button>submit</button>
-                            // </div>
-                            }
+                            <p className="ProfileName">{profile.firstName} {profile.secondName}</p>
                         </div>
                         <div className="ProfileDescription">
                             <div className="DescFlex"> 
