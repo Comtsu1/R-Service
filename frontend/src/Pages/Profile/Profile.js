@@ -6,7 +6,6 @@ import {Header} from "../Home/Components/Header/Header";
 import {Footer} from "../Home/Components/Footer";
 import {BackendLink} from "../../Refferences/RefferencesFile"
 import { useNavigate, Navigate } from 'react-router-dom';
-import NoProfileImg from "./Components/user.png"
 
 function Profile(){
 
@@ -228,7 +227,7 @@ function Profile(){
                         <div className="ProfileDescription">
                             <div className="DescFlex"> 
                                 <h2 className="ProfileDescLabel">Description</h2>
-                                <button onClick={(e) => EditDesc(e)}>edit</button>
+                                <button onClick={(e) => editDesc(e)}>edit</button>
                             </div>
                             {PageDetails.DescEditing === false?
                             <p>
