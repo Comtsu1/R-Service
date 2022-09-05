@@ -131,6 +131,49 @@
     text-align: justify;
 }
 
+.Profile .ProfileDescription .ProfileDescriptionEdit{
+    resize: none;
+    border: 2px;
+    border-style: solid;
+    border-radius: 5px;
+    background-color: #f7f7f7;
+    border-color: #aaaaaa;
+    display: block;
+    width: calc(100% - 10px);
+    overflow-y: scroll;
+    min-width: calc(100% - 10px);
+    max-height: 200px;
+    transition: 300ms;
+}
+
+.Profile .ProfileDescription .ProfileDescriptionEdit:hover{
+    border-color: #6d6d6d
+}
+
+
+.Profile .ProfileDescription .ProfileDescriptionEdit:focus{
+    outline: none;
+    border-color: #6d6d6d;
+    background-color: #ffffff;
+    border-style: solid;
+}
+
+.Profile .ProfileDescription form{
+    display: list-item;
+    list-style-type: none;
+    
+}
+
+.Profile .ProfileDescription .SubmitDesc{
+    position: relative;
+    left: 100%;
+    transform: translate(-110%);
+    height: 25px;
+    width: 60px;
+    margin-top: 10px;
+}
+
+
 /* Menu */
 .Profile .ProfilePageMenu {
     background-color: #20707E;
@@ -293,4 +336,53 @@
     top:    50%;
     bottom: 50%;
     transform:  translate(0, 0);
+}
+
+.Profile .DescEditWrapper{
+    position: relative;
+}
+
+.Profile .ProfileDescriptionEdit{
+    width: calc(100% - 5px);
+    resize: none;
+    border-width: 2px;
+    border-radius: 5px;
+    border-color: #20707E;
+    height: 200px;
+    font-size: 16px;
+}
+
+.Profile .SubmitDescriptionEdit{
+    position: absolute;
+    right: 0px;
+    background-color: #43727a;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 5px;
+    padding-left: 8px;
+    padding-right: 8px;
+    margin-top: 5px;
+    border-width: 2px;
+    border-radius: 5px;
+    border-color: #43727a;
+    border-style: solid;
+    transition: 200ms;
+    cursor: pointer;
+}
+
+.Profile .SubmitDescriptionEdit:hover{
+    color: #43727a;
+    background-color: #fff;
+    border-color: #43727a;
+    transition: 400ms;
+}
+
+.Profile .Service a{
+    text-decoration: none;
+}
+
+.Profile .Service label:hover{
+    color: #538e99;
+    transition: 300ms;
 }
