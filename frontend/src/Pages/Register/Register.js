@@ -2,6 +2,8 @@ import {RegisterForm} from './components/RegisterForm';
 import React, {useState} from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import {ProfileForm} from './components/CreateProfileForm'
+import {Footer} from "../Home/Components/Footer"
 
 function Register(){
 
@@ -24,6 +26,7 @@ function Register(){
       const ManageResponse = (res, details) => {
         console.log(res.data.token);
         localStorage.setItem("token", res.data.token);
+        localStorage.setItem("secondStageValidator", res.data.token)
         
         // const config = {
         //     headers:{
@@ -33,7 +36,7 @@ function Register(){
         //axios.post("http://localhost:8080/create-profile", details, config)
         //  .then(() => navigate('/'))
         //  .catch(err => {setError(err.response.data.error); return;})
-        navigate('/');
+        navigate('/set_profile');
       }
 
       const Register = details => {
@@ -71,3 +74,22 @@ function Register(){
 
 
 export {Register};
+
+// Profile Creator
+
+function CreateProfile(){
+
+
+  return (
+    <>
+      <div className='Main-Header'></div>
+      <div className='Main-Content'>
+        <div className='CreateProfile'>
+          <ProfileForm/>
+        </div>
+      </div>
+      <Footer/>
+    </>
+  )
+}
+export {CreateProfile}

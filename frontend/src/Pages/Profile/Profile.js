@@ -45,7 +45,6 @@ function Profile(){
             .then((res) => {
                 console.log("aa" + res.data.profile)
                 setProfile(res.data.profile);
-                setProfile({...profile, username:"none"})
                 setRentedServices(RentedServices, [...RentedServices, res.data.reservations]);
                 setServices(res.data.posts);
                 if(res.data.profile.description === undefined){
@@ -207,6 +206,7 @@ function Profile(){
                         <div className="ProfileBar">
                             <div className="ImgWrapper">
                                 <div  type="file" className="ChangeImage" >
+                                    {console.log(profile.image)}
                                     <img className={profile.image?"ProfileImage":"NoProfileImage"} src={profile.image?profile.image:NoProfileImg} alt="profileImage"/>
                                     <div className="ChangeImgLabel">
                                         <label htmlFor={"ChngImg"} >change<br/>image</label>
@@ -214,15 +214,7 @@ function Profile(){
                                     <input type={"file"} id="ChngImg" accept=".jpg, .jpeg, .png, .gif" onChange={(e) => ChangeImage(e)}></input>
                                 </div>
                             </div>
-                            {profile.username?
-                            <p className="ProfileName">{profile.username}</p>
-                            :
-                            <p className="ProfileName">{"Yaoi Enjoyer"}</p>
-                            // <div className="NameInputWrapper">
-                            //     <input className="Name" placeholder="Please input your username"></input>
-                            //     <button>submit</button>
-                            // </div>
-                            }
+                            <p className="ProfileName">{profile.firstName} {profile.secondName}</p>
                         </div>
                         <div className="ProfileDescription">
                             <div className="DescFlex"> 
