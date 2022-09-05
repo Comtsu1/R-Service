@@ -43,10 +43,9 @@ function Profile(){
             })
             .then((res) => {
                 setProfile(res.data.profile);
+                console.log(res.data.profile)
                 setRentedServices(RentedServices, [...RentedServices, res.data.reservations]);
                 setServices(Services, [...Services, res.data.posts]);
-                console.log(Services);
-                console.log("no you" + RentedServices);
             })
             .catch((err) => {
                 // TODO error handling
@@ -176,7 +175,14 @@ function Profile(){
                                     <input type={"file"} id="ChngImg" accept=".jpg, .jpeg, .png, .gif" onChange={(e) => ChangeImage(e)}></input>
                                 </div>
                             </div>
+                            {profile.username?
                             <p className="ProfileName">{profile.username}</p>
+                            :
+                            <div className="NameInputWrapper">
+                                <input className="Name" placeholder="Please input your username"></input>
+                                <button>submit</button>
+                            </div>
+                            }
                         </div>
                         <div className="ProfileDescription">
                             <div className="DescFlex"> 
