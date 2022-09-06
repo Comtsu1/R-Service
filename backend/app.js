@@ -87,6 +87,12 @@ app.get("/posts/hightolow", async (req,res)=>{
     res.status(200).json({mostExpensive20Posts : expensivePosts})
 })
 
+app.get("/posts/:search", async (req,res)=>{
+    const search = req.params.search
+    const matchingPosts = await post.find({ "name": { "$regex": search, "$options": "i" } })
+    res.status(200).json({postsMatching : matchingPosts})
+})
+
 const startConnection = async() => {
     try {
         await dbConnection("mongodb+srv://leo:mongo123@r-services.ulww9.mongodb.net/INFO?retryWrites=true&w=majority")
