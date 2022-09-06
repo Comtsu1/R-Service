@@ -14,7 +14,7 @@ router.get('/contacts', verify, async (req, res) => {
 
         users.forEach(function(user) {
             userMap.push({
-                senderName: user.username,
+                senderName: user.email,
                 sender: user.userId
             })
         })

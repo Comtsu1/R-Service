@@ -70,8 +70,9 @@ app.get("/posts/:postId", async (req,res)=>{
 })
 amqp = require('amqplib/callback_api')
 
-amqp.connect('amqp://localhost', (connError, connection) =>{
+amqp.connect('amqps://eptpufqg:OmaKZ0XISvvoAJBXDWcnnfyU1Gi73Scw@sparrow.rmq.cloudamqp.com/eptpufqg', (connError, connection) =>{
         if(connError){
+            console.error('[AMQP]', connError.message);
             throw connError
         }
         // Create Channel
