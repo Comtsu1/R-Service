@@ -5,7 +5,7 @@ import App from './Pages/App';
 import {Login} from './Pages/Login/Login'
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Route, Router, Routes } from 'react-router-dom';
-import { Register } from './Pages/Register/Register';
+import { Register, CreateProfile } from './Pages/Register/Register';
 
 import { PostCreate, PostForm } from './Pages/PostCreate/PostCreate';
 import { Reset } from './Pages/Reset Password/Register';
@@ -21,10 +21,11 @@ root.render(
         <Route path='/' element={<App/>} />
         <Route path='login' element={<Login/>} />
         <Route path='register' element={<Register/>} />
-        <Route path='CreatePost/*' element={<PostCreate/>}/>
+        <Route path='create_post/*' element={<PostCreate/>}/>
         <Route path='reset' element={<Reset/>} />
         <Route path='profile' element={<Profile/>}/>
-        <Route path='Post/*' element={<ViewPost/>}/>
+        <Route path='post/*' element={<ViewPost/>}/>
+        <Route path='set_profile' element={<CreateProfile/>}/>
         <Route path='chat' element={<Chat/>}/>
       </Routes>
     </BrowserRouter>

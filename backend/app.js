@@ -11,9 +11,11 @@ const recoveryPass = require('./routes/forgotPassword')
 const bcrypt = require('bcrypt')
 const addPost = require("./routes/postAdd")
 const userProfile = require('./routes/userProfileCreate')
-const cors = require('cors')
 const userProfileSchema = require('./models/userProfile')
 const post = require('./models/post')
+const cors = require('cors')
+const reservationSchema = require('./models/reservation')
+const MUUID = require('uuid-mongodb');
 const messages = require('./routes/messages')
 
 // user cors, it doesnt work at all on firefox if not included
@@ -34,21 +36,38 @@ app.get("/success_login",(req,res)=>{
     res.json({login : "success"})
 })
 
-//just a test to get profile with matching id
 app.get("/profile", verify, async (req,res)=>{
-    // const id = req.params.id
-    // const profileID = await user.findOne({userId: id})
     const token = req.header('x-auth-token')
     let payload = JSON.parse(Buffer.from(token.split(".")[1], "base64url"));
     const userProfileCheck = await user.findOne({email : payload.userEmail})
+    const userReservations = await reservationSchema.find({to : payload.userId})
+    const userProf = await userProfileSchema.findOne({user: userProfileCheck.userId})
     if(userProfileCheck){
         let result = await post.find({author : userProfileCheck.userId})
-        res.status(200).json({profile : userProfileCheck, posts: result})
+        res.status(200).json({profile : userProf, posts : result, reservations : userReservations})
     }else{
         res.status(404).json({msg : `Something went wrong`})
     }
 })
 
+app.get("/posts", async (req,res)=>{
+    const newPosts = await post.find().sort({ $natural: -1 }).limit(20)
+    res.status(200).json({newest20Posts : newPosts})
+})
+
+app.get("/posts/:startingId/:postsNum", async (req,res)=>{
+    let {startingId, postsNum} = req.params
+    const newPosts = await post.find().limit(postsNum).skip(Number(startingId)-1)
+    res.status(200).json({postToShow : newPosts})
+})
+
+app.get("/posts/:postId", async (req,res)=>{
+    let postId = req.params
+    const uuidPost = postId.postId
+    const uuidToSearch = MUUID.from(uuidPost)
+    const postFromId = await post.find({postId : uuidToSearch})
+    res.json({postToShow : postFromId})
+})
 amqp = require('amqplib/callback_api')
 
 amqp.connect('amqp://localhost', (connError, connection) =>{

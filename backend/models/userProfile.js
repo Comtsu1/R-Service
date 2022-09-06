@@ -4,14 +4,14 @@ const userProfileSchema = new mongoose.Schema({
 
     firstName:{
         type: String,
-        required: true,
+    //    required: true,
         trim: true,
         maxLength: 20,
         minLength: 3
     },
     secondName:{
         type: String,
-        required: true,
+       // required: true,
         trim: true,
         maxLength: 20,
         minLength: 3
@@ -20,12 +20,12 @@ const userProfileSchema = new mongoose.Schema({
     user: Number,
     description:{
         type: String,
-        required: true,
+      //  required: true,
         minLength: 10
     },
     phoneNum:{
         type: String,
-        required: true,
+       // required: true,
         minLength: 8,
         maxLength: 15
     },

@@ -5,7 +5,7 @@ import './RegisterForm.css';
 
 
 function RegisterForm({Register, error}) {
-    const [details, setDetails] = useState({username: "", email: "", password: "", confirmPassword: "", passwordsMatching: false});
+    const [details, setDetails] = useState({firstName: "", secondName: "", email: "", password: "", confirmPassword: "", passwordsMatching: false});
 
     const submitHandler = e => {
         e.preventDefault();
@@ -54,8 +54,12 @@ function RegisterForm({Register, error}) {
                         {(error !== "") ? (<div className="error">{error}</div>) : ""}
 
                         <div className="form-group username">
-                            <label htmlFor="username">Username: </label>
-                            <input type={'username'} name='username' id='username' onChange={e => setDetails({...details, username: e.target.value})} value={details.username} />
+                            <label htmlFor="username">First Name: </label>
+                            <input type={'text'} name='firstName' id='username' onChange={e => setDetails({...details, firstName: e.target.value})} value={details.firstName} />
+                        </div>
+                        <div className="form-group username">
+                            <label htmlFor="username">Second Name: </label>
+                            <input type={'text'} name='secondName' id='username' onChange={e => setDetails({...details, secondName: e.target.value})} value={details.secondName} />
                         </div>
                         <div className="form-group email">
                             <label htmlFor="email">Email: </label>

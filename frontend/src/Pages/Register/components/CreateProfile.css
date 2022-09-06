@@ -1,8 +1,8 @@
-.PostCreate .Main-Content .Wrapper{
+.CreateProfile .Main-Content .Wrapper{
     margin: 20px;
 }
 
-.PostCreate h2{
+.CreateProfile h2{
     font-size: 32px;
     color: #6d6d6d;
 
@@ -14,7 +14,7 @@
     margin-bottom: 0;
 }
 
-.PostCreate .Flex-Wrapper{
+.CreateProfile .Flex-Wrapper{
     margin: 5px;
     padding-top: 20px;
     padding-left: 5%;
@@ -22,7 +22,7 @@
     width: calc(100%-5px);
 }
 
-.PostCreate .Form-Wrapper{
+.CreateProfile .Form-Wrapper{
     display: flex;
     justify-content: stretch;
     padding-top: 35px;
@@ -31,16 +31,16 @@
 
 
 /* ========Title================ */
-.PostCreate .FormTitle{
+.CreateProfile .FormTitle{
     width: 20%;
 }
-.PostCreate .FormTitle label{
+.CreateProfile .FormTitle label{
     color: #8d8d8d;
     font-weight: 700;
     font-size: 18px;
 }
 
-.PostCreate .FormTitle p{
+.CreateProfile .FormTitle p{
     margin: 0;
     color: #8d8d8d;
     font-size: 14px;
@@ -48,14 +48,14 @@
 
 
 /* =======Content=============== */
-.PostCreate .FormContent{
+.CreateProfile .FormContent{
     padding-left: 10px;
     width: calc(80% - 10px);
     display: flex;
 
 }
 
-.PostCreate .FormContent input{
+.CreateProfile .FormContent input{
     /* border & background */
     border-width: 2px;
     border-radius: 5px; 
@@ -75,7 +75,7 @@
     padding: 5px;
 }
 
-.PostCreate .FormContent select{
+.CreateProfile .FormContent select{
 
     /* border & background */
     border-width: 2px;
@@ -97,29 +97,29 @@
     padding: 5px;
 }
 
-.PostCreate .FormContent input:hover{
+.CreateProfile .FormContent input:hover{
     border-color: #6d6d6d;
 }
 
-.PostCreate .FormContent select:hover {
+.CreateProfile .FormContent select:hover {
     border-color: #6d6d6d;
 }
 
-.PostCreate .FormContent input:focus{
+.CreateProfile .FormContent input:focus{
     outline: none;
     border-color: #6d6d6d;
     background-color: #f0f0f0;
     border-style: solid;
 }
 
-.PostCreate .FormContent select:focus{
+.CreateProfile .FormContent select:focus{
     outline: none;
     border-color: #6d6d6d;
     background-color: #f0f0f0;
     border-style: solid;
 }
 
-.PostCreate .FormContent textarea{
+.CreateProfile .FormContent textarea{
     /* size */
     resize: none;
     height: 100px;
@@ -140,11 +140,11 @@
     transition: 300ms;
 }
 
-.PostCreate .FormContent textarea:hover{
+.CreateProfile .FormContent textarea:hover{
     border-color: #6d6d6d;
 }
 
-.PostCreate .FormContent textarea:focus{
+.CreateProfile .FormContent textarea:focus{
     outline: none;
     border-color: #6d6d6d;
     background-color: #f0f0f0;
@@ -153,11 +153,11 @@
 
 
 /* Images */
-.PostCreate #ImgFormContent{
+.CreateProfile #ImgFormContent{
     flex-wrap: wrap;
 }
 
-.PostCreate .FormContent .PhotoAttachment{
+.CreateProfile .FormContent .PhotoAttachment{
     min-width: 200px;
     min-height: 160px;
     width: 200px;
@@ -174,9 +174,10 @@
     margin-right: 15px;
     margin-bottom: 15px;
     color: #aaaaaa;
+    position: relative;
 }
 
-.PostCreate .FormContent .PhotoAttachment#addCard{
+.CreateProfile .FormContent .PhotoAttachment#addCard{
     transition: 1000ms;
 }
 
@@ -185,19 +186,18 @@
 
 }
 
-.PostCreate .FormContent .PhotoAttachment label#Loading{
+.CreateProfile .FormContent .PhotoAttachment label#Loading{
     animation-name: KeyFrame;
     animation-duration: 2s;
     animation-iteration-count: infinite;
 }
 
-.PostCreate .FormContent .PhotoAttachment img{
+.CreateProfile .FormContent .PhotoAttachment img{
     max-height: 100%;
     min-height: 100%;
-    margin-left: 100%
 }
 
-.PostCreate .FormContent .PhotoAttachment.First label{
+.CreateProfile .FormContent .PhotoAttachment.First label{
     cursor: pointer;
     font-size: 24px;
     font-weight: 600;
@@ -209,7 +209,7 @@
 
 
 
-.PostCreate .FormContent .PhotoAttachment label{
+.CreateProfile .FormContent .PhotoAttachment label{
     cursor: pointer;
     font-size: 40px;
     font-weight: bolder;
@@ -219,21 +219,21 @@
     padding-right: 35px;
 }
 
-.PostCreate .FormContent .PhotoAttachment input{
+.CreateProfile .FormContent .PhotoAttachment input{
     display: none;
 }
 
-.PostCreate .FormContent .PhotoAttachment .RemoveImage{
+.CreateProfile .FormContent .PhotoAttachment .RemoveImage{
     width: 100%;
     min-width: 100%;
     min-height: 100%;
     height: 100%;
-    right: 100%;
-    position: relative;
+    right: 0;
+    position: absolute;
     display: block;
 }
 
-.PostCreate .FormContent .PhotoAttachment .RemoveImage .RemoveLabel{
+.CreateProfile .FormContent .PhotoAttachment .RemoveImage .RemoveLabel{
     font-size: 14px;
     color: rgba(0,0,0,0);
     font-weight: 700;
@@ -246,23 +246,24 @@
     transition: 200ms;
 }
 
-.PostCreate .FormContent .PhotoAttachment .RemoveImage:hover .RemoveLabel{
+.CreateProfile .FormContent .PhotoAttachment .RemoveImage:hover .RemoveLabel{
     background-color: rgba(255,255,255,0.75);
     color: #030303;
 }
 
-.PostCreate .FormContent .PhotoAttachment .RemoveImage .RemoveLabel:hover{
+.CreateProfile .FormContent .PhotoAttachment .RemoveImage .RemoveLabel:hover{
     cursor: pointer;
 }
 
 /* Specific Content */
-.PostCreate .FormContent .Title{
+.CreateProfile .FormContent .Name{
     /* size */
-    width: 480px;
+    width: 200px;
+    margin-right: 20px;
     
 }
 
-.PostCreate .FormContent .Description::placeholder{
+.CreateProfile .FormContent .Description::placeholder{
     font-size: 16px;
     
 }
@@ -270,7 +271,7 @@
 
 /* Loading animation */
 
-/* .PostCreate .FormContent .PhotoAttachment .loader {
+/* .CreateProfile .FormContent .PhotoAttachment .loader {
     background: #000;
     background: radial-gradient(#222, #000);
     bottom: 0;
@@ -282,7 +283,7 @@
     z-index: 99999;
 } */
 
-.PostCreate .FormContent .PhotoAttachment .loader-inner {
+.CreateProfile .FormContent .PhotoAttachment .loader-inner {
     bottom: 0;
     height: 60px;
     left: 0;
@@ -293,7 +294,7 @@
     width: 100px;
 }
 
-.PostCreate .FormContent .PhotoAttachment .loader-line-wrap {
+.CreateProfile .FormContent .PhotoAttachment .loader-line-wrap {
     animation: 
         spin 2000ms cubic-bezier(.175, .885, .32, 1.2) infinite
     ;
@@ -306,7 +307,7 @@
     transform-origin: 75% 100%;
     width: 50px;
 }
-.PostCreate .FormContent .PhotoAttachment .loader-line {
+.CreateProfile .FormContent .PhotoAttachment .loader-line {
     border: 4px solid transparent;
     border-radius: 100%;
     box-sizing: border-box;
@@ -315,37 +316,37 @@
     position: relative;
     width: 100px;
 }
-.PostCreate .FormContent .PhotoAttachment .loader-line-wrap:nth-child(1) { animation-delay: -50ms; }
-.PostCreate .FormContent .PhotoAttachment .loader-line-wrap:nth-child(2) { animation-delay: -125ms; }
-.PostCreate .FormContent .PhotoAttachment .loader-line-wrap:nth-child(3) { animation-delay: -200ms; }
-.PostCreate .FormContent .PhotoAttachment .loader-line-wrap:nth-child(4) { animation-delay: -275ms; }
-.PostCreate .FormContent .PhotoAttachment .loader-line-wrap:nth-child(5) { animation-delay: -350ms; }
+.CreateProfile .FormContent .PhotoAttachment .loader-line-wrap:nth-child(1) { animation-delay: -50ms; }
+.CreateProfile .FormContent .PhotoAttachment .loader-line-wrap:nth-child(2) { animation-delay: -125ms; }
+.CreateProfile .FormContent .PhotoAttachment .loader-line-wrap:nth-child(3) { animation-delay: -200ms; }
+.CreateProfile .FormContent .PhotoAttachment .loader-line-wrap:nth-child(4) { animation-delay: -275ms; }
+.CreateProfile .FormContent .PhotoAttachment .loader-line-wrap:nth-child(5) { animation-delay: -350ms; }
 
-.PostCreate .FormContent .PhotoAttachment .loader-line-wrap:nth-child(1) .loader-line {
+.CreateProfile .FormContent .PhotoAttachment .loader-line-wrap:nth-child(1) .loader-line {
     border-color: hsl(189, 29%, 37%);
     height: 50px;
     width: 50px;
     top: 21px;
 }
-.PostCreate .FormContent .PhotoAttachment .loader-line-wrap:nth-child(2) .loader-line {
+.CreateProfile .FormContent .PhotoAttachment .loader-line-wrap:nth-child(2) .loader-line {
     border-color: hsl(189, 29%, 37%);
     height: 40px;
     width: 40px;
     top: 27px;
 }
-.PostCreate .FormContent .PhotoAttachment .loader-line-wrap:nth-child(3) .loader-line {
+.CreateProfile .FormContent .PhotoAttachment .loader-line-wrap:nth-child(3) .loader-line {
     border-color: hsl(189, 29%, 37%);
     height: 30px;
     width: 30px;
     top: 33px;
 }
-.PostCreate .FormContent .PhotoAttachment .loader-line-wrap:nth-child(4) .loader-line {
+.CreateProfile .FormContent .PhotoAttachment .loader-line-wrap:nth-child(4) .loader-line {
     border-color: hsl(189, 29%, 37%);
     height: 20px;
     width: 20px;
     top: 39px;
 }
-.PostCreate .FormContent .PhotoAttachment .loader-line-wrap:nth-child(5) .loader-line {
+.CreateProfile .FormContent .PhotoAttachment .loader-line-wrap:nth-child(5) .loader-line {
     border-color: hsl(189, 29%, 37%);
     height: 10px;
     width: 10px;
@@ -362,7 +363,7 @@
 }
 
 
-.PostCreate .FormContent .PhotoAttachment .ShadowLoader .loader-inner {
+.CreateProfile .FormContent .PhotoAttachment .ShadowLoader .loader-inner {
     bottom: 0;
     height: 60px;
     left: 0;
@@ -373,7 +374,7 @@
     width: 100px;
 }
 
-.PostCreate .FormContent .PhotoAttachment .ShadowLoader .loader-line-wrap {
+.CreateProfile .FormContent .PhotoAttachment .ShadowLoader .loader-line-wrap {
     animation: 
         spinShadow 2000ms cubic-bezier(.175, .885, .32, 1.2) infinite
     ;
@@ -386,7 +387,7 @@
     transform-origin: 75% 100%;
     width: 50px;
 }
-.PostCreate .FormContent .PhotoAttachment .ShadowLoader .loader-line {
+.CreateProfile .FormContent .PhotoAttachment .ShadowLoader .loader-line {
     border: 4px solid transparent;
     border-radius: 100%;
     box-sizing: border-box;
@@ -395,37 +396,37 @@
     position: relative;
     width: 100px;
 }
-.PostCreate .FormContent .PhotoAttachment .ShadowLoader .loader-line-wrap:nth-child(1) { animation-delay: -50ms; }
-.PostCreate .FormContent .PhotoAttachment .ShadowLoader .loader-line-wrap:nth-child(2) { animation-delay: -125ms; }
-.PostCreate .FormContent .PhotoAttachment .ShadowLoader .loader-line-wrap:nth-child(3) { animation-delay: -200ms; }
-.PostCreate .FormContent .PhotoAttachment .ShadowLoader .loader-line-wrap:nth-child(4) { animation-delay: -275ms; }
-.PostCreate .FormContent .PhotoAttachment .ShadowLoader .loader-line-wrap:nth-child(5) { animation-delay: -350ms; }
+.CreateProfile .FormContent .PhotoAttachment .ShadowLoader .loader-line-wrap:nth-child(1) { animation-delay: -50ms; }
+.CreateProfile .FormContent .PhotoAttachment .ShadowLoader .loader-line-wrap:nth-child(2) { animation-delay: -125ms; }
+.CreateProfile .FormContent .PhotoAttachment .ShadowLoader .loader-line-wrap:nth-child(3) { animation-delay: -200ms; }
+.CreateProfile .FormContent .PhotoAttachment .ShadowLoader .loader-line-wrap:nth-child(4) { animation-delay: -275ms; }
+.CreateProfile .FormContent .PhotoAttachment .ShadowLoader .loader-line-wrap:nth-child(5) { animation-delay: -350ms; }
 
-.PostCreate .FormContent .PhotoAttachment .ShadowLoader .loader-line-wrap:nth-child(1) .loader-line {
+.CreateProfile .FormContent .PhotoAttachment .ShadowLoader .loader-line-wrap:nth-child(1) .loader-line {
     border-color: hsl(189, 29%, 70%);
     height: 50px;
     width: 50px;
     top: 21px;
 }
-.PostCreate .FormContent .PhotoAttachment .ShadowLoader .loader-line-wrap:nth-child(2) .loader-line {
+.CreateProfile .FormContent .PhotoAttachment .ShadowLoader .loader-line-wrap:nth-child(2) .loader-line {
     border-color: hsl(189, 29%, 70%);
     height: 40px;
     width: 40px;
     top: 27px;
 }
-.PostCreate .FormContent .PhotoAttachment .ShadowLoader .loader-line-wrap:nth-child(3) .loader-line {
+.CreateProfile .FormContent .PhotoAttachment .ShadowLoader .loader-line-wrap:nth-child(3) .loader-line {
     border-color: hsl(189, 29%, 70%);
     height: 30px;
     width: 30px;
     top: 33px;
 }
-.PostCreate .FormContent .PhotoAttachment .ShadowLoader .loader-line-wrap:nth-child(4) .loader-line {
+.CreateProfile .FormContent .PhotoAttachment .ShadowLoader .loader-line-wrap:nth-child(4) .loader-line {
     border-color: hsl(189, 29%, 70%);
     height: 20px;
     width: 20px;
     top: 39px;
 }
-.PostCreate .FormContent .PhotoAttachment .ShadowLoader .loader-line-wrap:nth-child(5) .loader-line {
+.CreateProfile .FormContent .PhotoAttachment .ShadowLoader .loader-line-wrap:nth-child(5) .loader-line {
     border-color: hsl(189, 29%, 70%);
     height: 10px;
     width: 10px;
@@ -442,15 +443,16 @@
 }
 
 /* Continue Button */
-.PostCreate #Continue-Button-Wrapper{
+.CreateProfile #Continue-Button-Wrapper{
     display: flex;
     flex-direction: row-reverse;
 }
 
-.PostCreate #Continue-Button{
+.CreateProfile #Continue-Button{
     /* size */
-    width: 120px;
+    width: 180px;
     height: 40px;
+    margin-right: 30px;
 
     /* font */
     font-weight: 700;
@@ -469,7 +471,7 @@
     transition: 300ms;
 }
 
-.PostCreate #Continue-Button:hover{
+.CreateProfile #Continue-Button:hover{
     cursor: pointer;
 
     color: #ffffff;

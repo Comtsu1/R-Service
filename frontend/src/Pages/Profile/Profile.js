@@ -1,53 +1,21 @@
 import axios from "axios";
 import { useEffect, useState } from "react"
 import "./Profile.css"
+import NoProfileImg from "./Components/user.png"
+import {Header} from "../Home/Components/Header/Header";
+import {Footer} from "../Home/Components/Footer";
+import {BackendLink} from "../../Refferences/RefferencesFile"
+import { useNavigate, Navigate } from 'react-router-dom';
 
 function Profile(){
 
+    const navigate = useNavigate()
     const [profile, setProfile] = useState(null);
+    const [PageDetails, setDetails] = useState({PostFocused: true, DescEditing: false, DescEdit: null})
+    const [Services, setServices] = useState([])
+    const [RentedServices, setRentedServices] = useState([])
 
-    let Services =  [];
-              // {"id123": 
-        // {
-        //     "Imagine": "https://i.ibb.co/wdhr0HL/Capture.png",
-        //     "Nume": "Cortana Services",
-        //     "Descriptie": 
-        //     "Lorem ipsum dolor sit amet Quisque in venenatis nibh, faucibus convallis diam. Aliquam erat volutpat. Nullam elementum turpis id dolor bibendum, sed venenatis quam porta. Nunc tristique non leo sit amet luctus. Sed placerat quam ac sapien iaculis sodales. Maecenas iaculis molestie risus, eget mollis nunc ullamcorper ac. Quisque lacus tellus, malesuada vitae nunc convallis, mollis maximus justo. Aenean rutrum libero et quam ornare, ac vestibulum sem tincidunt. Mauris dapibus mattis elit at faucibus. Praesent in commodo ipsum. In porttitor nisl non molestie tempus. Donec neque ipsum, maximus non turpis at, congue fringilla ipsum. Etiam vel auctor eros. Donec rutrum metus eget sem accumsan, sed fermentum metus cursus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.",
-        //     "Locatie": "B",
-        //     "Cost": 169,
-        // }},
-        // {"id124": 
-        // {
-        //     "Imagine": "https://i.ibb.co/wdhr0HL/Capture.png",
-        //     "Nume": "Cortana Services",
-        //     "Descriptie": "Lorem ipsum dolor sit amet",
-        //     "Locatie": "B",
-        //     "Cost": 169,
-        // }}
-      //
-
-    const RentedServices = [
-              // {"id125": 
-        // {
-        //     "Imagine": "https://i.ibb.co/rvbm0J9/ShibaInu.png",
-        //     "Nume": "Dodge Services",
-        //     "Descriptie": 
-        //     "Lorem ipsum dolor sit amet Quisque in venenatis nibh, faucibus convallis diam. Aliquam erat volutpat. Nullam elementum turpis id dolor bibendum, sed venenatis quam porta. Nunc tristique non leo sit amet luctus. Sed placerat quam ac sapien iaculis sodales. Maecenas iaculis molestie risus, eget mollis nunc ullamcorper ac. Quisque lacus tellus, malesuada vitae nunc convallis, mollis maximus justo. Aenean rutrum libero et quam ornare, ac vestibulum sem tincidunt. Mauris dapibus mattis elit at faucibus. Praesent in commodo ipsum. In porttitor nisl non molestie tempus. Donec neque ipsum, maximus non turpis at, congue fringilla ipsum. Etiam vel auctor eros. Donec rutrum metus eget sem accumsan, sed fermentum metus cursus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.",
-        //     "Locatie": "B",
-        //     "Cost": 169,
-        // }},
-        // {"id126": 
-        // {
-        //     "Imagine": "https://i.ibb.co/rvbm0J9/ShibaInu.png",
-        //     "Nume": "Dodge Services",
-        //     "Descriptie": "Lorem ipsum dolor sit amet",
-        //     "Locatie": "B",
-        //     "Cost": 169,
-        // }}
-      ];
-
-    const [PageDetails, setDetails] = useState({PostFocused: true})
-
+    
     function WordCount(str) { 
         return str.split(" ").length;
       }
@@ -70,32 +38,33 @@ function Profile(){
         return desc
     }
 
-    function FetchProfile() {
-        axios.get("http://localhost:8080/profile", {
-            headers:{"x-auth-token": localStorage.getItem("token")}
-            })
-            .then((res) => {
-                profile = res.data.profile;
-            })
-            .catch((err) => {
-                // TODO error handling
-            });
-    }
-
     useEffect(() => {
-        axios.get("http://localhost:8080/profile", {
+        axios.get(`${BackendLink}/profile`, {
             headers:{"x-auth-token": localStorage.getItem("token")}
             })
             .then((res) => {
+                console.log("aa" + res.data.profile)
                 setProfile(res.data.profile);
+                setRentedServices(RentedServices, [...RentedServices, res.data.reservations]);
+                setServices(res.data.posts);
+                if(res.data.profile.description === undefined){
+                    setProfile({...profile, description: ""})
+                }
             })
             .catch((err) => {
                 // TODO error handling
             });
     }, [])
 
-    function RenderServices(){
+    function editDesc(){
+        setDetails({...PageDetails, DescEditing: !PageDetails.DescEditing})
+        if(PageDetails.DescEditing === true){
+            setDetails({...PageDetails, DescEdit: profile.description ,DescEditing: !PageDetails.DescEditing})
+        }
+    }
 
+    function RenderServices(){
+        console.log(Services)
         if (Services.length === 0){
             return(
             <div className="NoService">
@@ -103,30 +72,42 @@ function Profile(){
             </div>
             )
         }
-        const list = Services.map((value) => 
+        const list = Services.map((value, key) => 
         <>
-            {
-                Object.entries(value).map(([key, value]) =>
-                    <div key={key} className="Service">
+            
+                <div key={key} className="Service">
+                        {console.log(value)}
                         <img className = "Image" src={value.image}></img>
                         <div className = "PostWrapper">
-                            <label className="Title">{value.firstName} {value.secondName}</label>
+                            <a href={`/post?id=${value.postId}`}>
+
+                                <label className="Title">{value.name}</label>
+                            </a>
                             
                             <p className="Description">{value.description}</p>
                         </div>
                         <div className="Details">
-                            <span className="Cost">{value.cost}$</span>
+                            <span className="Cost">{value.price}$</span>
                             <span className="Location">{value.location}</span>
                             <div>
                                 <div className="Fader"></div>
                             </div>
                         </div>
                     </div>   
-                )
-            }
+        
         </>
         )
         return <>{list}</>
+    }
+    function HandleDescSubmit(event){
+        event.preventDefault()
+        setDetails({...PageDetails, DescEditing:false})
+    }
+
+    function HandleDescChange(event){
+        event.preventDefault()
+        setProfile({...profile, description: event.target.value})
+   
     }
 
     function RenderRentedServices(){
@@ -162,6 +143,40 @@ function Profile(){
         return <>{list}</>
     }
 
+    function OnDescEdit(event){
+        event.preventDefault();
+        setDetails({...PageDetails, DescEdit: event.target.value})
+    }
+    
+    function SubmitDescriptionEdit(event){
+        event.preventDefault();
+        setProfile({...profile, description: PageDetails.DescEdit})
+        setDetails({...PageDetails, DescEditing: false})
+    }
+
+    function ChangeImage(event){
+        event.preventDefault()
+
+        let img = event.target.files[0];
+        // ImgList.push("Loading")
+
+        // send request to get link for photo
+        if(img) {
+            const fd = new FormData()
+            fd.append('image', img)
+            fd.append('key', "4af9c545bc82a3cd91982cd1549eb771")
+            
+            axios.post("https://api.imgbb.com/1/upload", fd)
+            // callback (resposnse)
+            .then ((res) => {
+                const linkContainer = res;
+                setProfile({...profile, image: linkContainer.data.data.url})
+
+                //update the database
+                })
+            }
+    }
+
     function FocusPost(event)
     {
         event.preventDefault()
@@ -174,14 +189,14 @@ function Profile(){
         setDetails({...PageDetails, PostFocused: false})
     }
 
-
-    console.log("fuck you" + profile)
-
+    function GoBack() {
+        navigate('/');
+    }
 
     // Rendering
     return(
         <div className="Profile">
-            <div className="Main-Header"></div>
+            <Header/>
             <div className="Main-Content">
                 
                 {profile ? 
@@ -190,15 +205,34 @@ function Profile(){
                     <div className="Background">
                         <div className="ProfileBar">
                             <div className="ImgWrapper">
-                                <img className="ProfileImage" src={profile.image}/>
+                                <div  type="file" className="ChangeImage" >
+                                    {console.log(profile.image)}
+                                    <img className={profile.image?"ProfileImage":"NoProfileImage"} src={profile.image?profile.image:NoProfileImg} alt="profileImage"/>
+                                    <div className="ChangeImgLabel">
+                                        <label htmlFor={"ChngImg"} >change<br/>image</label>
+                                    </div>
+                                    <input type={"file"} id="ChngImg" accept=".jpg, .jpeg, .png, .gif" onChange={(e) => ChangeImage(e)}></input>
+                                </div>
                             </div>
                             <p className="ProfileName">{profile.firstName} {profile.secondName}</p>
                         </div>
                         <div className="ProfileDescription">
-                            <h2 className="ProfileDescLabel">Description</h2>
+                            <div className="DescFlex"> 
+                                <h2 className="ProfileDescLabel">Description</h2>
+                                <button onClick={(e) => editDesc(e)}>edit</button>
+                            </div>
+                            {PageDetails.DescEditing === false?
                             <p>
-                            {profile.description}
+                                {profile.description}
                             </p>
+                            :
+                            <div className="DescEditWrapper">
+                                <textarea className="ProfileDescriptionEdit" value={PageDetails.DescEdit} onChange={(e) => OnDescEdit(e)} >
+
+                                </textarea>
+                                <button className="SubmitDescriptionEdit" onClick={(e) => SubmitDescriptionEdit(e)}>done</button>
+                            </div>
+                            }
                         </div>
 
                         <div className="ProfilePageMenu">
@@ -224,11 +258,11 @@ function Profile(){
                 </div>
 
                 :
-                // data not loaded yet
-                <div className="fuck-all"></div>
+                <div>data not loaded yet</div>
+                // (<Navigate to="/" replace={true} />)
                 }
             </div>
-            <div className="Main-Footer"></div>
+            <Footer/>
         </div>
     )
 }

@@ -59,6 +59,7 @@
 
 .Main-Header .ie.Right{
   width: 100%;
+  align-items: center;
 }
 
 .Main-Header #test{
@@ -125,6 +126,12 @@
 
 .Main-Header .UserUtil-Group#Profile :hover{
   cursor: pointer;
+}
+
+.Main-Header .UserName{
+  color: #fff;
+  font-weight: 500;
+  margin-right: 10px;
 }
 
 /* -------Buttons---------------------------- */

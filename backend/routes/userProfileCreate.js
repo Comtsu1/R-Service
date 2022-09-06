@@ -1,4 +1,4 @@
-const post = require('../models/post')
+//const userProfileSche = require('../models/userProfile')
 const mongoose = require('mongoose')
 const express = require('express')
 const router  = express.Router()
@@ -12,10 +12,8 @@ router.post('/create-profile', verify, async (req, res)=>{
     const token = req.header('x-auth-token')
     let payload = JSON.parse(Buffer.from(token.split(".")[1], "base64url"));
     const existCheck = await user.findOne({email : payload.userEmail})
-    const profileCheck = await post.findOne({user : existCheck.userId})
+    const profileCheck = await userProfile.findOne({user : existCheck.userId})
     if(profileCheck)return res.status(409).json({msg : "profile already created"})
-// let result = await post.find({author : existCheck.userId})
-    // console.log(result);
     if(existCheck){
         const profile = new userProfile({
             firstName : req.body.firstName,
@@ -27,6 +25,31 @@ router.post('/create-profile', verify, async (req, res)=>{
         })
         profile.save()
         res.status(200).json({msg : "profile created"})
+    }
+    else{
+        res.status(409).json({error : "User does not exist"})
+    }
+})
+
+router.post('/create-profile/modify', verify, async (req, res)=>{
+    const token = req.header('x-auth-token')
+    let payload = JSON.parse(Buffer.from(token.split(".")[1], "base64url"));
+    const existCheck = await user.findOne({email : payload.userEmail})
+    const profileCheck = await userProfile.findOne({user : existCheck.userId})
+    if(profileCheck){
+        const profile = new userProfile({
+            firstName : req.body.firstName,
+            secondName : req.body.secondName,
+            image : req.body.image,
+            user : existCheck.userId,
+            description : req.body.description,
+            phoneNum : req.body.phoneNum,
+        })
+        profile.save()
+        res.status(200).json({msg : "profile created"})
+    }
+    if(existCheck){
+        return res.status(409).json({msg : "profile wasn't created"})
     }
     else{
         res.status(409).json({error : "User does not exist"})

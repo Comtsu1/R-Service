@@ -136,7 +136,7 @@
 
 
 
-.ViewPost #sp5 button{
+.ViewPost #sp5 .button{
     background-color: #43727a;
     color: #fff;
     font-size: 18px;
@@ -153,8 +153,62 @@
     cursor: pointer;
 } 
 
-.ViewPost #sp5 button:hover{
+.ViewPost #sp5 .button:hover{
     background-color: white;
     color: #43727a;
+    transition: 400ms;
+}
+
+
+/* buy */
+.ViewPost .Buy{
+    position: relative;
+}
+
+.ViewPost .Calendar{
+    position: absolute;
+    bottom: 0px;
+    right: -100px;
+}
+
+.ViewPost .Calendar .-selected{
+    background-color: #43727a !important;
+}
+
+.ViewPost .Calendar .CalendarFooter{
+    display: flex ;
+    justify-content: space-around;
+    padding: 1rem 2rem ;
+}
+
+.ViewPost .Calendar .CalendarFooter button{
+    background-color: #43727a;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 5px;
+    padding-left: 8px;
+    padding-right: 8px;
+    margin-top: 5px;
+    border-width: 2px;
+    border-radius: 5px;
+    border-color: #43727a;
+    border-style: solid;
+    transition: 200ms;
+    cursor: pointer;
+}
+
+.ViewPost .Calendar .CalendarFooter button:hover{
+    
+    color: #43727a;
+    background-color: #fff;
+    border-color: #43727a;
+    transition: 400ms;
+}
+
+.ViewPost .Calendar .CalendarFooter #cancel:hover{
+    color: #ff2929;
+    background-color: #fff;
+    border-color: #ff2929;
     transition: 400ms;
 }

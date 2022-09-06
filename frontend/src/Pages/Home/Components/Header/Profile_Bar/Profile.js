@@ -25,11 +25,12 @@ function Profile() {
                         <label className="Profile-Placeholder-Text">Placeholder Image</label>
 
                     </div>
-                    <div className="Wrapper">
+                    <div className="ProfileWrapper">
                         <ul className="Profile-Menu">
-                            <li>option1</li>
-                            <li>option2</li>
-                            <li>option3</li>
+                            <li><a href="/create_post">Create Post</a></li>
+                            <li><a href="/profile">Profile</a></li>
+                            <li><a>Messages</a></li>
+                            <li className="Divider"></li>
                             <li onClick={Logout} className="Log-Out">Logout</li>
                             <li className="Divider"></li>
                         </ul>

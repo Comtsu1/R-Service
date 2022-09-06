@@ -2,6 +2,8 @@ import {RegisterForm} from './components/RegisterForm';
 import React, {useState} from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import {ProfileForm} from './components/CreateProfileForm'
+import {Footer} from "../Home/Components/Footer"
 
 function Register(){
 
@@ -10,22 +12,31 @@ function Register(){
 
       const SendRegisterDB = (details) => {
         axios.post("http://localhost:8080/user/register", details)
-            .then(res => ManageResponse(res))
-            .catch(err => (err) => {
+            .then(res => {ManageResponse(res, details);})
+            .catch(err => {
               // clientside error
-              
-              //testing
-              setError(err.response.data);
-              console.log(err.response.data);
+              console.log(err);
+              console.log(err.response.data.error);
               console.log(err.response.status);
+              //testing
+              setError(err.response.data.error + " (" + err.response.status + ")");
             })
       }
       
-      const ManageResponse = (res) => {
+      const ManageResponse = (res, details) => {
         console.log(res.data.token);
         localStorage.setItem("token", res.data.token);
-
-        navigate('/');
+        localStorage.setItem("secondStageValidator", res.data.token)
+        
+        // const config = {
+        //     headers:{
+        //         'x-auth-token': localStorage.getItem("token")
+        //     }
+        // };
+        //axios.post("http://localhost:8080/create-profile", details, config)
+        //  .then(() => navigate('/'))
+        //  .catch(err => {setError(err.response.data.error); return;})
+        navigate('/set_profile');
       }
 
       const Register = details => {
@@ -34,11 +45,21 @@ function Register(){
         ///if username exists block request
         ///connect back-end: doing rn chief
         
-        if(!details.email || !details.password || !details.username || !details.confirmPassword){
+        if(!details.email || !details.password || !details.firstName || !details.secondName || !details.confirmPassword){
           setError("Please complete all available slots!");
           return;
         }
 
+        // html button handles this perfectly
+        //if(!String(details.email).includes('@')) {setError("Email is not valid!"); return;}
+
+        const hasNumber = /\d/
+        function containsSpecialChars(str) {
+            const specialChars = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
+            return specialChars.test(str);
+        }
+        if(!hasNumber.test(details.password) || !containsSpecialChars(details.password)) {setError("Password must contain numbers and characters!"); return}
+        
         SendRegisterDB(details);
       }
     
@@ -53,3 +74,22 @@ function Register(){
 
 
 export {Register};
+
+// Profile Creator
+
+function CreateProfile(){
+
+
+  return (
+    <>
+      <div className='Main-Header'></div>
+      <div className='Main-Content'>
+        <div className='CreateProfile'>
+          <ProfileForm/>
+        </div>
+      </div>
+      <Footer/>
+    </>
+  )
+}
+export {CreateProfile}

@@ -2,6 +2,8 @@ import React from "react"
 import './MainPage.css'
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import axios from "axios";
+import {Header} from "../../Home/Components/Header/Header";
+import {Footer} from "../../Home/Components/Footer";
 
 
 
@@ -17,6 +19,7 @@ class PostCreatePage extends React.Component{
                     </div>
                 </div>
                 <PostForm/>
+                <Footer/>
             </>
         )
     }
@@ -27,23 +30,6 @@ class PostCreatePage extends React.Component{
 
 
 // ==============Components================================================================== \\
-
-class Header extends React.Component{
-
-    render(){
-        return(
-            <div className='Main-Header'></div>
-        )
-    }
-}
-
-class Footer extends React.Component{
-    render(){
-        return(
-            <div className="Main-Footer"></div>
-        )
-    }
-}
 export {PostCreatePage}
 
 
@@ -63,7 +49,7 @@ class PostForm extends React.Component{
 
 
     ShowImgs() {
-        const listItems = this.state.imgs.map((item) =>
+        const listItems = this.state.imgs.map((item, index) =>
             <div className="PhotoAttachment">
                 {item == "Loading"?
                 <>
@@ -106,7 +92,20 @@ class PostForm extends React.Component{
                             </div>
                     </div>
                 </>
-                    :<img src={item} alt="image"m key={item}></img>
+                :
+                <>
+                    <img src={item} alt="image"m key={item}/>
+                    <div className="RemoveImage">
+                        <button className="RemoveLabel" onClick={
+                            (e) => {
+                                e.preventDefault()
+                                const arr = this.state.imgs
+                                const deleted = arr.splice(index, 1)
+                                this.setState({imgs: arr})
+                            }
+                        } type="button">Remove Image</button>
+                    </div>
+                </>
                 }
             </div>
         )
