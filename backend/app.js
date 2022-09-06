@@ -48,6 +48,16 @@ app.get("/profile", verify, async (req,res)=>{
     }
 })
 
+app.get("/profile/:id", async (req,res)=>{
+    const id = req.params.id
+    const userProf = await userProfileSchema.findOne({user: id})
+    if(userProf){
+        res.status(200).json({profile: userProf})
+    }else{
+        res.status(404).json({msg : `User with id ${id} does not exist`})
+    }
+})
+
 app.get("/posts", async (req,res)=>{
     const newPosts = await post.find().sort({ $natural: -1 }).limit(20)
     res.status(200).json({newest20Posts : newPosts})

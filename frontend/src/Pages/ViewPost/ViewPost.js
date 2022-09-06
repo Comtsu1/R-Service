@@ -44,6 +44,7 @@ const Calendar1 = (selectedDay, setSelectedDay, setDetails, details) => {
 function ViewPost(){
     const [post, setPost] = useState(null);
     const [profile, setProfile] = useState(null);
+    const [service_profile, SetServiceProf] = useState(null);
     const urlParams = new URLSearchParams(window.location.search);  
     const [selectedDay, setSelectedDay] = useState(null);
     const id = urlParams.get("id");
@@ -66,6 +67,8 @@ function ViewPost(){
                 res.data.postToShow[0].image.forEach((img) => {
                     preloadImage(img)
                 });
+                axios.get(`${BackendLink}/profile/${res.data.postToShow[0].author}`)
+                .then(res => SetServiceProf(res.data.profile))
             })
             .catch((err) => {
                 // TODO error handling
@@ -147,10 +150,10 @@ function ViewPost(){
                                 <div id="sp2">
                                     <h1 className="Title">{post.name}</h1>
                                     <div id="sp3">
-                                        <span className="Author">by Cortana Services
+                                        <span className="Author"> {service_profile ? service_profile.firstName + " " + service_profile.secondName : "Couldn't fetch data"}
                                         {/* needs work */}
                                         </span>
-                                        <img className="AuthorImg" src="https://i.ibb.co/wdhr0HL/Capture.png" alt="AuthorImg"></img>
+                                        <img className="AuthorImg" src={service_profile ? service_profile.image :"https://i.ibb.co/wdhr0HL/Capture.png"} alt="AuthorImg"></img>
                                     </div>
 
                                 </div>
