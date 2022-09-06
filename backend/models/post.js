@@ -5,32 +5,22 @@ const postSchema = new mongoose.Schema({
     image : [String],
     name: {
         type: String,
-       // required: true,
-        trim: true,
-        minLength: 1
+        trim: true
     },
     description: {
-        type: String,
-       // required: true,
-        minLength: 15
+        type: String
     },
     location:{
-        type: String,
-       // required: true,
-        minLength: 4
+        type: String
     },
     price:{
-        type: Number,
-      //  required: true
+        type: Number
     },
     author:{
-        type: String,
-      //  required: true
+        type: String
     },
     phoneNum:{
-        type: String,
-        //required: true,
-        maxLength: 20
+        type: String
     },
     createdAt:{
         type: Date,
@@ -38,8 +28,7 @@ const postSchema = new mongoose.Schema({
         immutable : true
     },
     category:{
-        type: String,
-        required: false
+        type: String
     }
 })
 

@@ -69,12 +69,22 @@ app.get("/posts/:startingId/:postsNum", async (req,res)=>{
     res.status(200).json({postToShow : newPosts})
 })
 
-app.get("/posts/:postId", async (req,res)=>{
+app.get("/post/:postId", async (req,res)=>{
     let postId = req.params
     const uuidPost = postId.postId
     const uuidToSearch = MUUID.from(uuidPost)
     const postFromId = await post.find({postId : uuidToSearch})
     res.json({postToShow : postFromId})
+})
+
+app.get("/posts/lowtohigh", async (req,res)=>{
+    const cheapestPosts = await post.find().sort({ price: 1 }).limit(20)
+    res.status(200).json({cheapest20Posts : cheapestPosts})
+})
+
+app.get("/posts/hightolow", async (req,res)=>{
+    const expensivePosts = await post.find().sort({ price: -1 }).limit(20)
+    res.status(200).json({mostExpensive20Posts : expensivePosts})
 })
 
 const startConnection = async() => {
