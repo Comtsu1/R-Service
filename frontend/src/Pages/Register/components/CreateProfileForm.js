@@ -1,7 +1,8 @@
 import React, {Component, useEffect} from "react";
 import { useNavigate } from "react-router-dom";
-import "./CreateProfile.css"
+import "./CreateProfile.css";
 import axios from "axios";
+import {BackendLink} from "../../../Refferences/RefferencesFile";
 
 class ProfileForm extends React.Component{
     constructor(props){
@@ -159,7 +160,7 @@ class ProfileForm extends React.Component{
 
         console.log(localStorage.getItem("token"));
 
-        axios.post("http://localhost:8080/create-profile", payload, config)
+        axios.post(`${BackendLink}/create-profile`, payload, config)
         .then((res) => {
                 console.log(res);
             })

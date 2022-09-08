@@ -47,7 +47,7 @@ router.post('/create-profile/modify', verify, async (req, res)=>{
             phoneNum : req.body.phoneNum
             }
         )
-        res.status(200).json({msg : "profile updated"})
+        return res.status(200).json({msg : "profile updated"})
     }
     if(existCheck){
         return res.status(409).json({msg : "profile wasn't created"})
