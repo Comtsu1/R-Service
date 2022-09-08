@@ -16,6 +16,7 @@ const post = require('./models/post')
 const cors = require('cors')
 const reservationSchema = require('./models/reservation')
 const MUUID = require('uuid-mongodb');
+const reservation = require('./routes/reservation')
 
 // user cors, it doesnt work at all on firefox if not included
 app.use(cors())
@@ -26,6 +27,7 @@ app.use("/user", loginRegister)
 app.use("/", recoveryPass)
 app.use("/", addPost)
 app.use("/", userProfile)
+app.use("/", reservation)
 
 app.get("/user/register", (req,res) => {
     res.sendFile(__dirname + '/public/index.html')

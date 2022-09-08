@@ -14,7 +14,8 @@ const Reservation = new mongoose.Schema({
     },
     status:{
         type: String
-    }
+    },
+    reservationId: String
 })
 
 module.exports = mongoose.model('reservation', Reservation)
