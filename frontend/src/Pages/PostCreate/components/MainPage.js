@@ -1,10 +1,9 @@
 import React from "react"
 import './MainPage.css'
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, Navigate, useNavigate } from 'react-router-dom';
 import axios from "axios";
 import {Header} from "../../Home/Components/Header/Header";
 import {Footer} from "../../Home/Components/Footer";
-
 
 
 class PostCreatePage extends React.Component{
@@ -45,6 +44,7 @@ class PostForm extends React.Component{
             price: 0,
         }
         this.handleSubmit = this.handleSubmit.bind(this);
+        <Navigate to='/some_route' replace={true}/>
     }
 
 
@@ -190,7 +190,8 @@ class PostForm extends React.Component{
 
         axios.post("http://localhost:8080/add-post", payload, config)
         .then((res) => {
-                alert('submitted: ' + this.state);
+                alert("Post submitted");
+
                 console.log(res);
             })
             .catch((err) => {

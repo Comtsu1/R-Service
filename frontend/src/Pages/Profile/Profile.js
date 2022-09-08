@@ -45,7 +45,7 @@ function Profile(){
             .then((res) => {
                 console.log("aa" + res.data.profile)
                 setProfile(res.data.profile);
-                setRentedServices(RentedServices, [...RentedServices, res.data.reservations]);
+                setRentedServices(res.data.reservations);
                 setServices(res.data.posts);
                 if(res.data.profile.description === undefined){
                     setProfile({...profile, description: ""})
@@ -118,10 +118,9 @@ function Profile(){
             </div>
             )
         }
-        const list = RentedServices.map((value) => 
+        const list = RentedServices.map((value, key) => 
         <>
         {
-            Object.entries(value).map(([key, value]) =>
                 <div key={key} className="Service">
                     <img className = "Image" src={value.Imagine}></img>
                     <div className = "PostWrapper">
@@ -137,7 +136,6 @@ function Profile(){
                         </div>
                     </div>
                 </div>   
-            )
         }
         </>)
         return <>{list}</>
