@@ -37,22 +37,20 @@ router.post('/create-profile/modify', verify, async (req, res)=>{
     const existCheck = await user.findOne({email : payload.userEmail})
     const profileCheck = await userProfile.findOne({user : existCheck.userId})
     if(profileCheck){
-        const profile = new userProfile({
+        await userProfile.findOneAndUpdate(
+            {user : existCheck.userId},
+            {
             firstName : req.body.firstName,
             secondName : req.body.secondName,
             image : req.body.image,
-            user : existCheck.userId,
             description : req.body.description,
-            phoneNum : req.body.phoneNum,
-        })
-        profile.save()
-        res.status(200).json({msg : "profile created"})
+            phoneNum : req.body.phoneNum
+            }
+        )
+        res.status(200).json({msg : "profile updated"})
     }
     if(existCheck){
         return res.status(409).json({msg : "profile wasn't created"})
-    }
-    else{
-        res.status(409).json({error : "User does not exist"})
     }
 })
 
