@@ -169,6 +169,15 @@ class PostForm extends React.Component{
     handleSubmit(event) {
         event.preventDefault();
 
+        var img_to_be_sent = this.state.imgs;
+        var deleted_indexes = 0;
+        this.state.imgs.map((value, index) => {
+            if(value === "Loading"){
+                img_to_be_sent.splice(index, 1);
+                deleted_indexes = deleted_indexes+1
+            }
+        });
+        console.log(img_to_be_sent)
         const payload = {
             name: this.state.title,
             description: this.state.description,
@@ -186,7 +195,6 @@ class PostForm extends React.Component{
             }
         };
 
-        console.log(localStorage.getItem("token"));
 
         axios.post("http://localhost:8080/add-post", payload, config)
         .then((res) => {

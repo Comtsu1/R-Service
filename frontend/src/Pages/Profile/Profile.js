@@ -168,7 +168,7 @@ function Profile(){
 
         console.log(localStorage.getItem("token"));
 
-        // axios.post(`${BackendLink}/create-profile/modify`, payload, config)
+        axios.post(`${BackendLink}/create-profile/modify`, payload, config)
     }
 
     function ChangeImage(event){
@@ -190,6 +190,24 @@ function Profile(){
                 setProfile({...profile, image: linkContainer.data.data.url})
 
                 //update the database
+                const payload ={
+                    firstName: profile.firstName,
+                    secondName: profile.secondName,
+                    image:      linkContainer.data.data.url,
+                    description:profile.description,
+                    phoneNum:   profile.phoneNum,
+                }
+        
+                const config = {
+                    headers:{
+                        'x-auth-token': localStorage.getItem("token")
+                    }
+                };
+                localStorage.removeItem("secondStageValidator")
+        
+                console.log(localStorage.getItem("token"));
+        
+                axios.post(`${BackendLink}/create-profile/modify`, payload, config)
                 })
             }
     }
