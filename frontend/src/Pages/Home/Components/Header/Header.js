@@ -1,13 +1,10 @@
 import React from "react";
 import logo from '../../Icons/RServiceLogo_transparent.png';
-import bell from '../../Icons/bell.png';
-import bellNotif from '../../Icons/bell_notification.png';
-import msg from '../../Icons/email_small.png';
-import msgNotif from '../../Icons/email_small_unread.png';
-import menu from '../../Icons/menu.png';
 import './Header.css';
 import {Profile} from './Profile_Bar/Profile.js';
 import {Navigate} from "react-router-dom";
+import axios from "axios";
+import {BackendLink} from "../../../../Refferences/RefferencesFile"
 
 class SearchBar extends React.Component{
     constructor(props){
@@ -60,6 +57,13 @@ class UserUtility extends React.Component{
         console.log(this.state.ProfileIsOpen);
     }
 
+    componentDidMount(){
+        axios.get(`${BackendLink}/profile`, {headers:{"x-auth-token": localStorage.getItem("token")}
+    }).then((res) => {
+        this.setState({UserName: `${res.data.profile.firstName} ${res.data.profile.secondName}`, UserIcon: res.data.profile.image})
+    })
+    }
+
     render(){
         // if(this.state.UserName){
         if(localStorage.getItem('token') !== null) {
@@ -74,9 +78,18 @@ class UserUtility extends React.Component{
             return(
                 <>
                     <div className="UserUtil">
+                        <button id="Notifications" className="UserUtil-Group">N</button>
+                    </div>
+
+                    <div className="UserUtil">
                         <button id='Profile' className="UserUtil-Group" 
                         onClick={this.OpenProfile}>
-                            <label id='ProfileText'>U</label>
+                            {
+                                this.state.UserIcon?
+                                <img src={this.state.UserIcon} alt="ProfileImage"/>
+                                :
+                                <label id='ProfileText'>U</label>
+                            }
                         </button>
                         {ProfileVar}
                     </div>

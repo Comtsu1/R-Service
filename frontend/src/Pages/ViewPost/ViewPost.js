@@ -49,7 +49,7 @@ function ViewPost(){
     const [selectedDay, setSelectedDay] = useState(null);
     const id = urlParams.get("id");
 
-    const [details, setDetails]= useState({currentImgIndex: 0, calendarOpened: false, disabledDays: [],});
+    const [details, setDetails]= useState({currentImgIndex: 0, calendarOpened: false, disabledDays: [], loggedOut: false});
 
     const {current: deboucnce} = useRef(["one", "two"]);
     function preloadImage(url)
@@ -74,15 +74,12 @@ function ViewPost(){
                 // TODO error handling
             });
 
-            // axios.get(`${BackendLink}/profile`, {
-            //     headers:{"x-auth-token": localStorage.getItem("token")}
-            // })
-            // .then((res) => {
-            //     setProfile(res.data.profile);
-            //     if (res.data.profile.image){
-            //         preloadImage(res.data.profile.image)
-            //     }
-            // })
+            axios.get(`${BackendLink}/profile`, {
+                headers:{"x-auth-token": localStorage.getItem("token")}
+            })
+            .then((res) => {
+                setProfile(res.data.profile.user);
+            })
     }, [])
 
     function navigateImages(event, direction = true){
@@ -104,7 +101,11 @@ function ViewPost(){
 
     function makeReservation(event){
         event.preventDefault()
-        setDetails({...details, calendarOpened: true})
+        if(localStorage.getItem('token') !== null){
+            setDetails({...details, calendarOpened: true})
+        }else{
+            setDetails({...details, loggedOut: true})
+        }
     }
 
     function buyReservation(){
@@ -143,7 +144,7 @@ function ViewPost(){
             <Header/>
             <div className="Main-Content">
                 <div className="Wrapper">
-                    {post /*&& profile}*/? 
+                    {post && profile && service_profile? 
                     <>
                         <div className="Post">
                             <div id="sp1">
@@ -169,9 +170,28 @@ function ViewPost(){
                                             Calendar1(selectedDay, setSelectedDay, setDetails, details)
                                         :null
                                         }
-                                        <button className="button" id="Hire" onClick={
-                                            (e) => {makeReservation(e)}
-                                        }>Make Reservation</button>
+                                        {profile === service_profile.user?
+                                        <button className="button" id="Delete" onClick={null
+                                        }>Remove Post</button>
+                                            :
+                                            <>
+                                            <button className="button" id="Hire" onClick={
+                                                (e) => {makeReservation(e)}
+                                            }>Make Reservation</button>
+                                                {details.loggedOut?
+                                                    <>
+                                                        <div className="LoggedOut">
+                                                            <div className="LoBox">
+                                                                <p>You need to log in to make a reservation</p>
+                                                            </div>
+                                                            <div className="Appendice"></div>
+                                                        </div>
+                                                    </>
+                                                    :
+                                                    null
+                                                }
+                                            </>
+                                        }
                                         </div>
                                         <button className="button" id="Contact">Contact Me</button>
                                     </div>
