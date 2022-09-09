@@ -153,7 +153,7 @@ function ViewPost(){
                                         <span className="Author"> {service_profile ? service_profile.firstName + " " + service_profile.secondName : "Couldn't fetch data"}
                                         {/* needs work */}
                                         </span>
-                                        <img className="AuthorImg" src={service_profile ? service_profile.image :"https://i.ibb.co/wdhr0HL/Capture.png"} alt="AuthorImg"></img>
+                                        <img className="AuthorImg" src={(service_profile && service_profile.image != "")? service_profile.image : "https://i.ibb.co/wdhr0HL/Capture.png"} alt="AuthorImg"></img>
                                     </div>
 
                                 </div>

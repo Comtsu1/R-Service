@@ -1,49 +1,44 @@
-import React, {Component, useEffect} from "react";
+import React, {Component, useEffect, useState} from "react";
 import { useNavigate } from "react-router-dom";
 import "./CreateProfile.css";
 import axios from "axios";
 import {BackendLink} from "../../../Refferences/RefferencesFile";
 
-class ProfileForm extends React.Component{
-    constructor(props){
-        super(props)
-        this.state = {
+//class ProfileForm extends React.Component{
+function ProfileForm() {
+
+    const [profile, setProfile] = useState({
             firstName: "",
             secondName: "",
             image: "",
             description: "",
             phoneNum: "",
             confirmed: true,
-        }
-        this.handleSubmit = this.handleSubmit.bind(this);
-        this.DescChange = this.DescChange.bind(this);
-        this.MobileChange = this.MobileChange.bind(this);
-        this.FnameChange = this.FnameChange.bind(this);
-        this.SnameChange = this.SnameChange.bind(this);
-    }
+    }); 
+    let navigate = useNavigate();
 
-    componentDidMount() {
+    const componentDidMount = () => {
         const token = localStorage.getItem("token");
         const AuthToken = localStorage.getItem("secondStageValidator")
         if (AuthToken  === null || AuthToken === undefined){
-            this.setState({confirmed: false})
+            setProfile({...profile, confirmed: false})
         }else{
             if (AuthToken !== token){
-                this.setState({confirmed: false})
+                setProfile({...profile, confirmed: false})
             }
         }
     }
 
-    MobileChange(event){
+    const MobileChange = (event) => {
         event.preventDefault()
-        this.setState({phoneNum: event.target.value})
+        setProfile({...profile, phoneNum: event.target.value})
     }
 
-    ImgSubmit(event) {
+    const ImgSubmit = (event) => {
         
         event.preventDefault()
         let img = event.target.files[0];
-        this.setState({image: "Loading"})
+        setProfile({...profile, image: "Loading"})
 
         // send request to get link for photo
         var dataUrl
@@ -56,15 +51,15 @@ class ProfileForm extends React.Component{
             // callback (resposnse)
             .then ((res) => {
                 const linkContainer = res.data.data.url;
-                this.setState({image: linkContainer})
+                setProfile({...profile, image: linkContainer})
                 })
             }
     }
 
-    ShowImgs() {
+    const ShowImgs = () => {
         return(
             <div className="PhotoAttachment">
-                {this.state.image == "Loading"?
+                {profile.image == "Loading"?
                 <>
                     <div className="loader">
                         <div className="loader-inner">
@@ -107,12 +102,12 @@ class ProfileForm extends React.Component{
                 </>
                 :
                 <>
-                    <img src={this.state.image} alt="image" key={this.state.image}/>
+                    <img src={profile.image} alt="image" key={profile.image}/>
                     <div className="RemoveImage">
                         <button className="RemoveLabel" onClick={
                             (e) => {
                                 e.preventDefault()
-                                this.setState({image: ""})
+                                setProfile({...profile, image: ""})
                             }
                         } type="button">Remove Image</button>
                     </div>
@@ -123,32 +118,31 @@ class ProfileForm extends React.Component{
     }
 
 
-    FnameChange(e){
+    const FnameChange = (e) => {
         e.preventDefault();
-        this.setState({firstName: e.target.value})
+        setProfile({...profile, firstName: e.target.value})
     }
 
-    SnameChange(e){
+    const SnameChange = (e)=> {
         e.preventDefault();
-        this.setState({secondName: e.target.value})
+        setProfile({...profile, secondName: e.target.value})
     }
 
-    DescChange(event){
+    const DescChange = (event) => {
         event.preventDefault()
-        this.setState({description: event.target.value})
+        setProfile({...profile, description: event.target.value})
     }
 
 
-    handleSubmit(event) {
+    const handleSubmit = (event) => {
         event.preventDefault();
 
         const payload = {
-            firstName: this.state.firstName,
-            secondName: this.state.secondName,
-            image:      this.state.image,
-            description:this.state.description,
-            phoneNum:   this.state.phoneNum,
-
+            firstName:  profile.firstName,
+            secondName: profile.secondName,
+            image:      profile.image,
+            description:profile.description,
+            phoneNum:   profile.phoneNum,
         };
 
         const config = {
@@ -163,6 +157,7 @@ class ProfileForm extends React.Component{
         axios.post(`${BackendLink}/create-profile`, payload, config)
         .then((res) => {
                 console.log(res);
+                navigate('/');
             })
             .catch((err) => {
                 console.log(err.response.error);
@@ -170,71 +165,68 @@ class ProfileForm extends React.Component{
 
     }
 
-    render(){
-        return(
-            <form className="ProfileForm" onSubmit={this.handleSubmit}>
-                {this.state.confirmed?
-                <>
-                <div className="Flex-Wrapper">
-                    <div className="Form-Wrapper">
-                        <div className="FormTitle">
-                            <label>Name</label>
-                            <p>Please insert your name</p>
-                        </div>
-                        <div className="FormContent">
-                            <input className="Name First" onChange={e => this.FnameChange(e)} required="required" placeholder="First Name"></input>
-                            <input className="Name Second" onChange={e => this.SnameChange(e)} required="required" placeholder="Second Name"></input>
-                        </div>
+    return(
+        <form className="ProfileForm" onSubmit={handleSubmit}>
+            {profile.confirmed?
+            <>
+            <div className="Flex-Wrapper">
+                <div className="Form-Wrapper">
+                    <div className="FormTitle">
+                        <label>Name</label>
+                        <p>Please insert your name</p>
                     </div>
-                    <div className="Form-Wrapper">
-                        <div className="FormTitle">
-                            <label>Description</label>
-                        </div>
-                        <div className="FormContent">
-                            <textarea required="required" className="Description" onChange={e => this.DescChange(e)}
-                            placeholder="Tell us about you, and cool stuff like porjects you've completed and area of expertise"
-                            ></textarea>
-                        </div>
-                    </div>
-                    {/* images */}
-                    <div className="Form-Wrapper">
-                        <div className="FormTitle">
-                            <label>Image</label>
-                            <p>Add an image to your profile so customers know exactly who they're dealing with</p>
-                        </div>
-                        <div className="FormContent" id="ImgFormContent">
-                            {this.state.image === "" ?
-                                <div className="PhotoAttachment First">
-                                    <label htmlFor="photo-attachment">Add image</label>
-                                    <input type="file" id="photo-attachment" accept=".jpg, .jpeg, .png, .gif" onChange={e => this.ImgSubmit(e)}></input>
-                                </div>
-                            :
-                                this.ShowImgs()
-                            }
-                        </div>
-                    </div>
-                    <div className="Form-Wrapper">
-                        <div className="FormTitle">
-                            <label>Mobile number</label>
-                            <p>Add your mobile number so customers will have a way to contact you</p>
-                        </div>
-                        <div className="FormContent">
-                            <input type="tel" required="required" pattern="^[0-9]{3,45}$" className="MobileNumber" onChange={e => this.MobileChange(e)}></input>
-                        </div>
+                    <div className="FormContent">
+                        <input className="Name First" onChange={e => FnameChange(e)} required="required" placeholder="First Name"></input>
+                        <input className="Name Second" onChange={e => SnameChange(e)} required="required" placeholder="Second Name"></input>
                     </div>
                 </div>
-
-                <div id="Continue-Button-Wrapper">
-                    <button type="submit" id="Continue-Button">Create Account!</button>
+                <div className="Form-Wrapper">
+                    <div className="FormTitle">
+                        <label>Description</label>
+                    </div>
+                    <div className="FormContent">
+                        <textarea required="required" className="Description" onChange={e => DescChange(e)}
+                        placeholder="Tell us about you, and cool stuff like porjects you've completed and area of expertise"
+                        ></textarea>
+                    </div>
                 </div>
-                </>
-                :
-                <a href="/">You already have a profile created or you wasn't redirected here </a>
-                }
-            </form>
-        )
-    }
+                {/* images */}
+                <div className="Form-Wrapper">
+                    <div className="FormTitle">
+                        <label>Image</label>
+                        <p>Add an image to your profile so customers know exactly who they're dealing with</p>
+                    </div>
+                    <div className="FormContent" id="ImgFormContent">
+                        {profile.image === "" ?
+                            <div className="PhotoAttachment First">
+                                <label htmlFor="photo-attachment">Add image</label>
+                                <input type="file" id="photo-attachment" accept=".jpg, .jpeg, .png, .gif" onChange={e => ImgSubmit(e)}></input>
+                            </div>
+                        :
+                            ShowImgs()
+                        }
+                    </div>
+                </div>
+                <div className="Form-Wrapper">
+                    <div className="FormTitle">
+                        <label>Mobile number</label>
+                        <p>Add your mobile number so customers will have a way to contact you</p>
+                    </div>
+                    <div className="FormContent">
+                        <input type="tel" required="required" pattern="^[0-9]{3,45}$" className="MobileNumber" onChange={e => MobileChange(e)}></input>
+                    </div>
+                </div>
+            </div>
 
+            <div id="Continue-Button-Wrapper">
+                <button type="submit" id="Continue-Button">Create Account!</button>
+            </div>
+            </>
+            :
+            <a href="/">You already have a profilecreated or you wasn't redirected here </a>
+            }
+        </form>
+    )
 
 }
 
