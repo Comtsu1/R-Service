@@ -48,8 +48,9 @@ function Profile(){
                 setRentedServices(res.data.reservations);
                 setServices(res.data.posts);
                 if(res.data.profile.description === undefined){
-                    setProfile({...profile, description: ""})
+                    setProfile(res.data.profile, {...profile, description: ""})
                 }
+                setDetails({...PageDetails, DescEdit: res.data.profile.description})
             })
             .catch((err) => {
                 // TODO error handling
@@ -84,14 +85,15 @@ function Profile(){
                                 <label className="Title">{value.name}</label>
                             </a>
                             
-                            <p className="Description">{value.description}</p>
+                            <p className="Description">{value.description}
+                                <div>
+                                    <div className="Fader"></div>
+                                </div>
+                            </p>
                         </div>
                         <div className="Details">
                             <span className="Cost">{value.price}$</span>
                             <span className="Location">{value.location}</span>
-                            <div>
-                                <div className="Fader"></div>
-                            </div>
                         </div>
                     </div>   
         

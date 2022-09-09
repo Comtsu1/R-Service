@@ -298,8 +298,11 @@
 }
 
 .Profile .Service .Description {
+    min-width: 520px;
+    min-height: 40px;
     margin-top: 5px;
     text-align: justify;
+    position: relative;
 }
 
 
@@ -316,8 +319,9 @@
     width: 200px;
     background-image: linear-gradient(to right, rgba(202,221,225, 0), rgb(202,221,225,1) 30%);
     box-sizing: border-box;
-    right: 120px;
-    position:relative;
+    right: 0;
+    bottom: 0;
+    position:absolute;
 }
 
 .Profile .NoService {
