@@ -5,6 +5,10 @@ import { Profile } from './Components/Header/Profile_Bar/Profile';
 import React , {useEffect, useState} from 'react';
 import axios from 'axios';
 import { renderMatches, resolvePath } from 'react-router-dom';
+import logo from './Icons/RServiceLogo_transparent.png';
+import FocusImage from './Icons/ryan-stone-OlxJVn9fxz4-unsplash.jpg';
+
+import {Post} from './Components/Post';
 
 function Home() {
   return (
@@ -22,69 +26,11 @@ function Home() {
 export {Home};
 
 
-class Post extends React.Component{
-  constructor(props){
-    super(props)
-    console.log(props)
-    this.state={
-      mouseHover: false,
-      Focused: false,
-      animated: false,
-    }
-
-    this.MouseHandler.bind(this);
-    this.MouseExit.bind(this);
-  }
-
-  MouseHandler(event){
-    this.setState({mouseHover: true})
-    setTimeout(() => {
-      if(this.state.mouseHover === true){
-        this.setState({Focused: true})
-        console.log("Succes")
-      }else{
-        console.log("exited fast")
-      }
-    }, 500);
-
-  }
-
-  MouseExit(event){
-    this.setState({mouseHover: false,
-      Focused: false,
-      animated: false,
-    })
-  }
-  
-  render(){
-    return(
-      <div key={this.props.value._id} className="Post" onMouseEnter={(e) => this.MouseHandler(e)} onMouseLeave={(e) => this.MouseExit(e)}>
-        <div className='ImgDescWrapper'>
-          <div className='ImgWrapper'>
-            <img src={this.props.value.image[0]} alt="post Image"></img>
-          </div>
-          <a href={`/post?id=${this.props.value.postId}`}>
-            <span className='Title'>{this.props.value.name}</span>
-          </a>
-        </div>
-        <span className='Cost'><br/>{this.props.value.price + " btc"}</span>
-        
-        {/* {this.state.Focused?
-        <aside className='Mask'>
-          <p>{this.props.value.description}</p>
-        </aside>
-        :
-        null
-        } */}
-      </div>
-    )
-    }
-}
-
 
 function MainContent(){
 
   const [posts, setPosts] = useState([])
+  const [desktop, setDesktop] = useState(window.innerWidth < 1300)
 
   
   useEffect(() => {
@@ -101,9 +47,25 @@ function MainContent(){
         });
   }, [])
 
+  const updateMedia = () => {
+    setDesktop(window.innerWidth < 1300);
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", updateMedia);
+    return () => window.removeEventListener("resize", updateMedia);
+  })
+
 
   function renderPosts(){
-    const list = posts.map((value, index) => 
+    let imgList = posts.map((val) => {return val});
+    if (desktop){
+      console.log("smaller")
+      imgList.splice(6, 14);
+    }else{
+      imgList.splice(16, 4);
+    }
+    const list = imgList.map((value, index) => 
       <Post value={value} key={value._id}/>
     )
 
@@ -111,8 +73,22 @@ function MainContent(){
   }
 
   return(
+    <>
+    <div className='FocusHolder'>
+      <img src={FocusImage} alt="focus image"/>
+      <div className='FocusContent'>
+        <div className='CatchLineBg'>
+          <div className='CatchLine'> 
+            <h2>Need a <br/> problem <br/> solved in <br/> no-time?</h2>
+            <p>Find the right service for you now</p>
+          </div>
+        </div>
+      </div>
+    </div>
     <div className='HomeWrapper'>
-      <div className='Background'>
+      <h3>Find the latest servcices <br/> using the platform RService</h3>
+        
+      <div className={desktop?'Background' :'Background Big'}>
         {
           posts.length?
           <>
@@ -123,7 +99,7 @@ function MainContent(){
         }
       </div>
     </div>
-
+    </>
   )  
 
 }
