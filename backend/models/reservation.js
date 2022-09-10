@@ -15,6 +15,9 @@ const Reservation = new mongoose.Schema({
     status:{
         type: String
     },
+    postId:{
+        type: String
+    },
     reservationId: String
 })
 

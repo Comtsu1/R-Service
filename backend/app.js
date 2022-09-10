@@ -40,11 +40,12 @@ app.get("/profile", verify, async (req,res)=>{
     const token = req.header('x-auth-token')
     let payload = JSON.parse(Buffer.from(token.split(".")[1], "base64url"));
     const userProfileCheck = await user.findOne({email : payload.userEmail})
-    const userReservations = await reservationSchema.find({to : payload.userId})
+    const userReservations = await reservationSchema.find({to : userProfileCheck.userId})
     const userProf = await userProfileSchema.findOne({user: userProfileCheck.userId})
+    const userReservationsMade = await reservationSchema.find({from : userProfileCheck.userId})
     if(userProfileCheck){
         let result = await post.find({author : userProfileCheck.userId})
-        res.status(200).json({profile : userProf, posts : result, reservations : userReservations})
+        res.status(200).json({profile : userProf, posts : result, reservations : userReservations, reservations_made : userReservationsMade})
     }else{
         res.status(404).json({msg : `Something went wrong`})
     }

@@ -19,6 +19,7 @@ router.post('/reservation', async (req, res)=>{
             month: req.body.date.month,
             day: req.body.date.day
         },
+        postId: req.body.postId,
         reservationId: uuidv4()
 })
     newReservation.save()
