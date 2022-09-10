@@ -5,44 +5,12 @@ import { useState } from "react";
 import "./ViewPost.css"
 import axios from "axios";
 import {BackendLink} from "../../Refferences/RefferencesFile";
-import '@hassanmojab/react-modern-calendar-datepicker/lib/DatePicker.css';
-import {Calendar} from '@hassanmojab/react-modern-calendar-datepicker';
+import {Calendar1} from "./Components/Calendar";
 
-const Calendar1 = (selectedDay, setSelectedDay, setDetails, details) => {
-  return (
-    <Calendar
-      value={selectedDay}
-      onChange={setSelectedDay}
-      shouldHighlightWeekends
-      renderFooter={() =>(
-        <div className="CalendarFooter">
-            <button type="button" id="cancel" onClick={
-            (e) =>{
-                setSelectedDay(null);
-                setDetails({...details, calendarOpened: false});
-            }
-            }>
-                Cancel
-            </button>
-
-            <button type="button" onClick={(e) =>
-                {
-                    console.log(selectedDay.day, selectedDay.month, selectedDay.year)
-                    setDetails({...details, calendarOpened: false})
-                }
-            }>
-                Make Reservation!
-            </button>
-        </div>
-      )
-        
-    }
-    />
-  );
-};
 
 function ViewPost(){
     const [post, setPost] = useState(null);
+    const [reserved, setReserved] = useState({value: false, status: "none"});
     const [profile, setProfile] = useState(null);
     const [service_profile, SetServiceProf] = useState(null);
     const urlParams = new URLSearchParams(window.location.search);  
@@ -74,11 +42,16 @@ function ViewPost(){
                 // TODO error handling
             });
 
-            axios.get(`${BackendLink}/profile`, {
-                headers:{"x-auth-token": localStorage.getItem("token")}
+        axios.get(`${BackendLink}/profile`, {
+            headers:{"x-auth-token": localStorage.getItem("token")}
             })
             .then((res) => {
                 setProfile(res.data.profile.user);
+                res.data.reservations_made.map((value) =>{
+                        if(value.postId === id){
+                            setReserved({...reserved, value: true, status: value.status})
+                        }
+                })
             })
     }, [])
 
@@ -103,19 +76,10 @@ function ViewPost(){
         event.preventDefault()
         if(localStorage.getItem('token') !== null){
             setDetails({...details, calendarOpened: true})
+            setReserved({...reserved, value:true, status: "pending"})
         }else{
             setDetails({...details, loggedOut: true})
         }
-    }
-
-    function buyReservation(){
-        console.log(selectedDay.day, selectedDay.month, selectedDay.year)
-        setDetails({...details, calendarOpened: false})
-    }
-
-    function cancelBuy(){
-        setSelectedDay(null);
-        setDetails({...details, calendarOpened: false});
     }
 
     function RenderImgNav(){
@@ -137,6 +101,18 @@ function ViewPost(){
         }
     }
 
+    function RentReservation(date){
+        axios.post(`${BackendLink}/reservation`,{
+            // payload
+            date: selectedDay,
+            user: post.author,
+            postId: post.postId,
+        }, {
+            // headers
+            headers: {"x-auth-token": localStorage.getItem("token")},
+        })
+    }
+
 
     // rendering
     return(
@@ -144,7 +120,7 @@ function ViewPost(){
             <Header/>
             <div className="Main-Content">
                 <div className="Wrapper">
-                    {post && profile && service_profile? 
+                    {post /*&& profile */&& service_profile? 
                     <>
                         <div className="Post">
                             <div id="sp1">
@@ -167,17 +143,16 @@ function ViewPost(){
                                     <div id="sp5">
                                         <div className="Buy">
                                         {details.calendarOpened?
-                                            Calendar1(selectedDay, setSelectedDay, setDetails, details)
+                                            Calendar1(selectedDay, setSelectedDay, setDetails, details, RentReservation)
                                         :null
                                         }
+
+
                                         {profile === service_profile.user?
-                                        <button className="button" id="Delete" onClick={null
-                                        }>Remove Post</button>
+                                                <button className="button" id="Delete" onClick={null
+                                                }>Remove Post</button>
                                             :
                                             <>
-                                            <button className="button" id="Hire" onClick={
-                                                (e) => {makeReservation(e)}
-                                            }>Make Reservation</button>
                                                 {details.loggedOut?
                                                     <>
                                                         <div className="LoggedOut">
@@ -190,6 +165,16 @@ function ViewPost(){
                                                     :
                                                     null
                                                 }
+                                                    {!reserved.value?
+                                                    <>
+                                                        <button className="button" id="Hire" onClick={
+                                                            (e) => {makeReservation(e)}
+                                                        }>Make Reservation</button>
+                                                    </>
+                                                    :
+                                                    <div className="button" id="Pending">{reserved.status}</div>
+                                                }
+                                                
                                             </>
                                         }
                                         </div>
@@ -215,6 +200,9 @@ function ViewPost(){
 
 
 export {ViewPost}
+
+
+
 export const usePreloadImages = (imageSrcs) => {
     useEffect(() => {
       const randomStr = Math.random().toString(32).slice(2) + Date.now();

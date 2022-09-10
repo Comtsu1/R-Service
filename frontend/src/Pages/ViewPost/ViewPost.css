@@ -246,3 +246,10 @@
     background-color: #fff;
     transform: rotate(-45deg);
 }
+.ViewPost .button#Pending{
+    background-color: #538e99;
+    border-color: #538e99;
+    color: #f0f0f0;
+    font-size: 20px;
+    font-weight: 600;
+}

@@ -1,5 +1,6 @@
 .Home {
   text-align: center;
+  background-color: #538e99;
 }
 
 
@@ -9,14 +10,18 @@
 }
 
 .Home .HomeWrapper .Background{
-  background-color: #F7F7F7;
+  /* background-color: #5fa4b1; */
   border-radius: 5px;
-  padding: 40px;
+  padding-top: 40px;
   display: grid;
 
-  grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 2fr));
   column-gap: 40px;
   row-gap: 40px;
+}
+
+.Home .HomeWrapper .Background.Big{
+  grid-template-columns: repeat(4, minmax(250px, 1fr));
 }
 
 
@@ -29,50 +34,7 @@
   overflow: hidden;
 }
 
-.Home .Background .Post {
-  aspect-ratio: 3/4;
-  border-radius: 10px;
-  max-height: 400px;
-  background-color: #43727A;
-  position: relative;
-  overflow: auto;
-}
 
-.Home .Background .Post .ImgWrapper{
-  width: 90%;
-  margin: 5%;
-  aspect-ratio: 1/1;
-  background-color: #538e99;
-  overflow: hidden;
-  border-radius: 7px;
-  transition: 300ms;
-  position: relative;
-}
-
-.Home .Background .Post .ImgWrapper img{
-  max-height: 100%;
-}
-
-.Home .Post a{
-  text-decoration: none;
-}
-
-.Home .Background .Post .Title{
-  color: #fff;
-  font-size: 18px;
-  font-weight: 500;
-}
-
-.Home .Post .Cost{
-  color: #fff;
-  font-size: 12px;
-  font-weight: 500;
-  position: absolute;
-  bottom: 5px;
-  right: 10px;
-  display: block;
-  
-}
 
 
 @keyframes openPost {
@@ -82,4 +44,60 @@
   
 }
 
+.Home h3{
+  font-size: 42px;
+  text-align: left;
+  color: #fff;
+}
+
+.Home .FocusHolder{
+  width: 100%;
+  margin-bottom: 100px;
+  position: relative;
+}
+
+.Home .FocusHolder img{
+  height: calc(100vh - 60px);
+  width: 100%;
+  box-shadow: 0px 3px 3px rgba(34, 57, 61, 0.863);
+  transform: translate(0px, -120px);
+}
+
+.Home .FocusContent{
+  color: #fff;
+  position: absolute;
+  top: 0;
+  height: calc(100vh - 60px);
+}
+
+
+.Home .CatchLineBg{
+  margin-left: 60px;
+  height: calc(100% - 130px);
+  position: absolute;
+  top: 0;
+}
+
+.Home .CatchLine{
+  margin-top: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  padding-right: 30px;
+  background-color: rgba(3, 1, 2, 0.788);
+}
+
+
+.Home .FocusContent h2{
+  font-size: 50px;
+  text-align: right;
+  min-width: 250px;
+}
+
+.Home .CatchLine p{
+  font-size: 24px;
+  text-align: justify;
+  direction: rtl;
+  max-width: 170px;
+}
 
