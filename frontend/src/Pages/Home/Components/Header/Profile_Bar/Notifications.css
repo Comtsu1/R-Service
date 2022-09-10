@@ -1,0 +1,18 @@
+.Notifs{
+    position: absolute;
+
+
+    /* positioning */
+    top: 60px;
+    right: 0px;
+}
+
+.Notifs div{
+    /* bg color */
+    background-color: #fff;
+
+
+    /* size */
+    height: 200px;
+    width: 200px;
+}

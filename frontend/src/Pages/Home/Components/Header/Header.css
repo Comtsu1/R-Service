@@ -74,9 +74,10 @@
   margin-top: 10px;
   margin-bottom: 10px;
   margin-right: 10px;
+  position: relative;
 }
 .Main-Header .UserUtil:first-child{
-  margin-right: 20px;
+  margin-right: 40px;
 }
 
 .Main-Header .UserUtil-Group{
@@ -176,4 +177,24 @@
 .Main-Header #SignUpButton:hover{
   background-color: var(--ButtonHighlight);
   transition: 400ms;
+}
+
+.Main-Header #Notifications{
+  height: 40px;
+  width: 40px;
+  margin: 0;
+  padding: 0;
+  border-radius: 100%;
+  border-color: #fff;
+  border-width: 2px;
+  border-style: solid;
+  overflow: hidden;
+}
+
+.Main-Header #Notifications img{
+  object-fit: cover;
+  margin: 0%;
+  height: 80%;
+  width: 80%;
+  transform: translate(0,2px);
 }

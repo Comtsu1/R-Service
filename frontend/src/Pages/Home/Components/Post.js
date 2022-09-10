@@ -5,7 +5,6 @@ import "./Post.css";
 class Post extends React.Component{
     constructor(props){
       super(props)
-      console.log(props)
       this.state={
         mouseHover: false,
         Focused: false,
