@@ -274,17 +274,17 @@ function Profile(){
 
                         <div className="ProfilePageMenu">
                             <div className="ServiceFocused">
-                                <button onClick={(e) => FocusPost(e)}>
+                                <button className={PageDetails.PostFocused?"Focused":null} onClick={(e) => FocusPost(e)}>
                                     My Posts
                                 </button>
-                                <div className={PageDetails.PostFocused?"Highlighter Focused":"Highlighter Unfocused"}/>
+                                {/* <div className={PageDetails.PostFocused?"Highlighter Focused":"Highlighter Unfocused"}/> */}
                             </div>
                             <div className="Divider"/>
                             <div className="ServiceUnfocused">
-                                <button onClick={(e) => UnfocusPost(e)}>
+                                <button className={PageDetails.PostFocused?null:"Focused"} onClick={(e) => UnfocusPost(e)}>
                                     Rented Services
                                 </button> 
-                                <div className={PageDetails.PostFocused?"Highlighter Unfocused":"Highlighter Focused"}/>
+                                {/* <div className={PageDetails.PostFocused?"Highlighter Unfocused":"Highlighter Focused"}/> */}
 
                             </div>
                         </div>

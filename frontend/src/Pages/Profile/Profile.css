@@ -176,7 +176,7 @@
 
 /* Menu */
 .Profile .ProfilePageMenu {
-    background-color: #20707E;
+    background-color: #43727a;
     height: 40px;
     padding: 10px;
     border-radius: 40px;
@@ -188,7 +188,7 @@
 
 .Profile .ProfilePageMenu button{
     background-color: transparent;
-    color: #fff;
+    color: #87d1df;
     font-size: 16px;
     font-weight: 600;
     padding: 5px;
@@ -206,9 +206,15 @@
     cursor: pointer;
 }
 .Profile .ProfilePageMenu button:hover{
-    background-color:  #538e99;
+    /* background-color:  #538e99; */
+    
+    color:  #fff;
     transition: 400ms;
     z-index: 1;
+}
+
+.Profile .ProfilePageMenu button.Focused{
+    color: #fff;
 }
 
 .Profile .ProfilePageMenu .Highlighter{
@@ -255,11 +261,12 @@
 
 
 .Profile .ProfilePageMenu .Divider {
-    border: 2px;
+    border-width: 2px;
     border-style: solid;
     border-color: #538e99;
     border-radius: 2px;
-    margin: 0 100px;
+    background-color: #538e99;
+    margin: 0 0px;
     z-index: 999999999999999999999;
 }
 

@@ -6,16 +6,20 @@ import "./ViewPost.css"
 import axios from "axios";
 import {BackendLink} from "../../Refferences/RefferencesFile";
 import {Calendar1} from "./Components/Calendar";
+import {Reservations} from "./Components/Reservations.js"  
 
 
 function ViewPost(){
     const [post, setPost] = useState(null);
     const [reserved, setReserved] = useState({value: false, status: "none"});
+    const [reservedHere, setReservedHere] = useState([]);
     const [profile, setProfile] = useState(null);
     const [service_profile, SetServiceProf] = useState(null);
     const urlParams = new URLSearchParams(window.location.search);  
     const [selectedDay, setSelectedDay] = useState(null);
     const id = urlParams.get("id");
+    const [postProfile, setPostProfile] = useState({});
+    const [debounce, setDebounce] = useState(false);
 
     const [details, setDetails]= useState({currentImgIndex: 0, calendarOpened: false, disabledDays: [], loggedOut: false});
 
@@ -52,6 +56,14 @@ function ViewPost(){
                             setReserved({...reserved, value: true, status: value.status})
                         }
                 })
+                var ReservationReq = [];
+                res.data.reservations.map((value) => {
+                    if (value.postId == id){
+                        ReservationReq.push(value)
+                    }
+                })
+                setReservedHere(ReservationReq);
+                
             })
     }, [])
 
@@ -187,6 +199,9 @@ function ViewPost(){
                                 {RenderImgNav()}
                             </div>
                         </div>
+
+
+                        {Reservations(reservedHere, setReservedHere, useEffect, postProfile, setPostProfile, debounce, setDebounce)}
                     </>
                     :<div>Loading</div>}
                 </div>
