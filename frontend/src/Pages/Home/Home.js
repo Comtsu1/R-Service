@@ -39,7 +39,6 @@ function MainContent(){
         })
         .then((res) => {
             const ResPosts = res.data.newest20Posts
-            console.log("ha", ResPosts)
             setPosts(ResPosts)
         })
         .catch((err) => {
@@ -60,7 +59,6 @@ function MainContent(){
   function renderPosts(){
     let imgList = posts.map((val) => {return val});
     if (desktop){
-      console.log("smaller")
       imgList.splice(6, 14);
     }else{
       imgList.splice(16, 4);

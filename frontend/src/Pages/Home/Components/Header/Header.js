@@ -5,6 +5,8 @@ import {Profile} from './Profile_Bar/Profile.js';
 import {Navigate} from "react-router-dom";
 import axios from "axios";
 import {BackendLink} from "../../../../Refferences/RefferencesFile"
+import notifIcon from "../../Icons/bell_white.png";
+import {Notifications} from "./Profile_Bar/Notifications.js"
 
 class SearchBar extends React.Component{
     constructor(props){
@@ -46,15 +48,17 @@ class UserUtility extends React.Component{
         this.state = {
             UserName: 'Signed in as',
             UserIcon: null,
-            Notifications: 0,
-            UnreadMsg: 0,
+            NotifIsOpen: false,
             ProfileIsOpen: false,
         }
     }
 
     OpenProfile= () => {
         this.setState({ProfileIsOpen: !this.state.ProfileIsOpen});
-        console.log(this.state.ProfileIsOpen);
+    }
+
+    openNotif= () =>{
+        this.setState({NotifIsOpen: !this.state.NotifIsOpen});
     }
 
     componentDidMount(){
@@ -69,6 +73,10 @@ class UserUtility extends React.Component{
         if(localStorage.getItem('token') !== null) {
 
             var ProfileVar = null;
+            var NotifVar = null;
+            if(this.state.NotifIsOpen){
+                NotifVar = <Notifications/>;
+            }
             if(this.state.ProfileIsOpen){
                 ProfileVar = <Profile/>;
             }else{
@@ -78,7 +86,10 @@ class UserUtility extends React.Component{
             return(
                 <>
                     <div className="UserUtil">
-                        <button id="Notifications" className="UserUtil-Group">N</button>
+                        <button id="Notifications" className="UserUtil-Group" onClick={this.openNotif}>
+                            <img src={notifIcon} alt="NotifIcon"/>
+                        </button>
+                        {NotifVar}
                     </div>
 
                     <div className="UserUtil">
