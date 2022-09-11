@@ -25,6 +25,43 @@ function Reservations(reservation, setReservations, useEffect, postProfile, setP
         )
     }
 
+    function acceptReq(e, value){
+        e.preventDefault()
+        axios.post(`${BackendLink}/reservation/accept`,{
+            _id: value._id
+        },
+        {
+            headers:{"x-auth-token": localStorage.getItem("token")}
+        })
+
+        const obj = reservation.map((val) =>
+        {
+            if(val._id == value._id){
+                val.status = "Accepted";
+            }
+            return val
+        });
+        setReservations(obj)
+    }
+
+    function declineReq(e, value){
+        axios.post(`${BackendLink}/reservation/decline`,{
+            _id: value._id
+        },
+        {
+            headers:{"x-auth-token": localStorage.getItem("token")}
+        })
+
+        const obj = reservation.map((val) =>
+        {
+            if(val._id == value._id){
+                val.status = "Declined";
+            }
+            return val
+        });
+        setReservations(obj)
+    }
+
 
     function renderReservations(){
         const listOfReservations = reservation.map(
@@ -58,11 +95,13 @@ function Reservations(reservation, setReservations, useEffect, postProfile, setP
                                     {value.status === "pending"?
                                     <>
                                         <button className="IncomingResBtn" id="Accept" 
-                                        // onClick={(e) => acceptReq(e, value)}
+                                        onClick={(e) => acceptReq(e, value)}
                                         
                                         >Accept</button>
                                         <div className="BtnDivider"></div>
-                                        <button className="IncomingResBtn" id="Decline">Decline</button>
+                                        <button className="IncomingResBtn" id="Decline"
+                                        onClick={(e) => declineReq(e, value)}
+                                        >Decline</button>
                                     </>
                                         :
                                         [value.status]
