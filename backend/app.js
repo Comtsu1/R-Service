@@ -1,3 +1,4 @@
+
 const express = require('express')
 const mongoose = require('mongoose')
 const app = express()
@@ -17,17 +18,24 @@ const cors = require('cors')
 const reservationSchema = require('./models/reservation')
 const MUUID = require('uuid-mongodb');
 const reservation = require('./routes/reservation')
+const http = require('http')
+const server = http.createServer(app)
+const { Server } = require('socket.io')
+const io = new Server(server)
+// const cors = require('cors')
+// app.use(cors());
+const messages = require('./routes/messages')
 
 // user cors, it doesnt work at all on firefox if not included
 app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
-
 app.use("/user", loginRegister)
 app.use("/", recoveryPass)
 app.use("/", addPost)
 app.use("/", userProfile)
 app.use("/", reservation)
+app.use("/", messages)
 
 app.get("/user/register", (req,res) => {
     res.sendFile(__dirname + '/public/index.html')
@@ -79,6 +87,29 @@ app.get("/post/:postId", async (req,res)=>{
     const postFromId = await post.find({postId : uuidToSearch})
     res.json({postToShow : postFromId})
 })
+amqp = require('amqplib/callback_api')
+
+amqp.connect('amqps://eptpufqg:OmaKZ0XISvvoAJBXDWcnnfyU1Gi73Scw@sparrow.rmq.cloudamqp.com/eptpufqg', (connError, connection) =>{
+        if(connError){
+            console.error('[AMQP]', connError.message);
+            throw connError
+        }
+        // Create Channel
+        connection.createChannel((channelError, channel) =>{
+            if(channelError){
+                throw channelError
+            }
+            // Assert Queue
+            const QUEUE = 'r-service'
+            channel.assertQueue(QUEUE)
+            //Receive Messages
+            channel.consume(QUEUE, (msg) => {
+                console.log(`Message Received: ${msg.content}`);
+            }, {
+                noAck: true
+            })
+        })
+    })
 
 app.get("/posts/lowtohigh", async (req,res)=>{
     const cheapestPosts = await post.find().sort({ price: 1 }).limit(20)
@@ -94,6 +125,24 @@ app.get("/posts/:search", async (req,res)=>{
     const search = req.params.search
     const matchingPosts = await post.find({ "name": { "$regex": search, "$options": "i" } })
     res.status(200).json({postsMatching : matchingPosts})
+})
+
+///messages
+app.get("/message", (req,res) => {
+    res.sendFile(__dirname + '/index.html')
+})
+
+io.on('connection', socket =>{
+    console.log('new user connection');
+    socket.on('dissconect', () =>{
+        console.log('user dissconected')
+    })
+    socket.on('chat message', (msg) =>{
+        console.log('message:' + msg )
+    })
+    socket.on('chat message', (msg) =>{
+        io.emit('chat message' , msg)
+    })
 })
 
 const startConnection = async() => {

@@ -29,7 +29,7 @@ function Profile() {
                         <ul className="Profile-Menu">
                             <li><a href="/create_post">Create Post</a></li>
                             <li><a href="/profile">Profile</a></li>
-                            <li><a>Messages</a></li>
+                            <li><a href="/chat">Messages</a></li>
                             <li className="Divider"></li>
                             <li onClick={Logout} className="Log-Out">Logout</li>
                             <li className="Divider"></li>
