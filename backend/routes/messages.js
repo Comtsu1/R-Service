@@ -35,9 +35,6 @@ router.get('/messages', verify, async (req, res) =>{
     let currentUserToken = JSON.parse(Buffer.from(token.split(".")[1], "base64url"));
     const currentUser = await user.findOne({ email: currentUserToken.userEmail})
 
-    console.log(currentUser)
-    console.log(req.query.sender)
-
     message.find({}, function(err,messages) {
         var messagesMap = []
 
@@ -59,20 +56,18 @@ router.post('/sendMessage', async (req, res)=>{
     const currentUser = await user.findOne({ email: currentUserToken.userEmail})
     const targetUser = await user.findOne({ userId: req.body.receiver})
     
-    console.log('Send message post from:', currentUser.firstName, 'to:', targetUser.firstName, 'message:', req.body.message)
     
     if (currentUser && targetUser){
         const newMessage = new message({
             id : uuid.v4(),
             sender: currentUser.userId,
             senderName: currentUser.email,
-            // senderName: "asd",
             receiver: targetUser.userId,
             message: req.body.message, 
             date : req.body.date,
         })
         newMessage.save()
-        amqp.connect('amqp://localhost', (connError, connection) =>{
+        amqp.connect('amqps://eptpufqg:OmaKZ0XISvvoAJBXDWcnnfyU1Gi73Scw@sparrow.rmq.cloudamqp.com/eptpufqg', (connError, connection) =>{
             if(connError){
                 throw connError
             }
@@ -81,7 +76,7 @@ router.post('/sendMessage', async (req, res)=>{
                 if(channelError){
                     throw channelError
                 }
-                // Assert Queue
+                // Assert Queuea
                 const QUEUE = 'r-service'
                 channel.assertQueue(QUEUE)
                 // Send message to queue

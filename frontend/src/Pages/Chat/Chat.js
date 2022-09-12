@@ -2,6 +2,8 @@ import axios from "axios";
 import React from 'react';
 import { ContactList } from './ContactList';
 import { MessagesPanel } from './MessagesPanel';
+
+
 export class Chat extends React.Component {
 
         fetchContactList() {
@@ -55,7 +57,7 @@ export class Chat extends React.Component {
                 currentContact: value.target.id
             }))
             console.log(value.target.id)
-            this.fetchChatWithContact(this.state.currentContact)
+            this.fetchChatWithContact(value.target.id)
         }
         render() {
             return (
