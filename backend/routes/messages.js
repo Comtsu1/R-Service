@@ -59,35 +59,41 @@ router.post('/sendMessage', async (req, res)=>{
     const currentUser = await user.findOne({ email: currentUserToken.userEmail})
     const targetUser = await user.findOne({ userId: req.body.receiver})
     
-    console.log('Send message post from:', currentUser.username, 'to:', targetUser.username, 'message:', req.body.message)
+    console.log('Send message post from:', currentUser.firstName, 'to:', targetUser.firstName, 'message:', req.body.message)
     
-    const newMessage = new message({
-        id : uuid.v4(),
-        sender: currentUser.userId,
-        senderName: currentUser.username,
-        receiver: targetUser.userId,
-        message: req.body.message,
-        date : req.body.date,
-    })
-    newMessage.save()
-    amqp.connect('amqp://localhost', (connError, connection) =>{
-        if(connError){
-            throw connError
-        }
-        // Create Channel
-        connection.createChannel((channelError, channel) =>{
-            if(channelError){
-                throw channelError
-            }
-            // Assert Queue
-            const QUEUE = 'r-service'
-            channel.assertQueue(QUEUE)
-            // Send message to queue
-            channel.sendToQueue(QUEUE, Buffer.from(req.body.message))
-            console.log(`Message send to ${QUEUE}`)
+    if (currentUser && targetUser){
+        const newMessage = new message({
+            id : uuid.v4(),
+            sender: currentUser.userId,
+            senderName: currentUser.email,
+            // senderName: "asd",
+            receiver: targetUser.userId,
+            message: req.body.message, 
+            date : req.body.date,
         })
-    })
-    res.status(200).json({msg : "Message sent"})
+        newMessage.save()
+        amqp.connect('amqp://localhost', (connError, connection) =>{
+            if(connError){
+                throw connError
+            }
+            // Create Channel
+            connection.createChannel((channelError, channel) =>{
+                if(channelError){
+                    throw channelError
+                }
+                // Assert Queue
+                const QUEUE = 'r-service'
+                channel.assertQueue(QUEUE)
+                // Send message to queue
+                channel.sendToQueue(QUEUE, Buffer.from(req.body.message))
+                console.log(`Message send to ${QUEUE}`)
+            })
+        })
+        res.status(200).json({msg : "Message sent"})
+
+    }else{
+        res.status(200).json({msg : "Ur sent to brazil"})
+    }
 })
 
 module.exports = router
