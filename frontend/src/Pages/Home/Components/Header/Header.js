@@ -78,7 +78,7 @@ class UserUtility extends React.Component{
                 NotifVar = <Notifications/>;
             }
             if(this.state.ProfileIsOpen){
-                ProfileVar = <Profile/>;
+                ProfileVar = <Profile icon={this.state.UserIcon} />;
             }else{
                 ProfileVar = null;
             }

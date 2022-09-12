@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 // class Profile extends React.Component{
 
-function Profile() {
+function Profile({icon}) {
     // temporary
 
     const nav = useNavigate();
@@ -17,12 +17,17 @@ function Profile() {
         nav('/');
         window.location.reload();
     }
+    console.log(icon)
 
         return(
             <aside className="Dropdown-Profile">
                 <div className="Profile-Menu-Holder">
                     <div className="Profile-Placeholder">
+                        {icon?
+                        <img src={icon} alt="profileIcon"/>
+                        :
                         <label className="Profile-Placeholder-Text">Placeholder Image</label>
+                        }
 
                     </div>
                     <div className="ProfileWrapper">
