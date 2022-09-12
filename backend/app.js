@@ -12,21 +12,18 @@ const recoveryPass = require('./routes/forgotPassword')
 const bcrypt = require('bcrypt')
 const addPost = require("./routes/postAdd")
 const userProfile = require('./routes/userProfileCreate')
-<<<<<<< HEAD
 const userProfileSchema = require('./models/userProfile')
 const post = require('./models/post')
 const cors = require('cors')
 const reservationSchema = require('./models/reservation')
 const MUUID = require('uuid-mongodb');
 const reservation = require('./routes/reservation')
-=======
 const http = require('http')
 const server = http.createServer(app)
 const { Server } = require('socket.io')
 const io = new Server(server)
 // const cors = require('cors')
 // app.use(cors());
->>>>>>> b9c97305f02f27e88d7ad7549077d5c8da58e123
 
 // user cors, it doesnt work at all on firefox if not included
 app.use(cors())
@@ -70,7 +67,6 @@ app.get("/profile/:id", async (req,res)=>{
     }
 })
 
-<<<<<<< HEAD
 app.get("/posts", async (req,res)=>{
     const newPosts = await post.find().sort({ $natural: -1 }).limit(20)
     res.status(200).json({newest20Posts : newPosts})
