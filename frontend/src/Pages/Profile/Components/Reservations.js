@@ -10,12 +10,10 @@ function Reservations(reservation, setReservations, postProfile, setPostProfile,
                 
                 const obj = postProfile;
                 setDebounce(true);
-                axios.get(`${BackendLink}/profile/${value.from}`).then(
+                axios.get(`${BackendLink}/post/${value.postId}`).then(
                     (res)=> {
                         obj[value._id] = {
-                            Fname: res.data.profile.firstName,
-                            Sname: res.data.profile.secondName,
-                            image: [res.data.profile.image? res.data.profile.image: ""],
+                            image: [res.data.postToShow[0].image[0]? res.data.postToShow[0].image[0]: ""],
                         }
 
                         setPostProfile(obj)
@@ -71,10 +69,17 @@ function Reservations(reservation, setReservations, postProfile, setPostProfile,
                         postProfile[value._id]?
                         <>
                             <div className="IncomingReservationWrapper">
-                                <label> From </label>
+                                <label> At </label>
                                 <div className="IncomingProfileWrapper">
                                     {postProfile[value._id].image[0]?
-                                        <img src={ postProfile[value._id].image} />
+                                        <>
+                                            <img src={ postProfile[value._id].image} />
+                                            <div className="Discover">
+                                                <a href={`/post?id=${value.postId}`}>
+                                                    <div className="DiscoverButton">Discover More</div>
+                                                </a>
+                                            </div>
+                                        </>
                                     :null
                                     }
                                     

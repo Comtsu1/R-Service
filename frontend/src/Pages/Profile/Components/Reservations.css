@@ -1,0 +1,127 @@
+.Profile  .Reservations{
+    margin-top: 60px;
+}
+
+.Profile  .ReservationCard{
+    background-color: rgb(202,221,225);
+    padding: 10px;
+    padding-left: 40px;
+    height: 100px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #43727a;
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.Profile  .ReservationCard .IncomingReservationWrapper{
+    display: flex;
+    align-items: center;
+}
+
+.Profile  .ReservationCard .IncomingProfileWrapper{
+    height: 90px;
+    width: 90px;
+    border-radius: 10px;
+    margin-right: 20px;
+    margin-left: 30px;
+    background-color: #f0f0f0;
+    overflow: hidden;
+    position: relative;
+}
+
+.Profile  .ReservationCard .IncomingProfileWrapper img{
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+
+.Profile  .ReservationCard .Name span{
+    margin-right: 10px;
+}
+
+.Profile  .ReservationCard .IncomingReservationWrapper.Btn{
+    width: 350px;
+    display: flex;
+    justify-content: center;
+}
+
+.Profile  .ReservationCard .IncomingReservationWrapper.Btn .BtnDivider{
+    box-sizing: border-box;
+    height: 80px;
+    background-color: #43727a;
+    border-width: 2px;
+    border-color: #43727a;
+    border-style: solid;
+    border-radius: 4px;
+    margin: 0px 50px;
+}
+
+.Profile  .ReservationCard .IncomingReservationWrapper.Btn .IncomingResBtn{
+    border: none;
+    background-color: transparent;
+    font-size: 24px;
+    font-weight: 600;
+    color: #43727a ;
+    padding: 0%;
+    transition: 200ms;
+}
+
+.Profile .ReservationCard .IncomingReservationWrapper.Btn .IncomingResBtn:hover{
+    cursor: pointer;
+}
+
+.Profile .ReservationCard .IncomingReservationWrapper.Btn .IncomingResBtn#Accept:hover{
+    color: #0099ff;
+}
+
+.Profile .ReservationCard .IncomingReservationWrapper.Btn .IncomingResBtn#Decline:hover{
+    color: #ff1e00;
+}
+
+
+.Profile .IncomingProfileWrapper .Discover{
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  transition: 200ms;
+}
+
+.Profile .IncomingProfileWrapper .Discover:hover{
+  background-color: rgba(0, 0, 0, 0.301);
+}
+
+
+.Profile .IncomingProfileWrapper a{
+  
+  text-decoration: none;
+}
+
+.Profile .IncomingProfileWrapper .DiscoverButton{
+  background-color: transparent;
+  padding: 5px;
+  border-color: rgba(255, 255, 255, 0);
+  border-radius: 1px;
+  border-width: 3px;
+  border-style: solid;
+  width: fit-content;
+  height: fit-content;
+  text-align: center;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0);
+  transition: 200ms;
+}
+
+.Profile .IncomingProfileWrapper .Discover:hover .DiscoverButton{
+  border-color: rgb(255, 255, 255);
+  color: rgb(255, 255, 255);
+}

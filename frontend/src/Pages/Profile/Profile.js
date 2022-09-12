@@ -6,6 +6,7 @@ import {Header} from "../Home/Components/Header/Header";
 import {Footer} from "../Home/Components/Footer";
 import {BackendLink} from "../../Refferences/RefferencesFile"
 import { useNavigate, Navigate } from 'react-router-dom';
+import { Reservations } from "./Components/Reservations";
 
 function Profile(){
 
@@ -14,6 +15,8 @@ function Profile(){
     const [PageDetails, setDetails] = useState({PostFocused: true, DescEditing: false, DescEdit: null})
     const [Services, setServices] = useState([])
     const [RentedServices, setRentedServices] = useState([])
+    const [deboucnce, setDebounce] = useState(false);
+    const [postProfile, setPostProfile] = useState({});
 
     
     function WordCount(str) { 
@@ -38,6 +41,7 @@ function Profile(){
         return desc
     }
 
+
     useEffect(() => {
         axios.get(`${BackendLink}/profile`, {
             headers:{"x-auth-token": localStorage.getItem("token")}
@@ -45,12 +49,35 @@ function Profile(){
             .then((res) => {
                 console.log("aa" + res.data.profile)
                 setProfile(res.data.profile);
-                setRentedServices(res.data.reservations);
+                setRentedServices(res.data.reservations_made);
                 setServices(res.data.posts);
                 if(res.data.profile.description === undefined){
                     setProfile(res.data.profile, {...profile, description: ""})
                 }
                 setDetails({...PageDetails, DescEdit: res.data.profile.description})
+                var ReservationReq = [];
+                res.data.reservations_made.map((value) =>{
+                        ReservationReq.push(value)
+                })
+                console.log(ReservationReq, "a  ")
+                setRentedServices(ReservationReq);
+
+                ReservationReq.map(
+                    (value) =>{
+                        
+                        const obj = postProfile;
+                        setDebounce(true);
+                        axios.get(`${BackendLink}/post/${value.postId}`).then(
+                            (res)=> {
+                                obj[value._id] = {
+                                    image: [res.data.postToShow[0].image[0]? res.data.postToShow[0].image[0]: ""],
+                                }
+        
+                                setPostProfile(obj)
+                            }
+                        )   
+                    }
+                )
             })
             .catch((err) => {
                 // TODO error handling
@@ -65,7 +92,6 @@ function Profile(){
     }
 
     function RenderServices(){
-        console.log(Services)
         if (Services.length === 0){
             return(
             <div className="NoService">
@@ -77,7 +103,6 @@ function Profile(){
         <>
             
                 <div key={key} className="Service">
-                        {console.log(value)}
                         <img className = "Image" src={value.image}></img>
                         <div className = "PostWrapper">
                             <a href={`/post?id=${value.postId}`}>
@@ -119,28 +144,10 @@ function Profile(){
                 <label>You have no rented services</label>
             </div>
             )
+        }else{
+            
+            return Reservations(RentedServices,setRentedServices, postProfile, setPostProfile, deboucnce, setDebounce)
         }
-        const list = RentedServices.map((value, key) => 
-        <>
-        {
-                <div key={key} className="Service">
-                    <img className = "Image" src={value.Imagine}></img>
-                    <div className = "PostWrapper">
-                        <label className="Title">{value.Nume}</label>
-                        
-                        <p className="Description">{value.Descriptie}</p>
-                    </div>
-                    <div className="Details">
-                        <span className="Cost">{value.Cost}$</span>
-                        <span className="Location">{value.Locatie}</span>
-                        <div>
-                            <div className="Fader"></div>
-                        </div>
-                    </div>
-                </div>   
-        }
-        </>)
-        return <>{list}</>
     }
 
     function OnDescEdit(event){
@@ -243,7 +250,6 @@ function Profile(){
                         <div className="ProfileBar">
                             <div className="ImgWrapper">
                                 <div  type="file" className="ChangeImage" >
-                                    {console.log(profile.image)}
                                     <img className={profile.image?"ProfileImage":"NoProfileImage"} src={profile.image?profile.image:NoProfileImg} alt="profileImage"/>
                                     <div className="ChangeImgLabel">
                                         <label htmlFor={"ChngImg"} >change<br/>image</label>
