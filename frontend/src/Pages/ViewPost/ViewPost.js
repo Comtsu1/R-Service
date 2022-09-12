@@ -201,7 +201,7 @@ function ViewPost(){
                         </div>
 
 
-                        {Reservations(reservedHere, setReservedHere, useEffect, postProfile, setPostProfile, debounce, setDebounce)}
+                        {Reservations(reservedHere, setReservedHere, postProfile, setPostProfile, debounce, setDebounce)}
                     </>
                     :<div>Loading</div>}
                 </div>

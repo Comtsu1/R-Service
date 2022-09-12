@@ -181,34 +181,40 @@ function PostForm() {
                 deleted_indexes = deleted_indexes+1
             }
         });
-        console.log(img_to_be_sent)
-        const payload = {
-            name: post.title,
-            description: post.description,
-            location: post.location,
-            phoneNum: post.mobile,
-            price: post.price,
-            author: "a mystery",
-            category: "to be added",
-            image: post.imgs
-        };
 
-        const config = {
-            headers:{
-                'x-auth-token': localStorage.getItem("token")
-            }
-        };
+        if(img_to_be_sent.length === 0){
+            alert("Insert an image for your app you twat")
+        }else{
 
-
-        axios.post("http://localhost:8080/add-post", payload, config)
-        .then((res) => {
-                alert("Post submitted");
-
-                console.log(res);
-            })
-            .catch((err) => {
-                console.log(err.response.error);
-            })
+            console.log(img_to_be_sent)
+            const payload = {
+                name: post.title,
+                description: post.description,
+                location: post.location,
+                phoneNum: post.mobile,
+                price: post.price,
+                author: "a mystery",
+                category: "to be added",
+                image: post.imgs
+            };
+    
+            const config = {
+                headers:{
+                    'x-auth-token': localStorage.getItem("token")
+                }
+            };
+    
+    
+            axios.post("http://localhost:8080/add-post", payload, config)
+            .then((res) => {
+                    alert("Post submitted");
+    
+                    console.log(res);
+                })
+                .catch((err) => {
+                    console.log(err.response.error);
+                })
+        }
 
     }
 
