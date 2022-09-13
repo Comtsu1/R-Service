@@ -2,6 +2,9 @@ import axios from "axios";
 import React from 'react';
 import { ContactList } from './ContactList';
 import { MessagesPanel } from './MessagesPanel';
+import "./Chat.css"
+import { Header } from "../Home/Components/Header/Header";
+import { Footer } from "../Home/Components/Footer";
 
 
 export class Chat extends React.Component {
@@ -61,15 +64,22 @@ export class Chat extends React.Component {
         }
         render() {
             return (
-                <div className="chat-app">
-                    <div>Current chat = {this.state.currentContact}</div>
-                    <ContactList 
-                        contacts={this.state.contacts}
-                        onContactChanged={this.onContactChanged}></ContactList>
-                    <MessagesPanel
-                        currentContact={this.state.currentContact}
-                        messages={this.state.currentMessages}>
-                    </MessagesPanel>
+                <div className="Chat">
+                    <Header/>
+                    <div className="Main-Content">
+                        <ContactList 
+                            contacts={this.state.contacts}
+                            onContactChanged={this.onContactChanged}>
+                        </ContactList>
+                        <div className="Main-Chat">
+                            <div className="CurrentChat">Current chat = {this.state.currentContact}</div>
+                            <MessagesPanel
+                                currentContact={this.state.currentContact}
+                                messages={this.state.currentMessages}>
+                            </MessagesPanel>
+                        </div>
+                    </div>
+                    <Footer/>
                 </div>
             );
         }
