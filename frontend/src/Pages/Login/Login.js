@@ -24,7 +24,6 @@ function Login(){
           password: details.password
         };
     
-        // axios.post('http://localhost:8080/user/login', payload)
         axios.post(`${BackendLink}/user/login`, payload)
           .then((res) => ManageResponse(res))
           .catch((err) => {

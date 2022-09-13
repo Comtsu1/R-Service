@@ -26,7 +26,6 @@ export class Chat extends React.Component {
         }
 
         fetchChatWithContact(contactId) {
-            // axios.get("http://localhost:8080/messages", {
             axios.get(`${BackendLink}/messages`, {
                 headers:{"x-auth-token": localStorage.getItem("token")},
                 params: {sender: contactId}

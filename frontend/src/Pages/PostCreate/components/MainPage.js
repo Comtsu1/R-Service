@@ -195,7 +195,6 @@ function PostForm() {
             };
     
     
-            // axios.post("http://localhost:8080/add-post", payload, config)
             axios.post(`${BackendLink}/add-post`, payload, config)
             .then((res) => {
                     alert("Post submitted");
