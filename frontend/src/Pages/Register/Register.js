@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import {ProfileForm} from './components/CreateProfileForm'
 import {Footer} from "../Home/Components/Footer"
+import { BackendLink } from '../../Refferences/RefferencesFile';
 
 function Register(){
 
@@ -11,7 +12,7 @@ function Register(){
       const [error, setError] = useState("");
 
       const SendRegisterDB = (details) => {
-        axios.post("http://localhost:8080/user/register", details)
+        axios.post(`${BackendLink}/user/register`, details)
             .then(res => {ManageResponse(res, details);})
             .catch(err => {
               // clientside error

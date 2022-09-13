@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Routes, Navigate, useNavigate } from 'react-route
 import axios from "axios";
 import {Header} from "../../Home/Components/Header/Header";
 import {Footer} from "../../Home/Components/Footer";
+import { BackendLink } from "../../../Refferences/RefferencesFile";
 
 
 class PostCreatePage extends React.Component{
@@ -34,22 +35,11 @@ export {PostCreatePage}
 
 // class PostForm extends React.Component{
 function PostForm() {
-   
+    
     const [post, setPost] = useState({imgs: [], title: "", description: "", location: "Alba", mobile: "", price: NaN})
     let numOfImgs = post.imgs.length;
+    const nav = useNavigate();
 
-    // constructor(props){
-        // super(props)
-        // this.state = {
-            // imgs: [],
-            // title: "",
-            // description: "",
-            // location: "",
-            // mobile: "",
-            // price: 0,
-        // }
-        // this.handleSubmit = this.handleSubmit.bind(this);
-    // }
 
 
     const ShowImgs = () => {
@@ -205,7 +195,8 @@ function PostForm() {
             };
     
     
-            axios.post("http://localhost:8080/add-post", payload, config)
+            // axios.post("http://localhost:8080/add-post", payload, config)
+            axios.post(`${BackendLink}/add-post`, payload, config)
             .then((res) => {
                     alert("Post submitted");
     

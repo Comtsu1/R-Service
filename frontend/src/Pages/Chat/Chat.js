@@ -5,12 +5,13 @@ import { MessagesPanel } from './MessagesPanel';
 import "./Chat.css"
 import { Header } from "../Home/Components/Header/Header";
 import { Footer } from "../Home/Components/Footer";
+import { BackendLink } from "../../Refferences/RefferencesFile";
 
 
 export class Chat extends React.Component {
 
         fetchContactList() {
-            axios.get("http://localhost:8080/contacts", {
+            axios.get(`${BackendLink}/contacts`, {
                 headers:{"x-auth-token": localStorage.getItem("token")}
                 })
                 .then((res) => {
@@ -25,7 +26,8 @@ export class Chat extends React.Component {
         }
 
         fetchChatWithContact(contactId) {
-            axios.get("http://localhost:8080/messages", {
+            // axios.get("http://localhost:8080/messages", {
+            axios.get(`${BackendLink}/messages`, {
                 headers:{"x-auth-token": localStorage.getItem("token")},
                 params: {sender: contactId}
                 })

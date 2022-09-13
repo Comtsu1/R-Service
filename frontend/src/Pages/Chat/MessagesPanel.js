@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from "axios";
 import { Message } from './Message';
+import { BackendLink } from '../../Refferences/RefferencesFile';
 export class MessagesPanel extends React.Component {
 
     constructor(props) {
@@ -17,7 +18,7 @@ export class MessagesPanel extends React.Component {
         let data = {receiver: this.props.currentContact,
             message: this.state.inputValue,
             date: Date.now()}
-        axios.post("http://localhost:8080/sendMessage", data, {
+        axios.post(`${BackendLink}/sendMessage`, data, {
             headers:{"x-auth-token": localStorage.getItem("token")}})
             .then((res) => {
                 console.log("message sent", res)

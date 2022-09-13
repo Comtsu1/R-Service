@@ -9,6 +9,7 @@ import logo from './Icons/RServiceLogo_transparent.png';
 import FocusImage from './Icons/ryan-stone-OlxJVn9fxz4-unsplash.jpg';
 
 import {Post} from './Components/Post';
+import { BackendLink } from '../../Refferences/RefferencesFile';
 
 function Home() {
   return (
@@ -34,7 +35,8 @@ function MainContent(){
 
   
   useEffect(() => {
-    axios.get("http://localhost:8080/posts", {
+    // axios.get("http://localhost:8080/posts", {
+    axios.get(`${BackendLink}/posts`, {
         headers:{"x-auth-token": localStorage.getItem("token")}
         })
         .then((res) => {
