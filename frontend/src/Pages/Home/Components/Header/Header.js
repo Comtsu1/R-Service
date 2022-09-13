@@ -8,11 +8,14 @@ import {BackendLink} from "../../../../Refferences/RefferencesFile"
 import notifIcon from "../../Icons/bell_white.png";
 import {Notifications} from "./Profile_Bar/Notifications.js"
 
+
 class SearchBar extends React.Component{
     constructor(props){
         super(props);
         this.state = {
             value:'',
+            redirect: false,
+            first: false,
         }
 
         this.handleChange = this.handleChange.bind(this);
@@ -25,18 +28,42 @@ class SearchBar extends React.Component{
     }
 
     handleSubmit(event) {
+        const url = window.location.href.split('?')[0]
+        console.log(url.search("search"))
         // search function here
-        alert('a search has been made \n'+ this.state.value)
-        event.preventDefault();
+        event.preventDefault()
+        // if(url.search("search") === -1){
+            if(this.state.first == true){
+                // return <Navigate to={`/search?srch=${this.state.value}`} replace={true}/> 
+                // this.setState({redirect: true})
+                window.location.replace(`/search?srch=${this.state.value}`)
+                // window.location.reload()
+            }
+        // }
     }
 
 
-    render(){
+    componentDidMount(){
+        if(!this.state.first){
+            this.setState({first: true})
+        }
+    }
 
+    render(){
+        
+        
         return(
-            <form onSubmit = {this.handleSubmit}>
-                <input className="searchbarInput" type="text" value={this.state.value} onChange={this.handleChange} placeholder = "search" onSubmit={this.handleSubmit}/>
-            </form>
+            <>
+                <form onSubmit = {this.handleSubmit}>
+                    <input className="searchbarInput" type="text" value={this.state.value} onChange={this.handleChange} placeholder = "search" onSubmit={this.handleSubmit}/>
+                </form>
+                { 
+                
+                    this.state.redirect && <Navigate to={`/search?srch=${this.state.value}`} replace={true}/>   
+                
+
+                }
+            </>
         );
     }
 }

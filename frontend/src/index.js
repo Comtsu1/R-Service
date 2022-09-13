@@ -12,6 +12,7 @@ import { Reset } from './Pages/Reset Password/Register';
 import { Profile } from './Pages/Profile/Profile';
 import { ViewPost } from './Pages/ViewPost/ViewPost';
 import { Chat } from './Pages/Chat/Chat';
+import { Search } from './Pages/Search/Search';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -27,6 +28,7 @@ root.render(
         <Route path='post/*' element={<ViewPost/>}/>
         <Route path='set_profile' element={<CreateProfile/>}/>
         <Route path='chat' element={<Chat/>}/>
+        <Route path='search/*' element={<Search/>}/>
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
