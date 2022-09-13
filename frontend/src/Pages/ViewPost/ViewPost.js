@@ -25,10 +25,10 @@ function ViewPost(){
 
     const {current: deboucnce} = useRef(["one", "two"]);
     function preloadImage(url)
-{
-    var img=new Image();
-    img.src=url;
-}
+    {
+        var img=new Image();
+        img.src=url;
+    }
 
     useEffect(() => {
         axios.get(`${BackendLink}/post/${id}`, {

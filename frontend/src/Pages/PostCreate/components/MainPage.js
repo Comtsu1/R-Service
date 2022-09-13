@@ -198,10 +198,10 @@ function PostForm() {
             axios.post(`${BackendLink}/add-post`, payload, config)
             .then((res) => {
                     alert("Post submitted");
-    
                     console.log(res);
                 })
                 .catch((err) => {
+                    alert(err.response.error);
                     console.log(err.response.error);
                 })
         }
