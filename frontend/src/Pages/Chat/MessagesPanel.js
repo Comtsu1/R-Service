@@ -34,9 +34,12 @@ export class MessagesPanel extends React.Component {
     }
 
     sendMessage = () => {
-        console.log('Sending message:', this.state.inputValue)
-        this.sendMessageToCloud();
-        this.reset()
+        console.log(this.props.currentContact !== "NONE")
+        if(this.props.currentContact!== "NONE" && this.state.inputValue !== ""){
+            console.log('Sending message:', this.state.inputValue)
+            this.sendMessageToCloud();
+            this.reset()
+        }
     }
 
     updateInputValue(evt) {

@@ -1,0 +1,104 @@
+
+.Chat .Main-Content{
+    display: flex;
+    padding: 10px;
+}
+
+.Chat .ContactList{
+    margin-top: 20px;
+    margin-left: 10px;
+    height: calc(100vh - 150px);
+    width: 300px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    padding-top: 10px;
+}
+
+.Chat .Contact button{
+    background-color: #43727a;
+    box-sizing: content-box;
+    border-radius: 5px;
+    border: none;
+    width: 250px;
+    height: 40px;
+    margin-bottom: 10px;
+    padding: 0;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+
+.Chat .Main-Chat{
+    padding: 15px;
+    width: calc(100vw - 360px);
+}
+
+.Chat .messages-panel{
+    height: calc(100% - 90px);
+    box-sizing: border-box;
+    position: relative;
+}
+
+.Chat .CurrentChat{
+    height: 70px;
+    padding: 5px;
+    background-color: #538e99;
+    border-radius: 10px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    width: 100%;
+    font-size: 24px;
+    color: #fff;
+    font-weight: 700;
+}
+
+
+.Chat .messages-input{
+    position: absolute;
+    bottom: 0;
+    padding: 5px;
+    width: 100%;
+    background-color: #43727a;
+    display: flex;
+    border-radius: 10px;
+    align-items: center;
+}
+
+
+.Chat .messages-input input {
+    height: 30px;
+    width: calc(100% - 1px);
+    border-radius: 8px;
+    border-color: transparent;
+    transition: 400ms;
+    margin-right: 20px;
+}
+
+.Chat .messages-input input:focus{
+    outline: none;
+    background-color: #f0f0f0;
+    border-color: transparent;
+    border-style: solid;
+}
+
+
+.Chat .messages-input button{
+    margin-right: 10px;
+    height: 30px;
+    background-color: transparent;
+    color: #87d1df;
+    font-size: 18px;
+    font-weight: 600;
+    border: none;
+    transition: 200ms;
+}
+
+.Chat .messages-input button:hover{
+    color: #fff;
+}
+
+.Chat .message-item{
+    margin-bottom: 10px;
+}

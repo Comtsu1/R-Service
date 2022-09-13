@@ -14,7 +14,7 @@ export class ContactList extends React.Component {
             list = this.props.contacts.map(c => <Contact key={c.sender} id={c.sender} name={c.senderName} onClick={this.props.onContactChanged}></Contact>);
         }
         return (
-            <div>
+            <div className='ContactList'>
                 {list}
             </div>
             );

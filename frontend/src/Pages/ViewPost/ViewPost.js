@@ -190,7 +190,9 @@ function ViewPost(){
                                             </>
                                         }
                                         </div>
+                                        {profile === service_profile.user?null:
                                         <button className="button" id="Contact">Contact Me</button>
+                                        }
                                     </div>
                                 </div>
                             </div>
