@@ -74,7 +74,10 @@
 }
 
 .Profile .ProfileBar .ProfileImage{
-    aspect-ratio: 1/1;
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+    /* aspect-ratio: 1/1; */
     border-radius: 100%;
     max-height: 100px;
     min-height: 100%;

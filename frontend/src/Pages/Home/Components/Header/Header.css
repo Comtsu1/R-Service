@@ -112,8 +112,12 @@
 }
 
 .Main-Header #Profile img{
-  height: 40px;
-  aspect-ratio: 1/1;
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+  /* clip-path: circle(); */
+  /* height: 40px; */
+  /* aspect-ratio: 1/1; */
   margin: 0;
 }
 

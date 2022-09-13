@@ -1,3 +1,4 @@
+import axios from "axios";
 
 const BackendLink = "http://localhost:8080";
 
@@ -7,7 +8,7 @@ const checkToken = async () => {
     }
     axios.get(`${BackendLink}/profile`, config)
         .catch((err) => {
-            nav('/');
+            // handle rejection
         })
 };
 
