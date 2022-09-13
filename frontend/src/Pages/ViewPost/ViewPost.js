@@ -31,6 +31,10 @@ function ViewPost(){
     }
 
     useEffect(() => {
+        axios.get(`${BackendLink}/get-posts`, {
+            headers:{'x-auth-token': localStorage.getItem('token')}
+        }).then((res) => console.log(res))
+
         axios.get(`${BackendLink}/post/${id}`, {
             headers:{"x-auth-token": localStorage.getItem("token")}
             })

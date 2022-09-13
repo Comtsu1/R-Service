@@ -18,6 +18,7 @@ const cors = require('cors')
 const reservationSchema = require('./models/reservation')
 const MUUID = require('uuid-mongodb');
 const reservation = require('./routes/reservation')
+const profileGet = require('./routes/profileGet')
 const http = require('http')
 const server = http.createServer(app)
 const { Server } = require('socket.io')
@@ -36,6 +37,7 @@ app.use("/", addPost)
 app.use("/", userProfile)
 app.use("/", reservation)
 app.use("/", messages)
+app.use("/", profileGet)
 
 app.get("/user/register", (req,res) => {
     res.sendFile(__dirname + '/public/index.html')

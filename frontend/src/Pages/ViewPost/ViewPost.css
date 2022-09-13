@@ -61,6 +61,7 @@
 
 /* sp3 */
 .ViewPost #sp3 .AuthorImg{
+    object-fit: cover;
     height: 60px;
     aspect-ratio: 1/1;
     border-radius: 100%;
