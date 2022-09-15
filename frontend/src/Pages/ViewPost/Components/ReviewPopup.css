@@ -1,0 +1,17 @@
+.Popup { 
+    position: relative;
+    height: 100px;
+    width: 100%;
+    left: 50%;
+    right: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.Popup .star-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.checked {
+    color: orange;
+}

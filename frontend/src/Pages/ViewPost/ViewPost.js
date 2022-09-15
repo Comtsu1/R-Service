@@ -7,7 +7,7 @@ import axios from "axios";
 import {BackendLink} from "../../Refferences/RefferencesFile";
 import {Calendar1} from "./Components/Calendar";
 import {Reservations} from "./Components/Reservations.js"  
-
+import {ReviewPopup} from "./Components/ReviewPopup"
 
 function ViewPost(){
     const [post, setPost] = useState(null);
@@ -22,6 +22,8 @@ function ViewPost(){
     const [debounce, setDebounce] = useState(false);
 
     const [details, setDetails]= useState({currentImgIndex: 0, calendarOpened: false, disabledDays: [], loggedOut: false});
+
+    const [rating, setRating] = useState(null);
 
     const {current: deboucnce} = useRef(["one", "two"]);
     function preloadImage(url)
@@ -92,6 +94,11 @@ function ViewPost(){
         }else{
             setDetails({...details, loggedOut: true})
         }
+    }
+
+    function giveRating(event){
+        event.preventDefault();
+        ReviewPopup();
     }
 
     function RenderImgNav(){
@@ -191,7 +198,7 @@ function ViewPost(){
                                         }
                                         </div>
                                         {profile === service_profile.user?null:
-                                        <button className="button" id="Contact">Contact Me</button>
+                                        <button className="button" id="Contact" onClick={e => giveRating()}>Contact Me</button>
                                         }
                                     </div>
                                 </div>
@@ -208,9 +215,8 @@ function ViewPost(){
                     :<div>Loading</div>}
                 </div>
             </div>
-
             <Footer/>
-
+            <ReviewPopup />
         </div>
     )
 }
