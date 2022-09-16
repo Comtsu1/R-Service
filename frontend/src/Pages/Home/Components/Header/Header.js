@@ -165,7 +165,7 @@ class Header extends React.Component{
 
     render(){
         return(
-            <div className='Main-Header'>
+            <div className={this.props.className? this.props.className:'Main-Header'}>
                 <div className="ie Left">
                     <div id = 'ie7'>
                         <div id='topBannerLogo-placeholder' onClick={this.nav("/")}>

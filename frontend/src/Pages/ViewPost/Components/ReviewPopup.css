@@ -1,17 +1,146 @@
-.Popup { 
-    position: relative;
-    height: 100px;
-    width: 100%;
-    left: 50%;
-    right: 50%;
-    transform: translate(-50%, -50%);
+.Popup-Background {
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.200);
+    /* filter: blur(3px); */
 }
 
-.Popup .star-wrapper {
+.ViewPost.blur{
+    filter: blur(3px);
+}
+
+.Main-Footer {
+    bottom: 0;
+    position: fixed;
+} 
+
+.Popup {
+    /* filter: blur(3px); */
+    background-color: #43727a;
+ 
+    border-radius: 6px; 
+    position: absolute;
+ 
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    text-align: center;
+
+    padding: 0 30px 30px;
+}
+
+.Popup:before{
+    transform: scale(0.1);
+}
+
+.rating-text {
+    color: white;
+    font-size: 40px; 
     display: flex;
     justify-content: center;
 }
 
-.checked {
-    color: orange;
+.star-wrapper {
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+    position: relative;
+    direction: rtl;
+
+    justify-content: space-between;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.star-wrapper .fa {
+    font-size: 4em;
+    text-decoration: none;
+    color: white;
+    
+    transition: all 0.5s;
+}
+
+.star-wrapper .fa:hover ~ .fa{
+    color: gold;
+    transform: scale(1.2);
+    transform: rotate(10deg);
+}
+
+.fa:hover {
+    color: gold;
+    transform: scale(1.2);
+    transform: rotate(10deg);
+    cursor: pointer;
+}
+
+.fa.fa-star.focused {
+    color: gold;
+    transform: rotate(10deg);
+}
+
+.submit-button {
+    
+    cursor: pointer;
+
+    font-size: 20px;
+    font-weight: 600;
+
+    padding-left: 8px;
+    padding-right: 8px;
+    
+    margin-top: 5px;
+
+    background-color: white;
+    color: #43727a;
+    border-color: white;
+
+    /* background: none; */
+
+    border-width: 2px;
+    border-radius: 5px;
+    border-style: solid;
+
+    float: right;
+    transition: .4s;
+}
+
+.submit-button:hover{
+    color: rgb(255,204,51);
+    border-color: gold;
+    background-color: #43727a;
+}
+
+.cancel-button {
+    cursor: pointer;
+
+    font-size: 20px;
+    font-weight: 600;
+
+    padding-left: 8px;
+    padding-right: 8px;
+    
+    margin-top: 5px;
+
+    background-color: white;
+    color: #43727a;
+    border-color: white;
+
+    /* background: none; */
+
+    border-width: 2px;
+    border-radius: 5px;
+    border-style: solid;
+
+    float: left;
+    transition: .4s;
+}
+
+.cancel-button:hover{
+    color: #FF033E;
+    border-color: #FF033E;
+    background-color: #43727a;
 }

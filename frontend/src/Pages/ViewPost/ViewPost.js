@@ -23,7 +23,7 @@ function ViewPost(){
 
     const [details, setDetails]= useState({currentImgIndex: 0, calendarOpened: false, disabledDays: [], loggedOut: false});
 
-    const [rating, setRating] = useState(null);
+    const [popup, setPopup] = useState(false);
 
     const {current: deboucnce} = useRef(["one", "two"]);
     function preloadImage(url)
@@ -96,11 +96,6 @@ function ViewPost(){
         }
     }
 
-    function giveRating(event){
-        event.preventDefault();
-        ReviewPopup();
-    }
-
     function RenderImgNav(){
         if(post.image.length>1){
             return(
@@ -132,11 +127,21 @@ function ViewPost(){
         })
     }
 
+    const giveRating = (e) => {
+        e.preventDefault();
+        setPopup(true);
+    }
+
+    const ClosePopup = () => {
+        setPopup(false);
+        console.log("fuck you");
+    }
 
     // rendering
     return(
-        <div className="ViewPost">
-            <Header/>
+        <>
+        <div className={popup? "ViewPost blur" : "ViewPost"}>
+            <Header />
             <div className="Main-Content">
                 <div className="Wrapper">
                     {post /*&& profile */&& service_profile? 
@@ -198,7 +203,7 @@ function ViewPost(){
                                         }
                                         </div>
                                         {profile === service_profile.user?null:
-                                        <button className="button" id="Contact" onClick={e => giveRating()}>Contact Me</button>
+                                        <button className="button" id="Contact" onClick={e => giveRating(e)}>Contact Me</button>
                                         }
                                     </div>
                                 </div>
@@ -215,10 +220,12 @@ function ViewPost(){
                     :<div>Loading</div>}
                 </div>
             </div>
-            <Footer/>
-            <ReviewPopup />
+            <Footer />
         </div>
+        {popup ? <ReviewPopup Close={ClosePopup} /> : null}
+        </>
     )
+
 }
 
 

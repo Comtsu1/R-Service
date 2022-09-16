@@ -6,7 +6,7 @@ class Footer extends React.Component{
         return(
             <>
                 <div className="FooterHitbox"></div>
-                <div className="Main-Footer"></div>
+                <div className={this.props.className? this.props.className:"Main-Footer"}></div>
             </>
         )
     }
