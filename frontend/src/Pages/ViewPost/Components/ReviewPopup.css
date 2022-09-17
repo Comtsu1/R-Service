@@ -7,11 +7,15 @@
     /* filter: blur(3px); */
 }
 
+.ViewPost{
+    min-height: 100vh;
+}
+
 .ViewPost.blur{
     filter: blur(3px);
 }
 
-.Main-Footer {
+.ViewPost.blur .Main-Footer {
     bottom: 0;
     position: fixed;
 } 
