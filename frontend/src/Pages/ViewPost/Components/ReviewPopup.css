@@ -55,12 +55,13 @@
     position: relative;
     direction: rtl;
 
-    justify-content: space-between;
-    margin-left: 5px;
-    margin-right: 5px;
+    display: flex;
+    justify-content: center;
 }
 
 .star-wrapper .fa {
+    margin: 4px;
+
     font-size: 4em;
     text-decoration: none;
     color: white;
@@ -83,7 +84,7 @@
 
 .fa.fa-star.focused {
     color: gold;
-    transform: rotate(10deg);
+    /* transform: rotate(10deg); */
 }
 
 .submit-button {
