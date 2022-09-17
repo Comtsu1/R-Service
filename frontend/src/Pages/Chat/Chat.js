@@ -5,7 +5,7 @@ import { MessagesPanel } from './MessagesPanel';
 import "./Chat.css"
 import { Header } from "../Home/Components/Header/Header";
 import { Footer } from "../Home/Components/Footer";
-import { BackendLink } from "../../Refferences/RefferencesFile";
+import { BackendLink, checkToken } from "../../Refferences/RefferencesFile";
 
 
 export class Chat extends React.Component {
