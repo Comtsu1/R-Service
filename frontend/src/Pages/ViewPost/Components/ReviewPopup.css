@@ -109,10 +109,11 @@
     border-style: solid;
 
     float: right;
-    transition: .4s;
+    transition: .2s;
 }
 
 .submit-button:hover{
+    transition: 0.4s;
     color: rgb(255,204,51);
     border-color: gold;
     background-color: #43727a;
@@ -140,10 +141,12 @@
     border-style: solid;
 
     float: left;
-    transition: .4s;
+    transition: .2s;
+
 }
 
 .cancel-button:hover{
+    transition: .4s;
     color: #FF033E;
     border-color: #FF033E;
     background-color: #43727a;
