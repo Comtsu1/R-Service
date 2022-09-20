@@ -1,11 +1,55 @@
 import React, {useState} from "react";
 import './RegisterForm.css';
+import visibility from "../../Login/Icons/visibility.png";
+import unVisibility from "../../Login/Icons/visibility_slash.png";
 
 
 
 
 function RegisterForm({Register, error}) {
-    const [details, setDetails] = useState({firstName: "", secondName: "", email: "", password: "", confirmPassword: "", passwordsMatching: false});
+    const [details, setDetails] = useState({firstName: "", secondName: "", email: "", password: "", confirmPassword: "", passwordsMatching: false,
+PasswordTextIsShown: false, PasswordTextIsShown2: false});
+
+    function toggleText() {
+		setDetails({ ...details, PasswordTextIsShown: !details.PasswordTextIsShown })
+	}
+    function toggleText2() {
+		setDetails({ ...details, PasswordTextIsShown2: !details.PasswordTextIsShown2 })
+	}
+
+    function renderToggleButton() {
+		if (details.password) {
+			return (
+				<button
+					id="toggleText"
+					type="button"
+					onClick={toggleText2}
+				>
+					<img src={details.PasswordTextIsShown ? unVisibility : visibility}
+						className="eye-image"
+						alt={details.PasswordTextIsShown ? "eye-slashed" : "eye"}
+					></img>
+				</button>
+			);
+		}
+	}
+
+    function renderToggleButton2() {
+		if (details.confirmPassword) {
+			return (
+				<button
+					id="toggleText"
+					type="button"
+					onClick={toggleText}
+				>
+					<img src={details.PasswordTextIsShown ? unVisibility : visibility}
+						className="eye-image"
+						alt={details.PasswordTextIsShown ? "eye-slashed" : "eye"}
+					></img>
+				</button>
+			);
+		}
+	}
 
     const submitHandler = e => {
         e.preventDefault();
@@ -26,12 +70,28 @@ function RegisterForm({Register, error}) {
         }
     }
 
-    function comparePasswords(value){
-        if (details.password === value) {
-            return("Passwords matching", true)
+    function comparePasswords(value, modifier=false){
+        if(modifier){
+            if (details.confirmPassword === value) {
+                return("Passwords matching", true)
+            }else{
+                return("Passwords are not matching!", false)
+            }
         }else{
-            return("Passwords are not matching!", false)
+            if(details.password === value) {
+                return("Passwords matching", true)
+            }else{
+                return("Passwords are not matching!", false)
+            }
         }
+    }
+
+    function confirmPasswordChangeHandler2(event){
+        var resultText, result = comparePasswords(event.target.value, true)
+        setDetails({...details, 
+            password: event.target.value,
+            passwordsMatching: result
+        });
     }
 
     function confirmPasswordChangeHandler(event){
@@ -72,12 +132,10 @@ function RegisterForm({Register, error}) {
                             type='password'
                             name='password' 
                             id='password' 
-                            onChange={e => setDetails({
-                                ...details, 
-                                password: e.target.value})
-                            } 
+                            onChange={e => confirmPasswordChangeHandler2(e)} 
                             value={details.password}>
                             </input>
+                            {renderToggleButton()}
                         </div>
                         <div className="form-group confirm-password">
                             <label htmlFor="confirm-password">Confirm password:</label>
@@ -96,8 +154,9 @@ function RegisterForm({Register, error}) {
                                 </label>:
                                 <label id='Passwords-mismatching'>
                                 Passwords are not matching!
-                            </label>
+                                </label>
                              : null}
+                             {renderToggleButton2()}
                         </div>
                         <input type={'submit'} value="REGISTER" />
                     </div>
