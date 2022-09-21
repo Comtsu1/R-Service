@@ -2,6 +2,7 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const app = express()
+const cors = require('cors')
 const dbConnection = require('./db/connection')
 require('dotenv').config()
 const loginRegister = require('./routes/loginRegister')
@@ -14,19 +15,21 @@ const addPost = require("./routes/postAdd")
 const userProfile = require('./routes/userProfileCreate')
 const userProfileSchema = require('./models/userProfile')
 const post = require('./models/post')
-const cors = require('cors')
 const reservationSchema = require('./models/reservation')
 const MUUID = require('uuid-mongodb');
 const reservation = require('./routes/reservation')
-const http = require('http')
-const server = http.createServer(app)
-const { Server } = require('socket.io')
-const io = new Server(server)
-// const cors = require('cors')
-// app.use(cors());
-const messages = require('./routes/messages')
+const http = require('http').Server(app)
 const { profile } = require('console')
 const reviewSchema = require('./models/review')
+
+const socketIO = require('socket.io')(http, {
+    cors: {
+        origin: "http://localhost:3000"
+    }
+});
+
+const messages = require('./routes/messages')(socketIO)
+
 
 // user cors, it doesnt work at all on firefox if not included
 app.use(cors())
@@ -169,23 +172,11 @@ app.get("/message", (req,res) => {
     res.sendFile(__dirname + '/index.html')
 })
 
-io.on('connection', socket =>{
-    console.log('new user connection');
-    socket.on('dissconect', () =>{
-        console.log('user dissconected')
-    })
-    socket.on('chat message', (msg) =>{
-        console.log('message:' + msg )
-    })
-    socket.on('chat message', (msg) =>{
-        io.emit('chat message' , msg)
-    })
-})
 
 const startConnection = async() => {
     try {
         await dbConnection("mongodb+srv://leo:mongo123@r-services.ulww9.mongodb.net/INFO?retryWrites=true&w=majority")
-        app.listen(port, () => {
+        http.listen(port, () => {
             console.log(`Listening on port ${port}`);
         })
     } catch (error) {
