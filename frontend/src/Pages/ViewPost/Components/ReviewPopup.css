@@ -152,3 +152,18 @@
     border-color: #FF033E;
     background-color: #43727a;
 }
+
+
+.comment-wrapper{
+    display: flex;
+    justify-content: center;
+}
+
+.comment-wrapper .comment-area {
+    resize: none;
+    width: calc(50%);
+    /* background-color: #27272c; */
+    font-size: 20px;
+    border: 2px solid;
+    border-radius: 4px;
+}
