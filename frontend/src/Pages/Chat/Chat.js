@@ -6,7 +6,8 @@ import "./Chat.css"
 import { Header } from "../Home/Components/Header/Header";
 import { Footer } from "../Home/Components/Footer";
 import { BackendLink, checkToken } from "../../Refferences/RefferencesFile";
-
+import socketIO from 'socket.io-client';
+const socket = socketIO.connect(`${BackendLink}`);
 
 export class Chat extends React.Component {
 
@@ -17,8 +18,11 @@ export class Chat extends React.Component {
                 .then((res) => {
                     this.setState(prevState => ({
                         ...prevState,
-                        contacts: res.data
+                        contacts: res.data.users,
+                        currentUser: res.data.currentUser
                     }))
+                    socket.emit('newUser', {'userId': this.state.currentUser.userId})
+                    console.log(res.data.currentUser)
                 })
                 .catch((err) => {
                     // TODO error handling
@@ -44,6 +48,35 @@ export class Chat extends React.Component {
 
         componentDidMount() {
             this.fetchContactList();
+            socket.on('message', (message) => {
+                this.handleIncomingMessage(message)
+            })
+        }
+
+        handleIncomingMessage(message) {
+            console.log(this.state.currentUser.userId, this.state.currentContact)
+            if ((message.sender == this.state.currentUser.userId && message.receiver == this.state.currentContact)
+            || (message.receiver == this.state.currentUser.userId && message.sender == this.state.currentContact)) {
+                const hasThisMessage = this.state.currentMessages.some(
+                    element => {
+                        if (element.id === message.id) {
+                            return true;
+                        }
+                        
+                        return false;
+                    }
+                )    
+                if (!hasThisMessage) {
+                    this.setState(prevState => ({
+                        ...prevState,
+                        currentMessages: [...this.state.currentMessages, message]
+                    }))
+                }
+            } else {
+                return;
+            }
+            
+            
         }
 
         constructor() {
@@ -51,7 +84,8 @@ export class Chat extends React.Component {
             this.state = {
                     contacts: [],
                     currentContact: "NONE",
-                    currentMessages: []
+                    currentUser: {},
+                    currentMessages: [],
                 }
             };
 
@@ -76,6 +110,7 @@ export class Chat extends React.Component {
                             <div className="CurrentChat">Current chat = {this.state.currentContact}</div>
                             <MessagesPanel
                                 currentContact={this.state.currentContact}
+                                currentUser={this.state.currentUser}
                                 messages={this.state.currentMessages}>
                             </MessagesPanel>
                         </div>
