@@ -25,6 +25,8 @@ const io = new Server(server)
 // const cors = require('cors')
 // app.use(cors());
 const messages = require('./routes/messages')
+const { profile } = require('console')
+const reviewSchema = require('./models/review')
 
 // user cors, it doesnt work at all on firefox if not included
 app.use(cors())
@@ -126,6 +128,41 @@ app.get("/posts/:search", async (req,res)=>{
     const matchingPosts = await post.find({ "name": { "$regex": search, "$options": "i" } })
     res.status(200).json({postsMatching : matchingPosts})
 })
+
+app.post("/review", async (req,res)=>{
+    const token = req.header('x-auth-token')
+    let payload = JSON.parse(Buffer.from(token.split(".")[1], "base64url"));
+    const existCheck = await user.findOne({email : payload.userEmail})
+    const profileCheck = await userProfile.findOne({user : existCheck.userId})
+    const newReview = new reviewSchema({
+        reviews:{
+            rating : req.body.rating,
+            comment : req.body.comment
+        },
+        id: req.body.id
+    })
+    // await userProfileSchema.findOneAndUpdate(
+    //     {id : profileCheck.user},
+    //     {
+    //         reviews:[{
+    //             rating: req.body.rating,
+    //             comment: req.body.comment
+    //         }]
+    //     }
+    // )
+    newReview.save()
+    res.status(200).send("review created")
+})
+
+app.get("/user-review", async (req,res)=>{
+    const token = req.header('x-auth-token')
+    let payload = JSON.parse(Buffer.from(token.split(".")[1], "base64url"));
+    const existCheck = await user.findOne({email : payload.userEmail})
+    //const profileCheck = await userProfile.findOne({user : existCheck.userId})
+    const userReviews = await reviewSchema.findOne({id : existCheck.userId});
+    res.status(200).json({reviews: userReviews})
+})
+
 
 ///messages
 app.get("/message", (req,res) => {
