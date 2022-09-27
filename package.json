@@ -1,0 +1,24 @@
+{
+  "name": "r-service",
+  "version": "1.0.0",
+  "description": "Monorepo package",
+  "scripts": {
+    "postinstall": "(cd backend && npm install); (cd frontend && npm install)",
+    "start": "concurrently --kill-others \"npm run start-backend\" \"npm run start-frontend\"",
+    "start-frontend": "cd frontend && npm run-script start",
+    "start-backend": "cd backend && npm run-script start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Comtsu1/R-Service.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Comtsu1/R-Service/issues"
+  },
+  "homepage": "https://github.com/Comtsu1/R-Service#readme",
+  "dependencies": {
+    "concurrently": "^7.4.0"
+  }
+}
