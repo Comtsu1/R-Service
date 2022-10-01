@@ -163,6 +163,7 @@
 
 /* buy */
 .ViewPost .Buy{
+    display: inline-block;
     position: relative;
 }
 

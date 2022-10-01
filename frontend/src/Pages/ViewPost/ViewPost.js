@@ -202,8 +202,11 @@ function ViewPost(){
                                             </>
                                         }
                                         </div>
+
+                                        {reserved.value ? <button className="button" onClick={e => giveRating(e)}>Done</button> : null}
+
                                         {profile === service_profile.user?null:
-                                        <button className="button" id="Contact" onClick={e => giveRating(e)}>Contact Me</button>
+                                            <button className="button" id="Contact">Contact Me</button>
                                         }
                                     </div>
                                 </div>

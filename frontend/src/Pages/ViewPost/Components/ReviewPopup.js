@@ -3,7 +3,7 @@ import React, {useState} from "react";
 import { BackendLink } from "../../../Refferences/RefferencesFile";
 import './ReviewPopup.css'
 
-function ReviewPopup({Close}) {
+function ReviewPopup({Close, profile}) {
 
     const [rating, setRating] = useState(null);
     const [comment, setComment] = useState("");
@@ -18,8 +18,11 @@ function ReviewPopup({Close}) {
         e.preventDefault();
 
         const payload = {
-            rating: rating,
-            commnet: comment
+            reviews:{
+                rating: rating,
+                commnet: comment
+            },
+            id: profile.userId
         };     
 
         const config = {
@@ -29,7 +32,7 @@ function ReviewPopup({Close}) {
         if(config["x-auth-token"] == null) return;
         axios.post(`${BackendLink}/review`, payload, config)
             .then((res) => {
-                alert("Review made!")
+                alert("Review made!");
                 Cancel();
             })
             .catch((err) => {

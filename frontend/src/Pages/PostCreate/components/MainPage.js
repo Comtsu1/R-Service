@@ -43,7 +43,7 @@ function PostForm() {
 
 
     const ShowImgs = () => {
-        const listItems = this.state.imgs.map((item, index) =>
+        const listItems = post.imgs.map((item, index) =>
             <div className="PhotoAttachment">
                 {item == "Loading"?
                 <>

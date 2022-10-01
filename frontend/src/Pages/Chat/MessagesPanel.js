@@ -34,7 +34,8 @@ export class MessagesPanel extends React.Component {
         });
     }
 
-    sendMessage = () => {
+    sendMessage = (e) => {
+        e.preventDefault()
         console.log(this.props.currentContact !== "NONE")
         if(this.props.currentContact!== "NONE" && this.state.inputValue !== ""){
             console.log('Sending message:', this.state.inputValue)
@@ -60,10 +61,10 @@ export class MessagesPanel extends React.Component {
             <div className="messages-panel">
                 <div className="meesages-list">{list}
                 </div>
-                <div className="messages-input">
-                    <input value={this.state.inputValue} onChange={evt => this.updateInputValue(evt)} type="text"></input>
-                    <button onClick={this.sendMessage}>Send</button>
-                </div>
+                <form className="messages-input" onSubmit={(e) => this.sendMessage(e)}>
+                    <input type='submit' value={this.state.inputValue} onChange={evt => this.updateInputValue(evt)}></input>
+                    <button type='submit'>Send</button>
+                </form>
 
             </div>
             );
