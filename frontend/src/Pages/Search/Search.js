@@ -114,7 +114,7 @@ function MainContent(){
   function renderPosts(){
     console.log(posts)
     if(posts == "no result"){
-        return <div>No results to your search</div>
+        return <div>Nu s-au găsit rezultate</div>
     }else{
         const list = posts.map((value, index) => 
           <Post value={value} key={value._id}/>
