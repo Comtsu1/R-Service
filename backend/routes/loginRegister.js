@@ -4,6 +4,8 @@ const router  = express.Router()
 const bcrypt = require('bcrypt')
 const user = require('../models/modelUser.js')
 const jwt = require('jsonwebtoken')
+const { v4: uuidv4 } = require('uuid');
+const userProfile = require('../models/userProfile.js')
 
 router.post('/register', async (req,res) => {
 
@@ -13,7 +15,19 @@ router.post('/register', async (req,res) => {
 
     const salt = await bcrypt.genSalt(10)
     newUser.password = await bcrypt.hash(newUser.password, salt)
+    newUser.userId = uuidv4();
     newUser.save().then(console.log(`User created with email ${req.body.email}`))
+
+    const profile = new userProfile({
+        firstName : req.body.firstName,
+        secondName : req.body.secondName,
+        image : "",
+        user : newUser.userId,
+        description : "Tell us about you, cool stuff like projects you've completed and area of expertise",
+        phoneNum : "",
+    })
+    profile.save();
+
     //mongoose.connection.useDb("Users").collection('users').insertOne(newUser)
     /// res.status(201).json({userCreated: true})
     const userEmail = newUser.email

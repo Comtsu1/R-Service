@@ -173,9 +173,21 @@ app.get("/message", (req,res) => {
 })
 
 
+// const startConnection = async() => {
+//     try {
+//         await dbConnection("mongodb+srv://leo:mongo123@r-services.ulww9.mongodb.net/INFO?retryWrites=true&w=majority")
+//         http.listen(port, () => {
+//             console.log(`Listening on port ${port}`);
+//         })
+//     } catch (error) {
+//         console.log(error);
+//     }
+// }
+
+
 const startConnection = async() => {
     try {
-        await dbConnection("mongodb+srv://leo:mongo123@r-services.ulww9.mongodb.net/INFO?retryWrites=true&w=majority")
+        await dbConnection("mongodb+srv://Riqi:3MRm4rEVD3zqMzZ7@cluster0.ksorrvx.mongodb.net/?retryWrites=true&w=majority");
         http.listen(port, () => {
             console.log(`Listening on port ${port}`);
         })
@@ -183,5 +195,6 @@ const startConnection = async() => {
         console.log(error);
     }
 }
+
 
 startConnection()
