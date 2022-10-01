@@ -31,13 +31,13 @@ class ForgotPassword extends React.Component {
 		return (
 			<div className='Wrapper'>
 				<h1>
-					Reset Password
+					Resetează Parola
 				</h1>
 				<p id='Forgot-description'>
-					Please enter your email address and we'll send you a link to reset your password. <br /> --false
+					Vă rugăm introduceți adresa dvs. de email și noi vă vom trimite un link petru a o reseta. <br /> --fals
 				</p>
 				<form id="ForgotForm" onSubmit={this.handleSubmit}>
-					<input placeholder="Enter your email" type='email' value={this.state.email} onChange={this.handleChange}></input>
+					<input placeholder="Introduceți adresa de email" type='email' value={this.state.email} onChange={this.handleChange}></input>
 				</form>
 			</div>
 		)
@@ -97,7 +97,7 @@ function LoginForm({ Login, error }) {
 						<ForgotPassword />
 						<div className="Footer">
 							<button type="button" onClick={ToggleForgotPasswordForm}>
-								return
+								revenire
 							</button>
 						</div>
 					</div>
@@ -110,7 +110,7 @@ function LoginForm({ Login, error }) {
 				<div className="Wrapper">
 					<form onSubmit={submitHandler}>
 						<div className="form-inner">
-							<h2>Login</h2>
+							<h2>Autentificare</h2>
 							{(error !== "") ? (<div className="error">{error}</div>) : ""}
 							<div className="form-group email">
 								<label htmlFor="email">Email: </label>
@@ -135,17 +135,17 @@ function LoginForm({ Login, error }) {
 
 								</div>
 							</div>
-							<input type={'submit'} value="LOGIN" />
+							<input type={'submit'} value="Autentificare" />
 						</div>
 					</form>
 
 					<div className="Footer">
 						<button type="button" onClick={ToggleForgotPasswordForm}>
-							Forgot Password?
+							Ați uitat parola?
 						</button>
 						<a href="register">
 							<button>
-								Register
+								Înregistrare
 							</button>
 						</a>
 					</div>
