@@ -139,12 +139,12 @@ class UserUtility extends React.Component{
                 <>
                     <div className="UserUtil">
                         <a href="login">
-                            <button id='LoginButton'>Login</button>
+                            <button id='LoginButton'>Intră în cont</button>
                         </a>
                     </div>
                     <div className="UserUtil">
                         <a href="register">
-                            <button id='SignUpButton'>Sign Up</button>
+                            <button id='SignUpButton'>înregistrează-te</button>
                         </a>
                     </div>
                 </>
