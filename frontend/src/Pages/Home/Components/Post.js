@@ -43,13 +43,13 @@ class Post extends React.Component{
                 <img src={this.props.value.image[0]} alt="post Image"></img>
                 <div className="Discover">
                     <a href={`/post?id=${this.props.value.postId}`}>
-                        <div className="DiscoverButton">Discover More</div>
+                        <div className="DiscoverButton">Descoperă mai multe</div>
                     </a>
                 </div>
             </div>
             <a href={`/post?id=${this.props.value.postId}`}>
               <span className='Title'>{this.props.value.name}</span>
-              <span className="Cost">{this.props.value.price} btc</span>
+              <span className="Cost">{this.props.value.price} roni</span>
             </a>
           </div>
           
