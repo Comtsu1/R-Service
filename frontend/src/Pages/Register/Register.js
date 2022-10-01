@@ -15,12 +15,12 @@ function Register(){
         axios.post(`${BackendLink}/user/register`, details)
             .then(res => {ManageResponse(res, details);})
             .catch(err => {
-              // clientside error
               console.log(err);
               console.log(err.response.data.error);
               console.log(err.response.status);
               //testing
               setError(err.response.data.error + " (" + err.response.status + ")");
+              return;
             })
       }
       
@@ -37,7 +37,7 @@ function Register(){
         //axios.post("http://localhost:8080/create-profile", details, config)
         //  .then(() => navigate('/'))
         //  .catch(err => {setError(err.response.data.error); return;})
-        navigate('/set_profile');
+        navigate('/profile');
       }
 
       const Register = details => {
