@@ -1,4 +1,7 @@
-const socket = io('http://localhost:3000/message')
+const FrontendLink = require("./Refferences/Refferences")
+
+
+const socket = io(`${FrontendLink}/message`)
 
 socket.on('chat-message', data =>{
     console.log(data)

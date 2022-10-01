@@ -35,7 +35,6 @@ function MainContent(){
 
   
   useEffect(() => {
-    // axios.get("http://localhost:8080/posts", {
     axios.get(`${BackendLink}/posts`, {
         headers:{"x-auth-token": localStorage.getItem("token")}
         })

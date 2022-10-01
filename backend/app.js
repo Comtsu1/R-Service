@@ -1,3 +1,5 @@
+const refferences = import("./Refferences/Refferences.mjs")
+const FrontendLink = refferences.FrontendLink
 
 const express = require('express')
 const mongoose = require('mongoose')
@@ -24,7 +26,7 @@ const reviewSchema = require('./models/review')
 
 const socketIO = require('socket.io')(http, {
     cors: {
-        origin: "http://localhost:3000"
+        origin: FrontendLink
     }
 });
 

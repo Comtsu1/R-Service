@@ -29,14 +29,6 @@ function Register(){
         localStorage.setItem("token", res.data.token);
         localStorage.setItem("secondStageValidator", res.data.token)
         
-        // const config = {
-        //     headers:{
-        //         'x-auth-token': localStorage.getItem("token")
-        //     }
-        // };
-        //axios.post("http://localhost:8080/create-profile", details, config)
-        //  .then(() => navigate('/'))
-        //  .catch(err => {setError(err.response.data.error); return;})
         navigate('/set_profile');
       }
 

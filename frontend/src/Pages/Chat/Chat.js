@@ -84,15 +84,18 @@ export class Chat extends React.Component {
             this.state = {
                     contacts: [],
                     currentContact: "NONE",
+                    CCname: "no one",
                     currentUser: {},
                     currentMessages: [],
                 }
             };
 
         onContactChanged = (value) => {
+            console.log(value.target)
             this.setState(prevState => ({
                 ...prevState,
-                currentContact: value.target.id
+                currentContact: value.target.id,
+                CCname: value.target.name,
             }))
             console.log(value.target.id)
             this.fetchChatWithContact(value.target.id)
@@ -107,7 +110,7 @@ export class Chat extends React.Component {
                             onContactChanged={this.onContactChanged}>
                         </ContactList>
                         <div className="Main-Chat">
-                            <div className="CurrentChat">Current chat = {this.state.currentContact}</div>
+                            <div className="CurrentChat">Currently chatting with {this.state.CCname}</div>
                             <MessagesPanel
                                 currentContact={this.state.currentContact}
                                 currentUser={this.state.currentUser}

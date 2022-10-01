@@ -39,11 +39,11 @@ function PostForm() {
     const [post, setPost] = useState({imgs: [], title: "", description: "", location: "Alba", mobile: "", price: NaN})
     let numOfImgs = post.imgs.length;
     const nav = useNavigate();
-
+    
 
 
     const ShowImgs = () => {
-        const listItems = this.state.imgs.map((item, index) =>
+        const listItems = post.imgs.map((item, index) =>
             <div className="PhotoAttachment">
                 {item == "Loading"?
                 <>

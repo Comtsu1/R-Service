@@ -8,6 +8,7 @@ const bcrypt = require('bcrypt')
 const router  = express.Router()
 const jwt = require('jsonwebtoken')
 const jwtSecret = 'secretc0de1234123jbhb2@#$Gyh4SEG'
+const FrontendLink = import("../Refferences/Refferences.mjs").FrontendLink
 
 router.post('/forgot-password', async (req,res)=>{
     const existCheck = await user.findOne({email : req.body.email})
@@ -18,7 +19,7 @@ router.post('/forgot-password', async (req,res)=>{
             id: existCheck.userId,
         }
         const token = jwt.sign(payload, secret, {expiresIn: '30m'})
-        const link = `http://localhost:3000/reset-password/${existCheck.userId}/${token}`
+        const link = `${FrontendLink}/reset-password/${existCheck.userId}/${token}`
         sendMail(existCheck.email, link)
         res.send(`Email sent to ${existCheck.email}`)
     }
