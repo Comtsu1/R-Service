@@ -117,7 +117,7 @@ function LoginForm({ Login, error }) {
 								<input type={'email'} name='email' id='email' onChange={e => setDetails({ ...details, email: e.target.value })} value={details.email} />
 							</div>
 							<div className="form-group password">
-								<label htmlFor="password">Password: </label>
+								<label htmlFor="password">Parolă: </label>
 								<div className="password-placeholder">
 									<input
 										className="password-input"
