@@ -35,7 +35,7 @@ function Reservations(reservation, setReservations, postProfile, setPostProfile,
         const obj = reservation.map((val) =>
         {
             if(val._id == value._id){
-                val.status = "Accepted";
+                val.status = "Acceptat";
             }
             return val
         });
@@ -53,7 +53,7 @@ function Reservations(reservation, setReservations, postProfile, setPostProfile,
         const obj = reservation.map((val) =>
         {
             if(val._id == value._id){
-                val.status = "Declined";
+                val.status = "Refuzat";
             }
             return val
         });
