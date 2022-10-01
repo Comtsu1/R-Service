@@ -73,7 +73,7 @@ class UserUtility extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            UserName: 'Signed in as',
+            UserName: 'Conectat ca',
             UserIcon: null,
             NotifIsOpen: false,
             ProfileIsOpen: false,
