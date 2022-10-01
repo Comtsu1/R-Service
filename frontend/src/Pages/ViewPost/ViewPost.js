@@ -162,14 +162,14 @@ function ViewPost(){
 
                                         {profile === service_profile.user?
                                                 <button className="button" id="Delete" onClick={null
-                                                }>Remove Post</button>
+                                                }>Elimină postarea</button>
                                             :
                                             <>
                                                 {details.loggedOut?
                                                     <>
                                                         <div className="LoggedOut">
                                                             <div className="LoBox">
-                                                                <p>You need to log in to make a reservation</p>
+                                                                <p>Trebuie sa te autentifici pentru a face o rezervare</p>
                                                             </div>
                                                             <div className="Appendice"></div>
                                                         </div>
@@ -181,7 +181,7 @@ function ViewPost(){
                                                     <>
                                                         <button className="button" id="Hire" onClick={
                                                             (e) => {makeReservation(e)}
-                                                        }>Make Reservation</button>
+                                                        }>Fă rezervare</button>
                                                     </>
                                                     :
                                                     <div className="button" id="Pending">{reserved.status}</div>
@@ -191,7 +191,7 @@ function ViewPost(){
                                         }
                                         </div>
                                         {profile === service_profile.user?null:
-                                        <button className="button" id="Contact">Contact Me</button>
+                                        <button className="button" id="Contact">Contactează-mă</button>
                                         }
                                     </div>
                                 </div>
@@ -205,7 +205,7 @@ function ViewPost(){
 
                         {Reservations(reservedHere, setReservedHere, postProfile, setPostProfile, debounce, setDebounce)}
                     </>
-                    :<div>Loading</div>}
+                    :<div>Încărcare</div>}
                 </div>
             </div>
 

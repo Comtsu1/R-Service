@@ -17,7 +17,7 @@ const Calendar1 = (selectedDay, setSelectedDay, setDetails, details, MakeReserva
                   setDetails({...details, calendarOpened: false});
               }
               }>
-                  Cancel
+                  Renunță
               </button>
   
               <button type="button" onClick={(e) =>
@@ -27,7 +27,7 @@ const Calendar1 = (selectedDay, setSelectedDay, setDetails, details, MakeReserva
                       setDetails({...details, calendarOpened: false})
                   }
               }>
-                  Make Reservation!
+                  Rezervă!
               </button>
           </div>
         )

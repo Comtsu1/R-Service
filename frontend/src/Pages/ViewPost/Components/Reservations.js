@@ -37,7 +37,7 @@ function Reservations(reservation, setReservations, postProfile, setPostProfile,
         const obj = reservation.map((val) =>
         {
             if(val._id == value._id){
-                val.status = "Accepted";
+                val.status = "Acceptat";
             }
             return val
         });
@@ -55,7 +55,7 @@ function Reservations(reservation, setReservations, postProfile, setPostProfile,
         const obj = reservation.map((val) =>
         {
             if(val._id == value._id){
-                val.status = "Declined";
+                val.status = "Refuzat";
             }
             return val
         });
@@ -97,11 +97,11 @@ function Reservations(reservation, setReservations, postProfile, setPostProfile,
                                         <button className="IncomingResBtn" id="Accept" 
                                         onClick={(e) => acceptReq(e, value)}
                                         
-                                        >Accept</button>
+                                        >Acceptă</button>
                                         <div className="BtnDivider"></div>
                                         <button className="IncomingResBtn" id="Decline"
                                         onClick={(e) => declineReq(e, value)}
-                                        >Decline</button>
+                                        >Refuză</button>
                                     </>
                                         :
                                         [value.status]
