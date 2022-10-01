@@ -252,7 +252,7 @@ function Profile(){
                                 <div  type="file" className="ChangeImage" >
                                     <img className={profile.image?"ProfileImage":"NoProfileImage"} src={profile.image?profile.image:NoProfileImg} alt="profileImage"/>
                                     <div className="ChangeImgLabel">
-                                        <label htmlFor={"ChngImg"} >change<br/>image</label>
+                                        <label htmlFor={"ChngImg"} className="chngimglabel">Change<br/>image</label>
                                     </div>
                                     <input type={"file"} id="ChngImg" accept=".jpg, .jpeg, .png, .gif" onChange={(e) => ChangeImage(e)}></input>
                                 </div>
@@ -262,7 +262,7 @@ function Profile(){
                         <div className="ProfileDescription">
                             <div className="DescFlex"> 
                                 <h2 className="ProfileDescLabel">Description</h2>
-                                <button onClick={(e) => editDesc(e)}>edit</button>
+                                <button onClick={(e) => editDesc(e)}>Edit</button>
                             </div>
                             {PageDetails.DescEditing === false?
                             <p>
@@ -273,7 +273,7 @@ function Profile(){
                                 <textarea className="ProfileDescriptionEdit" value={PageDetails.DescEdit} onChange={(e) => OnDescEdit(e)} >
 
                                 </textarea>
-                                <button className="SubmitDescriptionEdit" onClick={(e) => SubmitDescriptionEdit(e)}>done</button>
+                                <button className="SubmitDescriptionEdit" onClick={(e) => SubmitDescriptionEdit(e)}>Done</button>
                             </div>
                             }
                         </div>

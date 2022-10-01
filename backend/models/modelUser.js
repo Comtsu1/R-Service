@@ -9,7 +9,7 @@ const userSchema = new mongoose.Schema({
         type: String,
         trim: true
     },
-    userId: Number,
+    userId: String,
 })
 
 module.exports = mongoose.model('user', userSchema)
