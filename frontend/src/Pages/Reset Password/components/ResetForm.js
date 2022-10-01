@@ -56,9 +56,9 @@ function ResetForm({Reset}) {
             <div className="Wrapper">
                 <form onSubmit={submitHandler}>
                     <div className="form-inner">
-                        <h2>Reset</h2>
+                        <h2>Resetează parola</h2>
                         <div className="form-group password">
-                            <label htmlFor="password">Password: </label>
+                            <label htmlFor="password">Parolă: </label>
                             <input 
                             className="password-input"
                             type='password'
@@ -71,7 +71,7 @@ function ResetForm({Reset}) {
                             </input>
                         </div>
                         <div className="form-group confirm-password">
-                            <label htmlFor="confirm-password">Confirm password:</label>
+                            <label htmlFor="confirm-password">Confirmă parola:</label>
                             <input 
                             className="confirm-password-input"
                             type="password"
@@ -83,14 +83,14 @@ function ResetForm({Reset}) {
                             {details.confirmPassword? 
                                 details.passwordsMatching?
                                 <label id='Passwords-matching'>
-                                    Passwords matching
+                                    Parolele se potrivesc
                                 </label>:
                                 <label id='Passwords-mismatching'>
-                                Passwords are not matching!
+                                Parolele nu se potrivesc!
                             </label>
                              : null}
                         </div>
-                        <input type={'submit'} value="Reset Password" />
+                        <input type={'submit'} value="Resetează Parola" />
                     </div>
                 </form>
 
