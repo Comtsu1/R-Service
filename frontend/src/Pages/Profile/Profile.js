@@ -95,7 +95,7 @@ function Profile(){
         if (Services.length === 0){
             return(
             <div className="NoService">
-                <label>You have no posts created</label>
+                <label>Nu ai servicii create</label>
             </div>
             )
         }
@@ -117,7 +117,7 @@ function Profile(){
                             </p>
                         </div>
                         <div className="Details">
-                            <span className="Cost">{value.price}$</span>
+                            <span className="Cost">{value.price} roni</span>
                             <span className="Location">{value.location}</span>
                         </div>
                     </div>   
@@ -141,7 +141,7 @@ function Profile(){
         if (RentedServices.length === 0){
             return(
             <div className="NoService">
-                <label>You have no rented services</label>
+                <label>Nu ai servicii închiriate</label>
             </div>
             )
         }else{
@@ -252,7 +252,7 @@ function Profile(){
                                 <div  type="file" className="ChangeImage" >
                                     <img className={profile.image?"ProfileImage":"NoProfileImage"} src={profile.image?profile.image:NoProfileImg} alt="profileImage"/>
                                     <div className="ChangeImgLabel">
-                                        <label htmlFor={"ChngImg"} >change<br/>image</label>
+                                        <label htmlFor={"ChngImg"} >schimbă<br/>imaginea</label>
                                     </div>
                                     <input type={"file"} id="ChngImg" accept=".jpg, .jpeg, .png, .gif" onChange={(e) => ChangeImage(e)}></input>
                                 </div>
@@ -261,8 +261,8 @@ function Profile(){
                         </div>
                         <div className="ProfileDescription">
                             <div className="DescFlex"> 
-                                <h2 className="ProfileDescLabel">Description</h2>
-                                <button onClick={(e) => editDesc(e)}>edit</button>
+                                <h2 className="ProfileDescLabel">Descriere</h2>
+                                <button onClick={(e) => editDesc(e)}>editează</button>
                             </div>
                             {PageDetails.DescEditing === false?
                             <p>
@@ -273,7 +273,7 @@ function Profile(){
                                 <textarea className="ProfileDescriptionEdit" value={PageDetails.DescEdit} onChange={(e) => OnDescEdit(e)} >
 
                                 </textarea>
-                                <button className="SubmitDescriptionEdit" onClick={(e) => SubmitDescriptionEdit(e)}>done</button>
+                                <button className="SubmitDescriptionEdit" onClick={(e) => SubmitDescriptionEdit(e)}>gata</button>
                             </div>
                             }
                         </div>
@@ -281,14 +281,14 @@ function Profile(){
                         <div className="ProfilePageMenu">
                             <div className="ServiceFocused">
                                 <button className={PageDetails.PostFocused?"Focused":null} onClick={(e) => FocusPost(e)}>
-                                    My Posts
+                                    Postările Mele
                                 </button>
                                 {/* <div className={PageDetails.PostFocused?"Highlighter Focused":"Highlighter Unfocused"}/> */}
                             </div>
                             <div className="Divider"/>
                             <div className="ServiceUnfocused">
                                 <button className={PageDetails.PostFocused?null:"Focused"} onClick={(e) => UnfocusPost(e)}>
-                                    Rented Services
+                                    Servicii Închiriate
                                 </button> 
                                 {/* <div className={PageDetails.PostFocused?"Highlighter Unfocused":"Highlighter Focused"}/> */}
 
@@ -301,7 +301,7 @@ function Profile(){
                 </div>
 
                 :
-                <div>data not loaded yet</div>
+                <div>datele nu sunt încărcate încă</div>
                 // (<Navigate to="/" replace={true} />)
                 }
             </div>

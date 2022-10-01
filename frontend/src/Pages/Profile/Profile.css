@@ -47,12 +47,14 @@
 }
 
 .Profile .ProfileBar .ChangeImage .ChangeImgLabel{
+    aspect-ratio: 1/1;
     height: 100%;
     bottom: 108px;
     position: relative;
     background-color: rgba(0,0,0,0);
     border-radius: 100%;
     display: flex;
+    text-align: center;
     align-items: center;
     justify-content: center;
     color: rgba(225,225,225,0);
