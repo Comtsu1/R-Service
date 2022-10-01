@@ -9,7 +9,7 @@ export class ContactList extends React.Component {
 
     render() {
 
-        let list = `There is no contacts to show`;
+        let list = `Nu este nimeni de afişat`;
         if (this.props.contacts) {            
             list = this.props.contacts.map(c => <Contact key={c.sender} id={c.sender} name={c.senderName} onClick={this.props.onContactChanged}></Contact>);
         }

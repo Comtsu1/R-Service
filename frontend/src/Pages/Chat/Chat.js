@@ -84,7 +84,7 @@ export class Chat extends React.Component {
             this.state = {
                     contacts: [],
                     currentContact: "NONE",
-                    CCname: "no one",
+                    CCname: "nimeni",
                     currentUser: {},
                     currentMessages: [],
                 }
@@ -110,7 +110,7 @@ export class Chat extends React.Component {
                             onContactChanged={this.onContactChanged}>
                         </ContactList>
                         <div className="Main-Chat">
-                            <div className="CurrentChat">Currently chatting with {this.state.CCname}</div>
+                            <div className="CurrentChat">Vorbeşti cu {this.state.CCname}</div>
                             <MessagesPanel
                                 currentContact={this.state.currentContact}
                                 currentUser={this.state.currentUser}

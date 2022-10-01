@@ -52,7 +52,7 @@ export class MessagesPanel extends React.Component {
 
     render() {
 
-        let list = <div className="no-content-message">There is no messages to show</div>;
+        let list = <div className="no-content-message">Nu există mesaje de afişat</div>;
         if (this.props.messages) {
             list = this.props.messages.map(m => <Message key={m.id} id={m.sender} senderName    ={m.senderName} text={m.message}>;</Message>)
         }
@@ -62,7 +62,7 @@ export class MessagesPanel extends React.Component {
                 </div>
                 <div className="messages-input">
                     <input value={this.state.inputValue} onChange={evt => this.updateInputValue(evt)} type="text"></input>
-                    <button onClick={this.sendMessage}>Send</button>
+                    <button onClick={this.sendMessage}>Trimite</button>
                 </div>
 
             </div>
