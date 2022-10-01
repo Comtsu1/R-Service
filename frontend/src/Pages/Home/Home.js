@@ -78,14 +78,14 @@ function MainContent(){
       <div className='FocusContent'>
         <div className='CatchLineBg'>
           <div className='CatchLine'> 
-            <h2>Need a <br/> problem <br/> solved in <br/> no-time?</h2>
-            <p>Find the right service for you now</p>
+            <h2>Ai o problemă <br/> şi trebuie <br/>rezolvată <br/> cât ai clipi?</h2>
+            <p>Găsește serviciul potrivit pentru tine</p>
           </div>
         </div>
       </div>
     </div>
     <div className='HomeWrapper'>
-      <h3>Find the latest servcices <br/> using the platform RService</h3>
+      <h3>Găsește ultimele servicii <br/> folosind platforma RService</h3>
         
       <div className={desktop?'Background' :'Background Big'}>
         {
