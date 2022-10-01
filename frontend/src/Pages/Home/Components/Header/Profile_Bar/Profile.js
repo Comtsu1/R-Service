@@ -26,17 +26,17 @@ function Profile({icon}) {
                         {icon?
                         <img src={icon} alt="profileIcon"/>
                         :
-                        <label className="Profile-Placeholder-Text">Placeholder Image</label>
+                        <label className="Profile-Placeholder-Text">Înlocuitor Imagine</label>
                         }
 
                     </div>
                     <div className="ProfileWrapper">
                         <ul className="Profile-Menu">
-                            <li><a href="/create_post">Create Post</a></li>
-                            <li><a href="/profile">Profile</a></li>
-                            <li><a href="/chat">Messages</a></li>
+                            <li><a href="/create_post">Adaugă o Postare</a></li>
+                            <li><a href="/profile">Profil</a></li>
+                            <li><a href="/chat">Mesaje</a></li>
                             <li className="Divider"></li>
-                            <li onClick={Logout} className="Log-Out">Logout</li>
+                            <li onClick={Logout} className="Log-Out">Deconectare</li>
                             <li className="Divider"></li>
                         </ul>
                     </div>
