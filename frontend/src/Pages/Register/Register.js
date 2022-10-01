@@ -39,7 +39,7 @@ function Register(){
         ///connect back-end: doing rn chief
         
         if(!details.email || !details.password || !details.firstName || !details.secondName || !details.confirmPassword){
-          setError("Please complete all available slots!");
+          setError("Te rog completează toate câmpurile!");
           return;
         }
 

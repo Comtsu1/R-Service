@@ -38,7 +38,7 @@ function ProfileForm() {
         
         event.preventDefault()
         let img = event.target.files[0];
-        setProfile({...profile, image: "Loading"})
+        setProfile({...profile, image: "Încărcare"})
 
         // send request to get link for photo
         var dataUrl
@@ -59,7 +59,7 @@ function ProfileForm() {
     const ShowImgs = () => {
         return(
             <div className="PhotoAttachment">
-                {profile.image == "Loading"?
+                {profile.image == "Încărcare"?
                 <>
                     <div className="loader">
                         <div className="loader-inner">
@@ -109,7 +109,7 @@ function ProfileForm() {
                                 e.preventDefault()
                                 setProfile({...profile, image: ""})
                             }
-                        } type="button">Remove Image</button>
+                        } type="button">Elimină Imagine</button>
                     </div>
                 </>
                 }
@@ -172,34 +172,34 @@ function ProfileForm() {
             <div className="Flex-Wrapper">
                 <div className="Form-Wrapper">
                     <div className="FormTitle">
-                        <label>Name</label>
-                        <p>Please insert your name</p>
+                        <label>Nume</label>
+                        <p>Te rog introdu numele tău</p>
                     </div>
                     <div className="FormContent">
-                        <input className="Name First" onChange={e => FnameChange(e)} required="required" placeholder="First Name"></input>
-                        <input className="Name Second" onChange={e => SnameChange(e)} required="required" placeholder="Second Name"></input>
+                        <input className="Name First" onChange={e => FnameChange(e)} required="required" placeholder="Prenume"></input>
+                        <input className="Name Second" onChange={e => SnameChange(e)} required="required" placeholder="Nume de familie"></input>
                     </div>
                 </div>
                 <div className="Form-Wrapper">
                     <div className="FormTitle">
-                        <label>Description</label>
+                        <label>Descriere</label>
                     </div>
                     <div className="FormContent">
                         <textarea required="required" className="Description" onChange={e => DescChange(e)}
-                        placeholder="Tell us about you, and cool stuff like porjects you've completed and area of expertise"
+                        placeholder="Spune-ne despre tine și chestii remarcabile pe care le-ai făcut în trecut precum proiecte și zona de expertiză"
                         ></textarea>
                     </div>
                 </div>
                 {/* images */}
                 <div className="Form-Wrapper">
                     <div className="FormTitle">
-                        <label>Image</label>
-                        <p>Add an image to your profile so customers know exactly who they're dealing with</p>
+                        <label>Imagine de profil</label>
+                        <p>Adaugă o imagine de profil, astfel încât clienții știu cu cine au de-a face</p>
                     </div>
                     <div className="FormContent" id="ImgFormContent">
                         {profile.image === "" ?
                             <div className="PhotoAttachment First">
-                                <label htmlFor="photo-attachment">Add image</label>
+                                <label htmlFor="photo-attachment">Adaugă imagine</label>
                                 <input type="file" id="photo-attachment" accept=".jpg, .jpeg, .png, .gif" onChange={e => ImgSubmit(e)}></input>
                             </div>
                         :
@@ -209,8 +209,8 @@ function ProfileForm() {
                 </div>
                 <div className="Form-Wrapper">
                     <div className="FormTitle">
-                        <label>Mobile number</label>
-                        <p>Add your mobile number so customers will have a way to contact you</p>
+                        <label>Număr de telefon</label>
+                        <p>Adaugă numărul tău de telefon astfel încât clienții să te poată contacta</p>
                     </div>
                     <div className="FormContent">
                         <input type="tel" required="required" pattern="^[0-9]{3,45}$" className="MobileNumber" onChange={e => MobileChange(e)}></input>
@@ -219,11 +219,11 @@ function ProfileForm() {
             </div>
 
             <div id="Continue-Button-Wrapper">
-                <button type="submit" id="Continue-Button">Create Account!</button>
+                <button type="submit" id="Continue-Button">Creează Cont!</button>
             </div>
             </>
             :
-            <a href="/">You already have a profilecreated or you wasn't redirected here </a>
+            <a href="/">Ai deja profil sau nu ai fost redirecționat aici! </a>
             }
         </form>
     )

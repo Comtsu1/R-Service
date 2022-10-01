@@ -48,17 +48,17 @@ function RegisterForm({Register, error}) {
             <div className="Wrapper">
                 <form onSubmit={submitHandler}>
                     <div className="form-inner">
-                        <h2>Register</h2>
+                        <h2>Înregistrare</h2>
 
                         {/* Error div */}
                         {(error !== "") ? (<div className="error">{error}</div>) : ""}
 
                         <div className="form-group username">
-                            <label htmlFor="username">First Name: </label>
+                            <label htmlFor="username">Prenume: </label>
                             <input type={'text'} name='firstName' id='username' onChange={e => setDetails({...details, firstName: e.target.value})} value={details.firstName} />
                         </div>
                         <div className="form-group username">
-                            <label htmlFor="username">Second Name: </label>
+                            <label htmlFor="username">Nume de familie: </label>
                             <input type={'text'} name='secondName' id='username' onChange={e => setDetails({...details, secondName: e.target.value})} value={details.secondName} />
                         </div>
                         <div className="form-group email">
@@ -66,7 +66,7 @@ function RegisterForm({Register, error}) {
                             <input type={'email'} name='email' id='email' onChange={e => setDetails({...details, email: e.target.value})} value={details.email} />
                         </div>
                         <div className="form-group password">
-                            <label htmlFor="password">Password: </label>
+                            <label htmlFor="password">Parolă: </label>
                             <input 
                             className="password-input"
                             type='password'
@@ -80,7 +80,7 @@ function RegisterForm({Register, error}) {
                             </input>
                         </div>
                         <div className="form-group confirm-password">
-                            <label htmlFor="confirm-password">Confirm password:</label>
+                            <label htmlFor="confirm-password">Confirmă parola:</label>
                             <input 
                             className="confirm-password-input"
                             type="password"
@@ -92,21 +92,21 @@ function RegisterForm({Register, error}) {
                             {details.confirmPassword? 
                                 details.passwordsMatching?
                                 <label id='Passwords-matching'>
-                                    Passwords matching
+                                    Parolele se potrivesc!
                                 </label>:
                                 <label id='Passwords-mismatching'>
-                                Passwords are not matching!
+                                Parolele nu se potrivesc!
                             </label>
                              : null}
                         </div>
-                        <input type={'submit'} value="REGISTER" />
+                        <input type={'submit'} value="Înregistrare" />
                     </div>
                 </form>
 
                 <div className="Footer">
                     <a href="login">
                         <button>
-                            Already have an account?
+                            Ai deja cont?
                         </button>
                     </a>
                 </div>
