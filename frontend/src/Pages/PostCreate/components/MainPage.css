@@ -203,8 +203,8 @@
     font-weight: 600;
     padding-top: 65px;
     padding-bottom: 65px;
-    padding-left: 35px;
-    padding-right: 35px;
+    padding-left: 5px;
+    padding-right: 5px;
 }
 
 
@@ -449,8 +449,12 @@
 
 .PostCreate #Continue-Button{
     /* size */
-    width: 120px;
+    width: 160px;
     height: 40px;
+
+    /* position */
+    position: relative;
+    right: 20px;
 
     /* font */
     font-weight: 700;

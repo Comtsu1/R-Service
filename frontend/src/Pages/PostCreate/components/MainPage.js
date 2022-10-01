@@ -15,7 +15,7 @@ class PostCreatePage extends React.Component{
                 <Header/>
                 <div className='Main-Content'>
                     <div className="Wrapper">
-                        <h2>Tell us about your bussiness!</h2>
+                        <h2>Spune-ne despre serviciul tău!</h2>
                     </div>
                 </div>
                 <PostForm/>
@@ -213,8 +213,8 @@ function PostForm() {
             <div className="Flex-Wrapper">
                 <div className="Form-Wrapper">
                     <div className="FormTitle">
-                        <label>Title</label>
-                        <p>Add a title for the bussiness so customers will now exactly what to expect.</p>
+                        <label>Titlu</label>
+                        <p>Adaugă un titlu serviciului, astfel încât clienții tăi să știe la ce să se aștepte</p>
                     </div>
                     <div className="FormContent">
                         <input className="Title" onChange={e => TitleChange(e)} required="required"></input>
@@ -222,24 +222,24 @@ function PostForm() {
                 </div>
                 <div className="Form-Wrapper">
                     <div className="FormTitle">
-                        <label>Description</label>
+                        <label>Descriere</label>
                     </div>
                     <div className="FormContent">
                         <textarea required="required" className="Description" onChange={e => DescChange(e)}
-                        placeholder="Share a bit about the bussiness that you are selling, porjects you've completed, and area of expertise"
+                        placeholder="Spune-ne un pic despre serviciul pe care îl vinzi, proiecte la care ai mai lucrat, și zona de expertiză"
                         ></textarea>
                     </div>
                 </div>
                 {/* images */}
                 <div className="Form-Wrapper">
                     <div className="FormTitle">
-                        <label>Images</label>
-                        <p>Perhaps add some images, so customers know exactly what to expect</p>
+                        <label>Imagini</label>
+                        <p>Poate niște imagini, astfel încât clienții să aibă o imagine clară a ce vinzi</p>
                     </div>
                     <div className="FormContent" id="ImgFormContent">
                         {numOfImgs===0?
                         <div className="PhotoAttachment First">
-                            <label for="photo-attachment">Add images</label>
+                            <label for="photo-attachment">Adaugă imagini</label>
                             <input type="file" id="photo-attachment" accept=".jpg, .jpeg, .png, .gif" onChange={e => ImgSubmit(e)}></input>
                         </div>
                         :<>
@@ -253,8 +253,8 @@ function PostForm() {
                 </div>
                 <div className="Form-Wrapper">
                     <div className="FormTitle">
-                        <label>Location</label>
-                        <p>Tell your location so you are not booked by a customer that is not in your area</p>
+                        <label>Locație</label>
+                        <p>Spune-ne orașul în care te desfășori, ca să nu te contacteze vreun client care nu e în zona ta</p>
                     </div>
                     <div className="FormContent">
                         {/* <input className="Location" onChange={e => LocationChange(e)}></input> */}
@@ -306,8 +306,8 @@ function PostForm() {
                 </div>
                 <div className="Form-Wrapper">
                     <div className="FormTitle">
-                        <label>Mobile number</label>
-                        <p>Add your mobile number so customers will have a way to contact you</p>
+                        <label>Număr de telefon</label>
+                        <p>Pune numărul tău de telefon, asfel încât clienții să te poată contacta</p>
                     </div>
                     <div className="FormContent">
                         <input type="tel" required="required" pattern="^[0-9]{3,45}$" className="MobileNumber" onChange={e => MobileChange(e)}></input>
@@ -315,8 +315,9 @@ function PostForm() {
                 </div>
                 <div className="Form-Wrapper">
                     <div className="FormTitle">
-                        <label>Cost</label>
-                        <p>Lastly, choose a fair price for you services</p>
+                        <label>Preț</label>
+                        <p>În final, alege un preț cinstit pentru munca ta</p>
+                        <p id="currency"> * Prețul ales va fi în roni</p>
                     </div>
                     <div className="FormContent">
                         <input type="number" min="0" className="Price" required="required" onChange={e => PriceChange(e)}></input>
@@ -325,7 +326,7 @@ function PostForm() {
             </div>
 
             <div id="Continue-Button-Wrapper">
-                <button type="submit" id="Continue-Button">Add post!</button>
+                <button type="submit" id="Continue-Button">Adaugă anunț!</button>
             </div>
         </form>
     )
