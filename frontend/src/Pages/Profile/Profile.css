@@ -1,4 +1,8 @@
 
+.Profile .Wrapper .chngimglabel {
+    text-align: center;
+}
+
 .Profile .Wrapper {
     size: 100%;
     padding: 10px 30px;

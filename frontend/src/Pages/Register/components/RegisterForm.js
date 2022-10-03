@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import { Profile } from "../../Home/Components/Header/Profile_Bar/Profile";
 import './RegisterForm.css';
 
 
@@ -9,6 +10,10 @@ function RegisterForm({Register, error}) {
 
     const submitHandler = e => {
         e.preventDefault();
+
+        if(!details.passwordsMatching) {
+            return;
+        }
 
         Register(details);
 

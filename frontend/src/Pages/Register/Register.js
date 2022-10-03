@@ -15,12 +15,12 @@ function Register(){
         axios.post(`${BackendLink}/user/register`, details)
             .then(res => {ManageResponse(res, details);})
             .catch(err => {
-              // clientside error
               console.log(err);
               console.log(err.response.data.error);
               console.log(err.response.status);
               //testing
               setError(err.response.data.error + " (" + err.response.status + ")");
+              return;
             })
       }
       
@@ -29,7 +29,15 @@ function Register(){
         localStorage.setItem("token", res.data.token);
         localStorage.setItem("secondStageValidator", res.data.token)
         
-        navigate('/set_profile');
+        // const config = {
+        //     headers:{
+        //         'x-auth-token': localStorage.getItem("token")
+        //     }
+        // };
+        //axios.post("http://localhost:8080/create-profile", details, config)
+        //  .then(() => navigate('/'))
+        //  .catch(err => {setError(err.response.data.error); return;})
+        navigate('/profile');
       }
 
       const Register = details => {

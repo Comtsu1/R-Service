@@ -15,6 +15,19 @@ function ProfileForm() {
             phoneNum: "",
             confirmed: true,
     }); 
+
+    useEffect(() => {
+        if(localStorage.getItem("token")) {
+            axios.get(`${BackendLink}/profile`, {headers:{"x-auth-token": localStorage.getItem("token")}})
+                .then(res => {
+                    setProfile(res.data.profile);
+                })
+                .catch(err => {
+                    // handle err
+                })
+        }
+    }, [])
+
     let navigate = useNavigate();
 
     const componentDidMount = () => {
@@ -154,7 +167,7 @@ function ProfileForm() {
 
         console.log(localStorage.getItem("token"));
 
-        axios.post(`${BackendLink}/create-profile`, payload, config)
+        axios.post(`${BackendLink}/create-profile/modify`, payload, config)
         .then((res) => {
                 console.log(res);
                 navigate('/');
@@ -176,8 +189,8 @@ function ProfileForm() {
                         <p>Te rog introdu numele tău</p>
                     </div>
                     <div className="FormContent">
-                        <input className="Name First" onChange={e => FnameChange(e)} required="required" placeholder="Prenume"></input>
-                        <input className="Name Second" onChange={e => SnameChange(e)} required="required" placeholder="Nume de familie"></input>
+                        <input className="Name First" onChange={e => FnameChange(e)} required="required" placeholder={profile.firstName == "" ? "First Name" : profile.firstName}></input>
+                        <input className="Name Second" onChange={e => SnameChange(e)} required="required" placeholder={profile.secondName == "" ? "Second Name" : profile.secondName}></input>
                     </div>
                 </div>
                 <div className="Form-Wrapper">

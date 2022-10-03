@@ -252,7 +252,11 @@ function Profile(){
                                 <div  type="file" className="ChangeImage" >
                                     <img className={profile.image?"ProfileImage":"NoProfileImage"} src={profile.image?profile.image:NoProfileImg} alt="profileImage"/>
                                     <div className="ChangeImgLabel">
+<<<<<<< HEAD
                                         <label htmlFor={"ChngImg"} >schimbă<br/>imaginea</label>
+=======
+                                        <label htmlFor={"ChngImg"} className="chngimglabel">Change<br/>image</label>
+>>>>>>> 1967324323481956af3e6f81f0541ef94e350d48
                                     </div>
                                     <input type={"file"} id="ChngImg" accept=".jpg, .jpeg, .png, .gif" onChange={(e) => ChangeImage(e)}></input>
                                 </div>
@@ -261,8 +265,13 @@ function Profile(){
                         </div>
                         <div className="ProfileDescription">
                             <div className="DescFlex"> 
+<<<<<<< HEAD
                                 <h2 className="ProfileDescLabel">Descriere</h2>
                                 <button onClick={(e) => editDesc(e)}>editează</button>
+=======
+                                <h2 className="ProfileDescLabel">Description</h2>
+                                <button onClick={(e) => editDesc(e)}>Edit</button>
+>>>>>>> 1967324323481956af3e6f81f0541ef94e350d48
                             </div>
                             {PageDetails.DescEditing === false?
                             <p>
@@ -273,7 +282,11 @@ function Profile(){
                                 <textarea className="ProfileDescriptionEdit" value={PageDetails.DescEdit} onChange={(e) => OnDescEdit(e)} >
 
                                 </textarea>
+<<<<<<< HEAD
                                 <button className="SubmitDescriptionEdit" onClick={(e) => SubmitDescriptionEdit(e)}>gata</button>
+=======
+                                <button className="SubmitDescriptionEdit" onClick={(e) => SubmitDescriptionEdit(e)}>Done</button>
+>>>>>>> 1967324323481956af3e6f81f0541ef94e350d48
                             </div>
                             }
                         </div>

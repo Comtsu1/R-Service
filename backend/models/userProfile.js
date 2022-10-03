@@ -12,7 +12,7 @@ const userProfileSchema = new mongoose.Schema({
         trim: true
     },
     image : String,
-    user: Number,
+    user: String,
     description:{
         type: String
     },
