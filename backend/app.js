@@ -26,7 +26,7 @@ const reviewSchema = require('./models/review')
 
 const socketIO = require('socket.io')(http, {
     cors: {
-        origin: FrontendLink
+        origin: "*"
     }
 });
 
@@ -102,7 +102,7 @@ amqp.connect('amqps://eptpufqg:OmaKZ0XISvvoAJBXDWcnnfyU1Gi73Scw@sparrow.rmq.clou
             throw connError
         }
         // Create Channel
-        connection.createChannel((channelError, channel) =>{
+        connection.createChannel((channelError, channel) =>{    
             if(channelError){
                 throw channelError
             }
