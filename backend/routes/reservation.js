@@ -13,7 +13,7 @@ router.post('/reservation', async (req, res)=>{
     const newReservation = new reservationSchema({
         from : existCheck.userId,
         to : req.body.user,
-        status: 'pending',
+        status: 'În așteptare',
         date:{
             year: req.body.date.year,
             month: req.body.date.month,
@@ -35,7 +35,7 @@ router.post('/reservation/accept', async (req, res)=>{
         await reservationSchema.findOneAndUpdate(
             {_id : req.body._id},
             {
-                status: "Accepted"
+                status: "Acceptată"
             }
         )
         return res.status(200).json({msg : "Reservation updated"})
@@ -51,7 +51,7 @@ router.post('/reservation/decline', async (req, res)=>{
         await reservationSchema.findOneAndUpdate(
             {_id : req.body._id},
             {
-                status: "Declined"
+                status: "Refuzată"
             }
         )
         return res.status(200).json({msg : "Reservation updated"})

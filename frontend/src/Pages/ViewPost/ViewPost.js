@@ -88,7 +88,7 @@ function ViewPost(){
         event.preventDefault()
         if(localStorage.getItem('token') !== null){
             setDetails({...details, calendarOpened: true})
-            setReserved({...reserved, value:true, status: "pending"})
+            setReserved({...reserved, value:true, status: "În așteptare"})
         }else{
             setDetails({...details, loggedOut: true})
         }

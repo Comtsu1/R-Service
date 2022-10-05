@@ -92,7 +92,7 @@ function Reservations(reservation, setReservations, postProfile, setPostProfile,
                                     <span>{value.date.year}</span>
                                 </div>
                                 <div className="IncomingReservationWrapper Btn">
-                                    {value.status === "pending"?
+                                    {value.status === "În așteptare"?
                                     <>
                                         <button className="IncomingResBtn" id="Accept" 
                                         onClick={(e) => acceptReq(e, value)}
